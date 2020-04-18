@@ -59,10 +59,11 @@
      :y2 (+ (:y element2) ele2HeightDiv2)}))
 
 
-(defn render-threat-model-element-common [{:keys [x y type]}]
+(defn render-threat-model-element-common [{:keys [x y type name]}]
   [draggable {:grid [25 25] :defaultPosition {:x x :y y}}
-   [:span {:class (str "diagram-" (name type))
-           :style {:transform (goog.string.format "translate(%dpx,%dpx)" x y)}}]])
+   [:span.diagram-threat-model-element {:class (str "diagram-" (cljs.core/name type))
+                                        :style {:transform (goog.string.format "translate(%dpx,%dpx)" x y)}}
+    [:p name]]])
 
 
 (defn render-threat-model-element-communication [element elements]
