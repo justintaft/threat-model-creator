@@ -36,12 +36,22 @@ a:hover {
 
 
 
-.circle {
+.diagram-actor {
     border-radius: 50%;
     width: 100px;
     height: 100px;
     display: inline-block;
     /*background: yellow;*/
     border: 3px solid red;
-
+    position: absolute;
 }
+
+.diagram-process {
+    width: 100px;
+    height: 50px;
+    display: inline-block;
+    /*background: yellow;*/
+    border: 3px solid red;
+    position: absolute;
+}
+
