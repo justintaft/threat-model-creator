@@ -35,6 +35,12 @@ a:hover {
 
 
 
+.diagram-threat-model-element {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    display: inline-block;
+}
 
 .diagram-actor {
     border-radius: 50%;
@@ -44,6 +50,8 @@ a:hover {
     /*background: yellow;*/
     border: 3px solid red;
     position: absolute;
+    top: 0px;
+    left: 0px;
 }
 
 .diagram-process {
@@ -53,5 +61,7 @@ a:hover {
     /*background: yellow;*/
     border: 3px solid red;
     position: absolute;
+    top: 0px;
+    left: 0px;
 }
 
