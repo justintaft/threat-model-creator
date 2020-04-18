@@ -1,7 +1,8 @@
 (ns threatmodeler.core
   (:require [reagent.core :as r]
             [reagent.dom :as rdom]
-            [clojure.string :as str]))
+            [clojure.string :as str]
+            [cljsjs.react-draggable]))
 
 (defonce timer (r/atom (js/Date.)))
 
@@ -28,10 +29,12 @@
             :on-change #(reset! time-color (-> % .-target .-value))}]])
 
 
-(defn render-threat-model-element [element]
-  [:span {:class (str "diagram-" (name (:type element)))
-          :style {:left (:x element) :top (:y element)}} "hmm"])
+(def draggable (r/adapt-react-class js/ReactDraggable))
 
+(defn render-threat-model-element [element]
+  [draggable {:grid [25 25]}
+    [:span {:class (str "diagram-" (name (:type element)))
+            :style {:left (:x element) :top (:y element)}} "hmm"]])
 
 
 (defn simple-example [threat-model]
@@ -45,7 +48,6 @@
 (def threat-model { :elements [ {:type :actor :name "hackerman" :id "1" :x 30 :y 30}
                                 {:type :process :name "webapp" :id "2" :x 30 :y 80}]
                      :threats []})
-
 
 
 

@@ -16,6 +16,7 @@
                   :scope "provided"]
                  [metosin/reitit "0.4.2"]
                  [pez/clerk "1.0.0"]
+                 [cljsjs/react-draggable "4.0.3-0"]
                  [venantius/accountant "0.2.5"
                   :exclusions [org.clojure/tools.reader]]]
 
@@ -90,11 +91,11 @@
                                   [nrepl "0.6.0"]
                                   [pjstadig/humane-test-output "0.10.0"]
                                   
- ]
+                                  ]
 
                    :source-paths ["env/dev/clj"]
                    :plugins [[lein-figwheel "0.5.19"]
-]
+                             ]
 
                    :injections [(require 'pjstadig.humane-test-output)
                                 (pjstadig.humane-test-output/activate!)]
