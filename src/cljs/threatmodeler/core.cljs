@@ -45,26 +45,35 @@
                    :background-color "black"
                    :transform (goog.string.format "rotate(%frad)" rotationDegree )
                    :transform-origin "center left"}}]))
-  
-                          
-(defn render-threat-model-element [element]
+
+
+
+(defn render-threat-model-element-common [element]
   [draggable {:grid [25 25]}
    [:span {:class (str "diagram-" (name (:type element)))
            :style {:left (:x element) :top (:y element)}} "hmm"]])
 
+(defn render-threat-model-element-communication [element]
+  [render-line {:x1 0 :y1 0 :x2 200 :y2 200}])
+  
+
+(defmulti render-threat-model-element :type)
+(defmethod render-threat-model-element :actor [element] (render-threat-model-element-common element))
+(defmethod render-threat-model-element :process [element] (render-threat-model-element-common element))
+(defmethod render-threat-model-element :communication [element] (render-threat-model-element-communication element))
 
 (defn simple-example [threat-model]
-  [:div
-   [render-line {:x1 0 :y1 0 :x2 200 :y2 200}]
-   (for [element (:elements threat-model)]
-     (render-threat-model-element element))
-   [greeting "Hello world, it is now"]
-   [clock]
-   [color-input]])
+[:div
+ (for [element (:elements threat-model)]
+   (render-threat-model-element element))
+ [greeting "Hello world, it is now"]
+ [clock]
+ [color-input]])
 
 (def threat-model { :elements [ {:type :actor :name "hackerman" :id "1" :x 30 :y 30}
-                                {:type :process :name "webapp" :id "2" :x 30 :y 80}]
-                     :threats []})
+                               {:type :process :name "webapp" :id "2" :x 30 :y 80}
+                               {:type :communication :from "1" :to "2"}]
+                   :threats []})
 
 
 
