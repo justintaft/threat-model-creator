@@ -9,7 +9,7 @@
                                        2 {:type :process :name "webapp" :id 2 :x 400 :y 100 :width 100 :height 100}
                                        3 {:type :datastore :name "datastore" :id 3 :x 100 :y 400 :width 100 :height 50}
                                        4 {:type :communication :from 1 :to 2 :what "cool"}
-                                       5 {:type :boundary :x1 100 :y1 100 :x2 200 :y2 200}}
+                                       5 {:type :boundary :x1 100 :y1 200 :x2 100 :y2 300}}
                            :threats []}))
 
 
@@ -20,9 +20,6 @@
 (defonce time-updater (js/setInterval
                        #(reset! timer (js/Date.)) 1000))
 
-
-(defn greeting [message]
-  [:h1 message])
 
 (defn clock []
   (let [time-str (-> @timer .toTimeString (str/split " ") first)]
@@ -55,23 +52,22 @@
      :y2 (+ (:y rightEle) rightEleHeightDiv2)}))
 
 
-(defn render-line [ {:keys [x1 y1 x2 y2 style] } ]
-  (js/console.log x1 y1 x2 y2 style)
+(defn render-line [ {:keys [x1 y1 x2 y2 style] :as line}]
   (let [lineLength (js/Math.sqrt (+ (js/Math.pow (- x2 x1) 2)
                                     (js/Math.pow (- y2 y1) 2)))
         slope (/ (- y2 y1) (- x2 x1))
         rotationDegree (js/Math.atan slope)
         style (or style "solid")]
 
-    [:div.line.diagram-threat-model-element {:style {:display :inline-block
-                                                     :left "0px"
-                                                     :top "0px"
-                                                     :height "2px"
-                                                     :width (goog.string.format "%dpx" lineLength)
-                                                     :color "black"
-                                                     :border-top (goog.string.format "2px %s black" style)
-                                                     :transform (goog.string.format "translate(%dpx,%dpx) rotate(%frad)" x1 y1 rotationDegree )
-                                                     :transform-origin "center left"}}]))
+    [(if (:draggable line) draggable :span) [:div.line.diagram-threat-model-element {:style {:height "2px"
+                                                                                             :width (goog.string.format "%dpx" lineLength)
+                                                                                             :border-top (goog.string.format "2px %s black" style)
+                                                                                             :transform (goog.string.format "translate(%dpx,%dpx) rotate(%frad)" x1 y1 rotationDegree)
+                                                                                             :transform-origin "center left"
+                                                                                             :padding (if (:draggable line) "5px" "0")
+
+                                                                                     }}
+     ]]))
 
 (defn diagram-event-element-drag-stop [id event data]
   "Persist position of dragged threat model diagram element to local state."
@@ -91,7 +87,7 @@
   [render-line (calculate-line-points (get elements (:from element)) (get elements (:to element) ))])
 
 (defn render-threat-model-element-boundary [element elements]
-  [render-line (assoc-in element [:style] "dashed")])
+  [render-line (merge element {:style "dashed" :draggable true})])
 
 (defmulti render-threat-model-element (fn [element _] (:type element)))
 (defmethod render-threat-model-element :actor [element] (render-threat-model-element-common element))
@@ -104,7 +100,6 @@
   [:div
    (for [element (vals (:elements @threat-model))]
      (render-threat-model-element element (:elements @threat-model)))
-   [greeting "Hello world, it is now"]
    [clock]
    [color-input]])
 
