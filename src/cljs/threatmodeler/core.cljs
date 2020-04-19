@@ -135,8 +135,30 @@
 (defmethod render-threat-model-element :communication [element elements] (render-threat-model-element-communication element elements))
 (defmethod render-threat-model-element :boundary [element elements] (render-threat-model-element-boundary element elements))
 
+
+(defn add-element! [data]
+  "Adds element to threat model."
+  (let [id (random-uuid)
+        element-data {:id id
+                      :type (:type data)
+                      :name "TODO"
+                      :x 100 
+                      :y 100 
+                      :width 100
+                      :height 100}]
+    (swap! threat-model assoc-in [:elements id] element-data)))
+      
+
+
+(defn toolbar []
+  [:div
+   [:button {:on-click (partial add-element! {:type :actor})} "Add Actor"]
+   [:button {:on-click (partial add-element! {:type :process})} "Add Process"]
+   [:button {:on-click (partial add-element! {:type :datastore})} "Add Datastore"]]) 
+    
 (defn simple-example [threat-model]
   [:div
+   [toolbar]
    (for [element (vals (:elements @threat-model))]
      (render-threat-model-element element (:elements @threat-model)))
    [clock]
