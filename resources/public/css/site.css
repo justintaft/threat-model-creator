@@ -74,3 +74,8 @@ a:hover {
     left: 0px;
 }
 
+.diagram-datastore {
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+}
+

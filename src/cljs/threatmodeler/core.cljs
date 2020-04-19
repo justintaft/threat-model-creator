@@ -7,8 +7,9 @@
 
 (def threat-model (r/atom { :elements { 1 {:type :actor :name "hackerman" :x 30 :y 30 :width 100 :height 100 :id 1}
                                        2 {:type :process :name "webapp" :id 2 :x 400 :y 80 :width 100 :height 50}
-                                       3 {:type :communication :from 1 :to 2 :what "cool"}
-                                       4 {:type :boundary :x1 100 :y1 100 :x2 200 :y2 200}}
+                                       3 {:type :datastore :name "datastore" :id 3 :x 100 :y 400 :width 100 :height 50}
+                                       4 {:type :communication :from 1 :to 2 :what "cool"}
+                                       5 {:type :boundary :x1 100 :y1 100 :x2 200 :y2 200}}
                            :threats []}))
 
 
@@ -95,6 +96,7 @@
 (defmulti render-threat-model-element (fn [element _] (:type element)))
 (defmethod render-threat-model-element :actor [element] (render-threat-model-element-common element))
 (defmethod render-threat-model-element :process [element] (render-threat-model-element-common element))
+(defmethod render-threat-model-element :datastore [element] (render-threat-model-element-common element))
 (defmethod render-threat-model-element :communication [element elements] (render-threat-model-element-communication element elements))
 (defmethod render-threat-model-element :boundary [element elements] (render-threat-model-element-boundary element elements))
 
