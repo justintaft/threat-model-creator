@@ -63,7 +63,9 @@
               :output-dir "target/cljsbuild/public/js/out"
               :source-map true
               :optimizations :none
-              :pretty-print  true}}
+              :pretty-print  true
+              :install-deps true
+              :npm-deps {:react-moveable "0.19.2"}}}
 
 
 
