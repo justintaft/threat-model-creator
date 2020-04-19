@@ -40,14 +40,18 @@
 
 
 (defn calculate-line-points [element1 element2]
-  (let [ele1WidthDiv2 (/ (:width element1) 2)
-        ele1HeightDiv2 (/ (:height element1) 2)
-        ele2WidthDiv2 (/ (:width element2) 2)
-        ele2HeightDiv2 (/ (:height element2) 2)]
-    {:x1 (+ (:x element1) (:width element1) )
-     :y1 (+ (:y element1) ele1WidthDiv2)
-     :x2 (:x element2)
-     :y2 (+ (:y element2) ele2HeightDiv2)}))
+  (let [[leftEle rightEle] (if (< (:x element1) (+ (:x element2) (:width element2)))
+                             [element1 element2]
+                             [element2 element1])
+        leftEleWidthDiv2 (/ (:width leftEle) 2)
+        leftEleHeightDiv2 (/ (:height leftEle) 2)
+        rightEleWidthDiv2 (/ (:width rightEle) 2)
+        rightEleHeightDiv2 (/ (:height rightEle) 2)]
+
+    {:x1 (+ (:x leftEle) (:width leftEle))
+     :y1 (+ (:y leftEle) leftEleHeightDiv2)
+     :x2 (:x rightEle)
+     :y2 (+ (:y rightEle) rightEleHeightDiv2)}))
 
 
 (defn render-line [ {:keys [x1 y1 x2 y2 style] } ]
@@ -68,15 +72,15 @@
                                                      :transform (goog.string.format "translate(%dpx,%dpx) rotate(%frad)" x1 y1 rotationDegree )
                                                      :transform-origin "center left"}}]))
 
-(defn diagram-event-element-drag-stop [event data]
+(defn diagram-event-element-drag-stop [id event data]
   "Persist position of dragged threat model diagram element to local state."
-  (swap! threat-model update-in [:elements 1] merge {:x (-> data .-lastX) :y (-> data .-lastY)}))
+  (swap! threat-model update-in [:elements id] merge {:x (-> data .-lastX) :y (-> data .-lastY)}))
 
 
 (defn render-threat-model-element-common [{:keys [x y type name id]}]
   [draggable {:grid [25 25]
               :defaultPosition {:x x :y y}
-              :onStop diagram-event-element-drag-stop}
+              :onStop (partial diagram-event-element-drag-stop id)}
    [:span.diagram-threat-model-element {:class (str "diagram-" (cljs.core/name type))
                                         :style {:transform (goog.string.format "translate(%dpx,%dpx)" x y)}}
     [:p name]]])
