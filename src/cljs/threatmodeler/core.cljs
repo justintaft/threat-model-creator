@@ -96,8 +96,6 @@
         
 
     
-    (js/console.log rotationDegree)
-
     [(if (:draggable line) draggable :span) [:div.line.diagram-threat-model-element {:style {:height "2px"
                                                                                              :width (goog.string.format "%dpx" lineLength)
                                                                                              :border-top (goog.string.format "2px %s black" style)
@@ -123,7 +121,7 @@
 
 
 (defn render-threat-model-element-communication [element elements]
-  [render-line (calculate-line-points (get elements (:from element)) (get elements (:to element) ))])
+  [render-line (calculate-line-points (get elements (:from element)) (get elements (:to element)))])
 
 (defn render-threat-model-element-boundary [element elements]
   [render-line (merge element {:style "dashed" :draggable true})])
@@ -139,22 +137,21 @@
 (defn add-element! [data]
   "Adds element to threat model."
   (let [id (random-uuid)
-        element-data {:id id
-                      :type (:type data)
-                      :name "TODO"
-                      :x 100 
-                      :y 100 
-                      :width 100
-                      :height 100}]
+        element-data (merge {:id id
+                             :type (:type data)
+                             :name "TODO"}
+                            data)]
     (swap! threat-model assoc-in [:elements id] element-data)))
       
 
 
 (defn toolbar []
   [:div
-   [:button {:on-click (partial add-element! {:type :actor})} "Add Actor"]
-   [:button {:on-click (partial add-element! {:type :process})} "Add Process"]
-   [:button {:on-click (partial add-element! {:type :datastore})} "Add Datastore"]]) 
+   [:button {:on-click (partial add-element! {:type :actor :width 100 :height 50 :x 100 :y 100})} "Add Actor"]
+   [:button {:on-click (partial add-element! {:type :process :width 100 :height 100 :x 100 :y 100 })} "Add Process"]
+   [:button {:on-click (partial add-element! {:type :datastore :width 100 :height 50 :x 100 :y 100})} "Add Datastore"]
+   [:button {:on-click (partial add-element! {:type :boundary :x1 100 :y1 100 :x2 200 :y2 200})} "Add Trust Boundary"]])
+    
     
 (defn simple-example [threat-model]
   [:div
