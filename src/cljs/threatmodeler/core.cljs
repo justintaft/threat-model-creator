@@ -5,8 +5,8 @@
             [cljsjs.react-draggable]
             [goog.string.format]))
 
-(def threat-model (r/atom { :elements { 1 {:type :actor :name "hackerman" :x 30 :y 30 :width 100 :height 100 :id 1}
-                                       2 {:type :process :name "webapp" :id 2 :x 400 :y 80 :width 100 :height 50}
+(def threat-model (r/atom { :elements { 1 {:type :actor :name "hackerman" :x 50 :y 50 :width 100 :height 50 :id 1}
+                                       2 {:type :process :name "webapp" :id 2 :x 400 :y 100 :width 100 :height 100}
                                        3 {:type :datastore :name "datastore" :id 3 :x 100 :y 400 :width 100 :height 50}
                                        4 {:type :communication :from 1 :to 2 :what "cool"}
                                        5 {:type :boundary :x1 100 :y1 100 :x2 200 :y2 200}}

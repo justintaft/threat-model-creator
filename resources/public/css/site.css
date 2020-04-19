@@ -44,7 +44,6 @@ a:hover {
 
     /*Include borders in width calculations*/
     box-sizing: border-box;
-
 }
 
 .diagram-threat-model-element p {
@@ -53,30 +52,25 @@ a:hover {
     text-align: center;
 }
 
-.diagram-actor {
+.diagram-process {
     border-radius: 50%;
     width: 100px;
     height: 100px;
     /*background: yellow;*/
     border: 3px solid red;
-    position: absolute;
-    top: 0px;
-    left: 0px;
 }
 
-.diagram-process {
+.diagram-actor {
     width: 100px;
     height: 50px;
     /*background: yellow;*/
     border: 3px solid red;
-    position: absolute;
-    top: 0px;
-    left: 0px;
 }
 
 .diagram-datastore {
-    border-top: 2px solid black;
-    border-bottom: 2px solid black;
     width: 100px;
+    height: 50px;
+    border-top: 3px solid black;
+    border-bottom: 3px solid black;
 }
 
