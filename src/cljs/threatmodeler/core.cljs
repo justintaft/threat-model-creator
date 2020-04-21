@@ -188,7 +188,6 @@
            update-in
            [:elements (:currently-dragged-element-id dragged-values)]
            (fn [cur-val]
-             (js/console.log "vals" cur-val)
              (merge cur-val dragged-values))))
   (swap! ui-state assoc :currently-dragged-element-id nil))
 
@@ -203,7 +202,6 @@
            (select-keys cur-element-info [:x :y]))))
 
 (defn moveable-drag-on! [event]
-  (js/console.log event)
   (let [last-element-dragged-deref @ui-state
         newX (+ (:x last-element-dragged-deref) (nth (-> event .-delta) 0))
         newY (+ (:y last-element-dragged-deref) (nth (-> event .-delta) 1))
