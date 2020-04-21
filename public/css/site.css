@@ -7,7 +7,17 @@
   font-size: 1.125em;
   color: #333;
   line-height: 1.5em;
+
 }
+
+body {
+  background-size: 25px 25px;
+  background-image:
+    linear-gradient(to right, #efefef 1px, transparent 1px),
+    linear-gradient(to bottom, #efefef 1px, transparent 1px);
+
+}
+    
 
 h1, h2, h3 {
   color: #000;
@@ -87,4 +97,5 @@ a:hover {
     height: 10px;
     border-top: 3px dashed black;
 }
+
 
