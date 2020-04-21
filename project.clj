@@ -50,9 +50,13 @@
              {:output-to        "target/cljsbuild/public/js/app.js"
               :output-dir       "target/cljsbuild/public/js"
               :source-map       "target/cljsbuild/public/js/app.js.map"
-              :optimizations :advanced
+                                        ;:source-map true
+              :optimizations :whitespace
               :infer-externs true
-              :pretty-print  false}}
+              :pretty-print  false
+              :install-deps true
+              :npm-deps {:react-moveable "0.16.3"}
+              }}
             :app
             {:source-paths ["src/cljs" "src/cljc" "env/dev/cljs"]
              :figwheel {:on-jsload "threatmodeler.core/mount-root"}
@@ -65,19 +69,19 @@
               :optimizations :none
               :pretty-print  true
               :install-deps true
-              :npm-deps {:react-moveable "0.19.2"}}}
+              :npm-deps {:react-moveable "0.16.3"}}}}}
 
 
 
-            }
-   }
+  
+  
 
   :figwheel
   {:http-server-root "public"
    :server-port 3449
    :nrepl-port 7002
-   :nrepl-middleware [cider.piggieback/wrap-cljs-repl
-                      ]
+   :nrepl-middleware [cider.piggieback/wrap-cljs-repl]
+   
    :css-dirs ["resources/public/css"]
    :ring-handler threatmodeler.handler/app}
 
@@ -91,13 +95,13 @@
                                   [prone "2020-01-17"]
                                   [figwheel-sidecar "0.5.19"]
                                   [nrepl "0.6.0"]
-                                  [pjstadig/humane-test-output "0.10.0"]
-                                  
-                                  ]
+                                  [pjstadig/humane-test-output "0.10.0"]]
+                   
+                   
 
                    :source-paths ["env/dev/clj"]
-                   :plugins [[lein-figwheel "0.5.19"]
-                             ]
+                   :plugins [[lein-figwheel "0.5.19"]]
+                   
 
                    :injections [(require 'pjstadig.humane-test-output)
                                 (pjstadig.humane-test-output/activate!)]

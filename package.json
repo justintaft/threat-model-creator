@@ -1,8 +1,10 @@
 {
   "dependencies": {
     "@cljs-oss/module-deps": "^1.1.1",
+    "moveable": "^0.16.3",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
-    "react-moveable": "^0.19.2"
+    "react-draggable": "^4.3.1",
+    "react-moveable": "^0.16.3"
   }
 }
