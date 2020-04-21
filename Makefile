@@ -7,7 +7,7 @@ dev:
 make-release-and-push:
 	git checkout gh-pages
 	git checkout -f master public
-	git add public
+	git add -f public
 	git commit -m "Release"
 	git push origin release-and-push
 	git checkout master -f
