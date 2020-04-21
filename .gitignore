@@ -16,3 +16,4 @@ pom.xml.asc
 ./node_modules
 /.shadow-cljs
 /node_modules
+.rebel_readline_history
