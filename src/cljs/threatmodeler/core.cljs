@@ -27,16 +27,19 @@
 (defmethod create-element :boundary       [d] (merge {:id (str (random-uuid)) :width 100 :height 20 :x 100 :y 100} d))
 (defmethod create-element :communication  [d] (merge {:id (str (random-uuid))} d))
 
-(defn add-element! 
-  "Adds element to threat model."
 
+(defn add-element [app-state data]
+  "Add an element to the given app state."
+  (let [element (create-element data)]
+    (assoc-in app-state [:threat-model :elements (:id element)] element)))
+
+(defn add-element! 
+  "Adds element to threat model, and udpates corresponding atom."
   [data]
   (let [element (create-element data)]
-    (js/console.log (:id element) data)
-    (swap! threat-model assoc-in [:elements (:id element)] element)))
+    (swap! app-state add-element data)))
 
-
-;Populate threat model with example data
+                                        ;Populate threat model with example data
 (add-element! (create-element {:type :actor         :name "hackerman" :x 50  :y 150 :id "hackerman1"}))
 (add-element! (create-element {:type :process       :name "webapp"    :x 400 :y 125 :id "webapp1"}))
 (add-element! (create-element {:type :datastore     :name "database"  :x 50  :y 300 :id "datastore1"}))
@@ -109,8 +112,6 @@
       style (or style "solid")]
   
 
-  (js/console.log rotationDegree) 
-
   [:div.line.diagram-threat-model-element {:style {:height "2px"
                                                    :width (goog.string.format "%dpx" lineLength)
                                                    :border-top (goog.string.format "2px %s black" style)
@@ -132,15 +133,22 @@
 (defn diagram-element-event-on-mouse-up! 
   "Handles on mouse up event for diagram elements.
    Used to connect diagram elements together when shift key is 
-   held while click is released."
+   held while clicking elements."
 
-  [e]
-  (js/console.log (html-element->element-id (get-closest-html-element (-> e .-target) ".diagram-threat-model-element")))
+  [element-id e]
   (when e.shiftKey
-    (let [{:keys [last-item-shift-clicked]} @ui-state]
-      (if last-item-shift-clicked
-        (js/alert "got a click!")
-        (js/alert "new click!")))))
+    (swap! app-state
+           (fn [state]
+             (let [last-item-shift-clicked (-> state :ui-state :last-item-shift-clicked)]
+
+               ;When we have a item we previously shift-clicked, connect the elements together
+               ;and forger the last element clicked
+               (if last-item-shift-clicked
+                 (-> (add-element state {:type :communication :from last-item-shift-clicked :to element-id})
+                     (assoc-in [:ui-state :last-item-shift-clicked] nil))
+
+                                        ;If we haven't previously shift-clicked an item, just remember it
+                 (assoc-in state [:ui-state :last-item-shift-clicked] element-id)))))))
 
 
 (defn render-threat-model-element-common [{:keys [x y type name id]}]
@@ -148,7 +156,7 @@
                                                    " moveable-element-" id)
                                        :style {:transform (goog.string.format "translate(%dpx,%dpx)" x y)}
                                        :data-element-id id
-                                       :on-mouse-up diagram-element-event-on-mouse-up!
+                                       :on-mouse-up (partial diagram-element-event-on-mouse-up! id)
                                        :on-mouse-over (partial set-active-moveable-element! id)}
    [:p name]])
 
@@ -209,8 +217,12 @@
     (swap! ui-state merge {:x newX :y newY})
     (set! (-> event .-target .-style .-transform) (goog.string.format "translate(%dpx,%dpx)" newX newY))))
 
+
+(defn instructions []
+  [:div "Controls: Shift-click two elements to connect"])
 (defn simple-example [threat-model]
   [:div
+   [instructions]
    [toolbar]
 
                                         ;Doall is required here, as for generates lazy sequence, and 
