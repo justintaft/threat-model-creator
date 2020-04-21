@@ -6,16 +6,6 @@
             [react-moveable :as Moveable]
             [cljs.test :refer-macros [deftest is testing]]))
 
-(def threat-model (r/atom { :elements { "1" {:type :actor :name "hackerman" :x 50 :y 50 :width 100 :height 50 :id "1"}
-                                        "2" {:type :process :name "webapp" :id "2" :x 400 :y 100 :width 100 :height 100}
-                                        "3" {:type :datastore :name "datastore" :id "3" :x 100 :y 400 :width 100 :height 50}
-                                        "4" {:type :communication :from "1" :to "2" :id "4"}
-                                        "5" {:type :communication :from "1" :to "3" :id "5"}
-                                        "6" {:type :boundary :x 100 :y 100 :width 100 :height 20 :id "6"}}
-                           :threats []}))
-
-
-
 (defn html-element->element-id [element]
   (-> element .-dataset .-elementId))
 
@@ -24,7 +14,17 @@
                                    :last-element-dragged nil
                                    :last-item-shift-clicked nil}}))
 
+(swap! app-state assoc :threat-model {:elements { "1" {:type :actor :name "hackerman" :x 50 :y 50 :width 100 :height 50 :id "1"}
+                                                  "2" {:type :process :name "webapp" :id "2" :x 400 :y 100 :width 100 :height 100}
+                                                  "3" {:type :datastore :name "datastore" :id "3" :x 100 :y 400 :width 100 :height 50}
+                                                  "4" {:type :communication :from "1" :to "2" :id "4"}
+                                                  "5" {:type :communication :from "1" :to "3" :id "5"}
+                                                  "6" {:type :boundary :x 100 :y 100 :width 100 :height 20 :id "6"}}
+                                      :threats []})
+
+
 (def ui-state (r/cursor app-state [:ui-state]))
+(def threat-model (r/cursor app-state [:threat-model]))
 
 
 (defn set-active-moveable-element! [id e]
