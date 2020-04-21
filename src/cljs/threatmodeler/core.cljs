@@ -12,97 +12,115 @@
 (def app-state (r/atom {:ui-state {:active-moveable-id nil
                                    :currently-dragged-element-id nil
                                    :last-element-dragged nil
-                                   :last-item-shift-clicked nil}}))
-
-(swap! app-state assoc :threat-model {:elements { "1" {:type :actor :name "hackerman" :x 50 :y 50 :width 100 :height 50 :id "1"}
-                                                  "2" {:type :process :name "webapp" :id "2" :x 400 :y 100 :width 100 :height 100}
-                                                  "3" {:type :datastore :name "datastore" :id "3" :x 100 :y 400 :width 100 :height 50}
-                                                  "4" {:type :communication :from "1" :to "2" :id "4"}
-                                                  "5" {:type :communication :from "1" :to "3" :id "5"}
-                                                  "6" {:type :boundary :x 100 :y 100 :width 100 :height 20 :id "6"}}
-                                      :threats []})
-
+                                   :last-item-shift-clicked nil}
+                        :threat-model {:elements {} :threats []}}))
 
 (def ui-state (r/cursor app-state [:ui-state]))
 (def threat-model (r/cursor app-state [:threat-model]))
 
 
+;TODO add validation to ensure only valid properties are provided
+(defmulti create-element :type)
+(defmethod create-element :actor          [d] (merge {:id (str (random-uuid)) :name "TODO" :width 100 :height 50 :x 100 :y 100} d))
+(defmethod create-element :process        [d] (merge {:id (str (random-uuid)) :name "TODO" :width 100 :height 100 :x 100 :y 100} d))
+(defmethod create-element :datastore      [d] (merge {:id (str (random-uuid)) :name "TODO" :width 100 :height 50 :x 100 :y 100} d))
+(defmethod create-element :boundary       [d] (merge {:id (str (random-uuid)) :width 100 :height 20 :x 100 :y 100} d))
+(defmethod create-element :communication  [d] (merge {:id (str (random-uuid))} d))
+
+(defn add-element! 
+  "Adds element to threat model."
+
+  [data]
+  (let [element (create-element data)]
+    (js/console.log (:id element) data)
+    (swap! threat-model assoc-in [:elements (:id element)] element)))
+
+
+;Populate threat model with example data
+(add-element! (create-element {:type :actor         :name "hackerman" :x 50  :y 150 :id "hackerman1"}))
+(add-element! (create-element {:type :process       :name "webapp"    :x 400 :y 125 :id "webapp1"}))
+(add-element! (create-element {:type :datastore     :name "database"  :x 50  :y 300 :id "datastore1"}))
+(add-element! (create-element {:type :communication :from "hackerman1" :to "webapp1"}))
+(add-element! (create-element {:type :communication :from "hackerman1" :to "datastore1"}))
+(add-element! (create-element {:type :boundary}))
+
+
 (defn set-active-moveable-element! [id e]
-  (when-not (:currently-dragged-element-id @ui-state)
-    (swap! ui-state assoc :active-moveable-id id)))
+(when-not (:currently-dragged-element-id @ui-state)
+  (swap! ui-state assoc :active-moveable-id id)))
 
 
 (def moveable (r/adapt-react-class Moveable))
 
 (defn calculate-line-points [element1 element2]
-  "Find best line between two elements, and return points."
+"Find best line between two elements, and return points."
 
-  (cond
-    ;left of second element
-    (< (+ (:x element1) (:width element1)) (:x element2))
-    {:x1 (+ (:x element1) (:width element1))
-     :y1 (+ (:y element1) (/ (:height element1) 2))
-     :x2 (:x element2)
-     :y2 (+ (:y element2) (/ (:height element2) 2))}
+(cond
+                                        ;left of second element
+  (< (+ (:x element1) (:width element1)) (:x element2))
+  {:x1 (+ (:x element1) (:width element1))
+   :y1 (+ (:y element1) (/ (:height element1) 2))
+   :x2 (:x element2)
+   :y2 (+ (:y element2) (/ (:height element2) 2))}
 
-    ;to right of second element
-    (> (:x element1) (+ (:x element2) (:width element2)))
-    {:x1 (+ (:x element2) (:width element2))
-     :y1 (+ (:y element2) (/ (:height element2) 2))
-     :x2 (:x element1)
-     :y2 (+ (:y element1) (/ (:height element1) 2))}
-
-
-    ;above second element
-    (< (:y element1) (:y element2))
-    {:x1 (+ (:x element1) (/ (:width element1) 2))
-     :y1 (+ (:y element1) (:height element1))
-     :x2 (+ (:x element2) (/ (:width element2) 2))
-     :y2 (:y element2)}
+                                        ;to right of second element
+  (> (:x element1) (+ (:x element2) (:width element2)))
+  {:x1 (+ (:x element2) (:width element2))
+   :y1 (+ (:y element2) (/ (:height element2) 2))
+   :x2 (:x element1)
+   :y2 (+ (:y element1) (/ (:height element1) 2))}
 
 
-    ;below second elements
-    true
-    {:x1 (+ (:x element2) (/ (:width element2) 2))
-     :y1 (+ (:y element2) (:height element2))
-     :x2 (+ (:x element1) (/ (:width element1) 2))
-     :y2 (:y element1)}))
-
-    
+                                        ;above second element
+  (< (:y element1) (:y element2))
+  {:x1 (+ (:x element1) (/ (:width element1) 2))
+   :y1 (+ (:y element1) (:height element1))
+   :x2 (+ (:x element2) (/ (:width element2) 2))
+   :y2 (:y element2)}
 
 
-                                            
+                                        ;below second elements
+  true
+  {:x1 (+ (:x element2) (/ (:width element2) 2))
+   :y1 (+ (:y element2) (:height element2))
+   :x2 (+ (:x element1) (/ (:width element1) 2))
+   :y2 (:y element1)}))
+
+
+
+
+
 
 
 
 (defn render-line [ {:keys [x1 y1 x2 y2 style id] :as line}]
-  (let [lineLength (js/Math.sqrt (+ (js/Math.pow (- x2 x1) 2)
-                                    (js/Math.pow (- y2 y1) 2)))
+(let [lineLength (js/Math.sqrt (+ (js/Math.pow (- x2 x1) 2)
+                                  (js/Math.pow (- y2 y1) 2)))
 
-        slope (/ (- y1 y2) (- x1 x2))
+      slope (/ (- y1 y2) (- x1 x2))
 
 
-        ;We have to do some funky math to rotations, as Y is inverted on screen
-        ;(higher Y cord is lowe ron screen...)
-        rotationDegree (if (and (>= x1 x2)
-                                (< y1 y2))
-                         (- js/Math.PI   (* -1 (js/Math.atan slope)))
-                         (js/Math.atan slope))
-        style (or style "solid")]
-        
+                                        ;We have to do some funky math to rotations, as Y is inverted on screen
+                                        ;(higher Y cord is lowe ron screen...)
+      rotationDegree (if (and (>= x1 x2)
+                              (< y1 y2))
+                       (- js/Math.PI   (* -1 (js/Math.atan slope)))
+                       (js/Math.atan slope))
+      style (or style "solid")]
+  
 
-    (js/console.log rotationDegree) 
+  (js/console.log rotationDegree) 
 
-    [:div.line.diagram-threat-model-element {:style {:height "2px"
-                                                     :width (goog.string.format "%dpx" lineLength)
-                                                     :border-top (goog.string.format "2px %s black" style)
-                                                     :transform (goog.string.format "translate(%dpx,%dpx) rotate(%frad)" x1 y1 rotationDegree)
-                                                     :transform-origin "center left"
-                                                     :padding (if (:draggable line) "5px" "0")}
-                                             :class (str "moveable-element-" id)
-                                             :on-mouse-over (partial set-active-moveable-element! id)}
-     
-      "hm"]))
+  [:div.line.diagram-threat-model-element {:style {:height "2px"
+                                                   :width (goog.string.format "%dpx" lineLength)
+                                                   :border-top (goog.string.format "2px %s black" style)
+                                                   :transform (goog.string.format "translate(%dpx,%dpx) rotate(%frad)" x1 y1 rotationDegree)
+                                                   :transform-origin "center left"
+                                                   :padding (if (:draggable line) "5px" "0")}
+                                           :class (str "moveable-element-" id)
+                                           :on-mouse-over (partial set-active-moveable-element! id)}
+   
+   "hm"]))
 
 
 (defn get-closest-html-element 
@@ -126,13 +144,13 @@
 
 
 (defn render-threat-model-element-common [{:keys [x y type name id]}]
-   [:span.diagram-threat-model-element {:class (str "diagram-" (cljs.core/name type)
-                                                    " moveable-element-" id)
-                                        :style {:transform (goog.string.format "translate(%dpx,%dpx)" x y)}
-                                        :data-element-id id
-                                        :on-mouse-up diagram-element-event-on-mouse-up!
-                                        :on-mouse-over (partial set-active-moveable-element! id)}
-    [:p name]])
+  [:span.diagram-threat-model-element {:class (str "diagram-" (cljs.core/name type)
+                                                   " moveable-element-" id)
+                                       :style {:transform (goog.string.format "translate(%dpx,%dpx)" x y)}
+                                       :data-element-id id
+                                       :on-mouse-up diagram-element-event-on-mouse-up!
+                                       :on-mouse-over (partial set-active-moveable-element! id)}
+   [:p name]])
 
 
 (defn render-threat-model-element-communication [element elements]
@@ -149,29 +167,18 @@
 (defmethod render-threat-model-element :boundary [element ] (render-threat-model-element-common element))
 
 
-(defn add-element! [data]
-  "Adds element to threat model."
-  (let [id (str (random-uuid))
-        element-data (merge {:id id
-                             :type (:type data)
-                             :name "TODO"}
-                            data)]
-    (swap! threat-model assoc-in [:elements id] element-data)))
-      
-
-
 (defn toolbar []
   [:div
-   [:button {:on-click (partial add-element! {:type :actor :width 100 :height 50 :x 100 :y 100})} "Add Actor"]
-   [:button {:on-click (partial add-element! {:type :process :width 100 :height 100 :x 100 :y 300 })} "Add Process"]
-   [:button {:on-click (partial add-element! {:type :datastore :width 100 :height 50 :x 100 :y 100})} "Add Datastore"]
-   [:button {:on-click (partial add-element! {:type :boundary :x 100 :y 100 :width 100 :height 20})} "Add Trust Boundary"]])
-    
+   [:button {:on-click #(add-element! (create-element {:type :actor :x 100 :y 100}))} "Add Actor"]
+   [:button {:on-click #(add-element! (create-element {:type :process :x 100 :y 300 }))} "Add Process"]
+   [:button {:on-click #(add-element! (create-element {:type :datastore :x 100 :y 100}))} "Add Datastore"]
+   [:button {:on-click #(add-element! (create-element {:type :boundary :x 100 :y 100 }))} "Add Trust Boundary"]])
+
 (defn diagram-event-element-drag-stop [id event data]
   "Persist position of dragged threat model diagram element to local state."
   (swap! threat-model update-in [:elements id] merge {:x (-> data .-lastX) :y (-> data .-lastY)}))
 
-    
+
 
 (def last-element-dragged (atom {}))
 
@@ -208,21 +215,21 @@
   [:div
    [toolbar]
 
-   ;Doall is required here, as for generates lazy sequence, and 
-   ;derefs in child components won't trigget updates. known reagent issue.
+                                        ;Doall is required here, as for generates lazy sequence, and 
+                                        ;derefs in child components won't trigget updates. known reagent issue.
    (doall (for [element (vals (:elements @threat-model))]
             (render-threat-model-element element (:elements @threat-model))))
    [moveable {:target (js/document.querySelector (str ".moveable-element-" (-> @ui-state :active-moveable-id)))
               :draggable true
-              ;Drag x and y in steps of 25 points
+                                        ;Drag x and y in steps of 25 points
               :throttleDrag 25 
               :throttleDragRotate 0
               :onDragStart moveable-drag-start!
               :onDrag moveable-drag-on! 
               :snappable true
               :onDragEnd moveable-drag-end!}]])
-                                                          
-                           
+
+
 
 
 (defn ^:export main! [])
