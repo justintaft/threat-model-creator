@@ -21,7 +21,8 @@
 
 (def ui-state (r/atom {:active-moveable-id nil
                        :currently-dragged-element-id nil
-                       :last-element-dragged nil}))
+                       :last-element-dragged nil
+                       :last-item-shift-clicked nil}))
 (defn set-active-moveable-element! [id e]
   (when-not (:currently-dragged-element-id @ui-state)
     (swap! ui-state assoc :active-moveable-id id)))
@@ -100,11 +101,33 @@
       "hm"]))
 
 
+(defn get-closest-html-element 
+  "Given a HTML element and selector, find the closest node to it.
+   If the selector matches the given node, return the curret node."
+  [element selector]
+  (.closest element selector))
+
+(defn diagram-element-event-on-mouse-up! 
+  "Handles on mouse up event for diagram elements.
+   Used to connect diagram elements together when shift key is 
+   held while click is released."
+
+  [e]
+  (js/console.log (html-element->element-id (get-closest-html-element (-> e .-target) ".diagram-threat-model-element")))
+  (when e.shiftKey
+    (let [{:keys [last-item-shift-clicked]} @ui-state]
+      (if last-item-shift-clicked
+        (js/alert "got a click!")
+        (js/alert "new click!")))))
+ ;(swap! ui-state assoc :last-element-clicked ()))
+
+
 (defn render-threat-model-element-common [{:keys [x y type name id]}]
    [:span.diagram-threat-model-element {:class (str "diagram-" (cljs.core/name type)
                                                     " moveable-element-" id)
                                         :style {:transform (goog.string.format "translate(%dpx,%dpx)" x y)}
                                         :data-element-id id
+                                        :on-mouse-up diagram-element-event-on-mouse-up!
                                         :on-mouse-over (partial set-active-moveable-element! id)}
     [:p name]])
 
