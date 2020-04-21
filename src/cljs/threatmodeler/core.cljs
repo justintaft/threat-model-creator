@@ -15,14 +15,6 @@
                            :threats []}))
 
 
-(defonce timer (r/atom (js/Date.)))
-
-(defonce time-color (r/atom "#f34"))
-
-(defonce time-updater (js/setInterval
-                       #(reset! timer (js/Date.)) 1000))
-
-
 
 (defn html-element->element-id [element]
   (-> element .-dataset .-elementId))
@@ -34,19 +26,6 @@
   (when-not (:currently-dragged-element-id @ui-state)
     (swap! ui-state assoc :active-moveable-id id)))
 
-
-(defn clock []
-  (let [time-str (-> @timer .toTimeString (str/split " ") first)]
-    [:div.example-clock
-     {:style {:color @time-color}}
-     time-str]))
-
-(defn color-input []
-  [:div.color-input
-   "Time color: "
-   [:input {:type "text"
-            :value @time-color
-            :on-change #(reset! time-color (-> % .-target .-value))}]])
 
 (def moveable (r/adapt-react-class Moveable))
 
@@ -207,8 +186,6 @@
    ;derefs in child components won't trigget updates. known reagent issue.
    (doall (for [element (vals (:elements @threat-model))]
             (render-threat-model-element element (:elements @threat-model))))
-   [clock]
-   [color-input]
    [moveable {:target (js/document.querySelector (str ".moveable-element-" (-> @ui-state :active-moveable-id)))
               :draggable true
               ;Drag x and y in steps of 25 points
