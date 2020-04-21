@@ -12,5 +12,5 @@ make-release-and-push:
 	cp -r /tmp/threatdeploy/public .
 	git add -f public
 	git commit -m "Release"
-	git push origin release-and-push
+	git push origin gh-pages
 	git checkout master -f
