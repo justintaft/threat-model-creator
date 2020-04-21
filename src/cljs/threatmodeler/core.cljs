@@ -4,7 +4,8 @@
             [clojure.string :as str]
             [goog.string.format]
             [react-moveable :as Moveable]
-            [cljs.test :refer-macros [deftest is testing]]))
+            [cljs.test :refer-macros [deftest is testing]]
+            [reagent-keybindings.keyboard :as kb]))
 
 (defn html-element->element-id [element]
   (-> element .-dataset .-elementId))
@@ -39,7 +40,25 @@
   (let [element (create-element data)]
     (swap! app-state add-element data)))
 
-                                        ;Populate threat model with example data
+
+(defn filter-elements-referencing-element-id [element-id element]
+  "Return elements which directly references element."
+  (contains? (set (vals (select-keys element [:to :from :id]))) element-id ))
+
+(defn delete-element-and-communications
+  "Deletes element from threat model, and any communications referencing it"
+  [app-state element]
+  (let [referencing-elements (filter (partial filter-elements-referencing-element-id (:id element)) (-> app-state :threat-model :elements (vals)))
+        referencing-element-ids (map :id referencing-elements)]
+    (print referencing-elements)
+    (js/console.log "test" "deleting" referencing-elements)
+    (update-in app-state [:threat-model :elements] (fn [x] (apply dissoc x app-state referencing-element-ids)))))
+(defmulti delete-element (fn [app-state element] (:type element)))
+(defmethod delete-element :communication [app-state element] (update-in app-state [:threat-model :elements] dissoc (:id element)))
+(defmethod delete-element :default [app-state element] (delete-element-and-communications app-state element))
+             
+
+;Populate threat model with example data
 (add-element! (create-element {:type :actor         :name "hackerman" :x 50  :y 150 :id "hackerman1"}))
 (add-element! (create-element {:type :process       :name "webapp"    :x 400 :y 125 :id "webapp1"}))
 (add-element! (create-element {:type :datastore     :name "database"  :x 50  :y 300 :id "datastore1"}))
@@ -161,6 +180,12 @@
    [:p name]])
 
 
+(defn handle-backspace-pressed! []
+  "Handles backspace key event. Causes element to be deleted."
+  (when-let [current-element-id (get-in @app-state [:ui-state :active-moveable-id])]
+    (when-let [current-element (get-in @app-state [:threat-model :elements current-element-id])]
+      (swap! app-state delete-element current-element))))
+
 (defn render-threat-model-element-communication [element elements]
   [render-line (merge (select-keys element [:id]) (calculate-line-points (get elements (:from element)) (get elements (:to element))))])
 
@@ -219,25 +244,33 @@
 
 
 (defn instructions []
-  [:div "Controls: Shift-click two elements to connect"])
+  [:div
+   [:p "Controls"
+    [:br]
+    "Connect: Shift-click two elements to connect elements"
+    [:br]
+    "Delete: Move mouse over element and press backspace key"]])
+
 (defn simple-example [threat-model]
   [:div
    [instructions]
    [toolbar]
-
-                                        ;Doall is required here, as for generates lazy sequence, and 
-                                        ;derefs in child components won't trigget updates. known reagent issue.
-   (doall (for [element (vals (:elements @threat-model))]
-            (render-threat-model-element element (:elements @threat-model))))
-   [moveable {:target (js/document.querySelector (str ".moveable-element-" (-> @ui-state :active-moveable-id)))
-              :draggable true
+   [:div#diagram 
+    ;Doall is required here, as for generates lazy sequence, and 
+    ;derefs in child components won't trigget updates. known reagent issue.
+    (doall (for [element (vals (:elements @threat-model))]
+             (render-threat-model-element element (:elements @threat-model))))
+    [moveable {:target (js/document.querySelector (str ".moveable-element-" (-> @ui-state :active-moveable-id)))
+               :draggable true
                                         ;Drag x and y in steps of 25 points
-              :throttleDrag 25 
-              :throttleDragRotate 0
-              :onDragStart moveable-drag-start!
-              :onDrag moveable-drag-on! 
-              :snappable true
-              :onDragEnd moveable-drag-end!}]])
+               :throttleDrag 25 
+               :throttleDragRotate 0
+               :onDragStart moveable-drag-start!
+               :onDrag moveable-drag-on! 
+               :snappable true
+               :onDragEnd moveable-drag-end!}]
+    [kb/keyboard-listener]
+    [kb/kb-action "backspace" handle-backspace-pressed! ]]])
 
 
 
