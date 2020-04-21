@@ -50,8 +50,6 @@
   [app-state element]
   (let [referencing-elements (filter (partial filter-elements-referencing-element-id (:id element)) (-> app-state :threat-model :elements (vals)))
         referencing-element-ids (map :id referencing-elements)]
-    (print referencing-elements)
-    (js/console.log "test" "deleting" referencing-elements)
     (update-in app-state [:threat-model :elements] (fn [x] (apply dissoc x app-state referencing-element-ids)))))
 (defmulti delete-element (fn [app-state element] (:type element)))
 (defmethod delete-element :communication [app-state element] (update-in app-state [:threat-model :elements] dissoc (:id element)))
