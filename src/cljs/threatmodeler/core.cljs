@@ -19,10 +19,14 @@
 (defn html-element->element-id [element]
   (-> element .-dataset .-elementId))
 
-(def ui-state (r/atom {:active-moveable-id nil
-                       :currently-dragged-element-id nil
-                       :last-element-dragged nil
-                       :last-item-shift-clicked nil}))
+(def app-state (r/atom {:ui-state {:active-moveable-id nil
+                                   :currently-dragged-element-id nil
+                                   :last-element-dragged nil
+                                   :last-item-shift-clicked nil}}))
+
+(def ui-state (r/cursor app-state [:ui-state]))
+
+
 (defn set-active-moveable-element! [id e]
   (when-not (:currently-dragged-element-id @ui-state)
     (swap! ui-state assoc :active-moveable-id id)))
@@ -119,7 +123,6 @@
       (if last-item-shift-clicked
         (js/alert "got a click!")
         (js/alert "new click!")))))
- ;(swap! ui-state assoc :last-element-clicked ()))
 
 
 (defn render-threat-model-element-common [{:keys [x y type name id]}]
