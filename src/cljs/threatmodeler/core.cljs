@@ -257,7 +257,6 @@
         newY (+ (:y last-element-dragged-deref) (-> event .-top))
         rotate (or (:rotate last-element-dragged-deref) 0)
         element-id (:currently-dragged-element-id last-element-dragged-deref)]
-    (print rotate)
     (swap! ui-state merge {:newX newX :newY newY})
     (set! (-> event .-target .-style .-transform) (goog.string.format "translate(%dpx,%dpx) rotate(%ddeg)" newX newY rotate))))
 
