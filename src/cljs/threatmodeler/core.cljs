@@ -166,10 +166,10 @@
                  (assoc-in state [:ui-state :last-item-shift-clicked] element-id)))))))
 
 
-(defn render-threat-model-element-common [{:keys [x y type name id]}]
+(defn render-threat-model-element-common [{:keys [x y type name id rotate]}]
   [:span.diagram-threat-model-element {:class (str "diagram-" (cljs.core/name type)
                                                    " moveable-element-" id)
-                                       :style {:transform (goog.string.format "translate(%dpx,%dpx)" x y)}
+                                       :style {:transform (goog.string.format "translate(%dpx,%dpx) rotate(%ddeg)" x y (or rotate 0))}
                                        :data-element-id id
                                        :on-mouse-up (partial diagram-element-event-on-mouse-up! id)
                                        :on-mouse-over (partial set-active-moveable-element! id)}
@@ -217,15 +217,28 @@
 
 (def last-element-dragged (atom {}))
 
-(defn moveable-drag-end! []
-  (let [dragged-values @ui-state]
-    (swap! threat-model
-           update-in
-           [:elements (:currently-dragged-element-id dragged-values)]
-           (fn [cur-val]
-             (merge cur-val dragged-values))))
-  (swap! ui-state assoc :currently-dragged-element-id nil))
 
+(defn moveable-on-rotate-start! [event]
+  "Callback handler for starting of rotation. Sets rotation degree to current element rotation."
+  (let [active-element-id (html-element->element-id (-> event .-target))
+        cur-element-rotation (get-in @app-state [:threat-model :elements active-element-id :rotate])]
+    (swap! app-state assoc-in [:ui-state :orig-rotate] cur-element-rotation)))
+
+(defn moveable-on-rotate! [event]
+  (let [active-element-id (-> @app-state :ui-state :active-moveable-id)
+        element-info (get-in @app-state [:threat-model :elements active-element-id])
+        rotate-amount (+ (-> @app-state :ui-state :orig-rotate) (int (-> event .-beforeRotate)))]
+    (swap! app-state assoc-in [:ui-state :rotate-amount] rotate-amount)
+    (set! (-> event .-target .-style .-transform) (goog.string.format "translate(%dpx,%dpx) rotate(%ddeg)" (:x element-info) (:y element-info) rotate-amount))))
+
+
+(defn moveable-rotate-end! [event]
+  "Callback handler for finishing rotating element. Persists rotated degree to element."
+  (swap! app-state
+         (fn [state]
+           (let [element-id (html-element->element-id (-> event .-target))
+                 rotate-amount (-> state :ui-state :rotate-amount)]
+             (assoc-in state [:threat-model :elements element-id :rotate] rotate-amount)))))
 
 
 (defn moveable-drag-start! [event]
@@ -234,16 +247,30 @@
     (swap! ui-state
            merge
            {:currently-dragged-element-id element-id}
-           (select-keys cur-element-info [:x :y]))))
+           {:rotate 0}
+           (select-keys cur-element-info [:x :y :rotate])
+           {:newX (:x cur-element-info) :newY (:y cur-element-info)})))
 
 (defn moveable-drag-on! [event]
   (let [last-element-dragged-deref @ui-state
-        newX (+ (:x last-element-dragged-deref) (nth (-> event .-delta) 0))
-        newY (+ (:y last-element-dragged-deref) (nth (-> event .-delta) 1))
+        newX (+ (:x last-element-dragged-deref) (-> event .-left))
+        newY (+ (:y last-element-dragged-deref) (-> event .-top))
+        rotate (or (:rotate last-element-dragged-deref) 0)
         element-id (:currently-dragged-element-id last-element-dragged-deref)]
-    (swap! ui-state merge {:x newX :y newY})
-    (set! (-> event .-target .-style .-transform) (goog.string.format "translate(%dpx,%dpx)" newX newY))))
+    (print rotate)
+    (swap! ui-state merge {:newX newX :newY newY})
+    (set! (-> event .-target .-style .-transform) (goog.string.format "translate(%dpx,%dpx) rotate(%ddeg)" newX newY rotate))))
 
+(defn moveable-drag-end! []
+  (let [dragged-values @ui-state]
+    (swap! threat-model
+           update-in
+           [:elements (:currently-dragged-element-id dragged-values)]
+           (fn [cur-val]
+             (merge cur-val
+                    {:x (:newX dragged-values)
+                     :y (:newY dragged-values)}))))
+  (swap! ui-state assoc :currently-dragged-element-id nil))
 
 (defn instructions []
   [:div
@@ -269,13 +296,17 @@
                :draggable true
                                         ;Drag x and y in steps of 25 points
                :throttleDrag 25 
-               :throttleDragRotate 0
+               :throttleRotate 15 
                :onDragStart moveable-drag-start!
                :onDrag moveable-drag-on! 
                :snappable true
-               :onDragEnd moveable-drag-end!}]
+               :rotatable true
+               :onDragEnd moveable-drag-end!
+               :onRotateStart moveable-on-rotate-start!
+               :onRotate moveable-on-rotate!
+               :onRotateEnd moveable-rotate-end!}]
     [kb/keyboard-listener]
-    [kb/kb-action "backspace" handle-backspace-pressed! ]
+    [kb/kb-action "backspace" handle-backspace-pressed!]
     [kb/kb-action "enter" handle-enter-pressed!]]])
 
 (defn ^:export main! [])
