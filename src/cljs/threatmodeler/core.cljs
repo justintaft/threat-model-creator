@@ -136,9 +136,7 @@
                                                    :transform-origin "center left"
                                                    :padding (if (:draggable line) "5px" "0")}
                                            :class (str "moveable-element-" id)
-                                           :on-mouse-over (partial set-active-moveable-element! id)}
-   
-   "hm"]))
+                                           :on-mouse-over (partial set-active-moveable-element! id)}]))
 
 
 (defn get-closest-html-element 
@@ -183,6 +181,12 @@
   (when-let [current-element-id (get-in @app-state [:ui-state :active-moveable-id])]
     (when-let [current-element (get-in @app-state [:threat-model :elements current-element-id])]
       (swap! app-state delete-element current-element))))
+
+(defn handle-enter-pressed! []
+  "Handles pressing over enter key for diagram elements. Used to re-name element."
+  (when-let [current-element-id (get-in @app-state [:ui-state :active-moveable-id])]
+    (when-let [current-element (get-in @app-state [:threat-model :elements current-element-id])]
+      (swap! app-state assoc-in [:threat-model :elements current-element-id :name] (js/prompt "Element name:" (:name current-element))))))
 
 (defn render-threat-model-element-communication [element elements]
   [render-line (merge (select-keys element [:id]) (calculate-line-points (get elements (:from element)) (get elements (:to element))))])
@@ -245,17 +249,20 @@
   [:div
    [:p "Controls"
     [:br]
-    "Connect: Shift-click two elements to connect elements"
+    "Connect element: Shift-click two elements to connect elements"
     [:br]
-    "Delete: Move mouse over element and press backspace key"]])
+    "Delete element: Move mouse over element and press backspace key"
+    [:br]
+    "Rename-element: Move mouse over element and press enter key"]])
+
 
 (defn simple-example [threat-model]
   [:div
    [instructions]
    [toolbar]
    [:div#diagram 
-    ;Doall is required here, as for generates lazy sequence, and 
-    ;derefs in child components won't trigget updates. known reagent issue.
+                                        ;Doall is required here, as for generates lazy sequence, and 
+                                        ;derefs in child components won't trigget updates. known reagent issue.
     (doall (for [element (vals (:elements @threat-model))]
              (render-threat-model-element element (:elements @threat-model))))
     [moveable {:target (js/document.querySelector (str ".moveable-element-" (-> @ui-state :active-moveable-id)))
@@ -268,13 +275,9 @@
                :snappable true
                :onDragEnd moveable-drag-end!}]
     [kb/keyboard-listener]
-    [kb/kb-action "backspace" handle-backspace-pressed! ]]])
-
-
-
+    [kb/kb-action "backspace" handle-backspace-pressed! ]
+    [kb/kb-action "enter" handle-enter-pressed!]]])
 
 (defn ^:export main! [])
 
 (rdom/render [simple-example threat-model] (js/document.getElementById "app"))
-
-
