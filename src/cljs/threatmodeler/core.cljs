@@ -219,10 +219,6 @@
   (swap! threat-model update-in [:elements id] merge {:x (-> data .-lastX) :y (-> data .-lastY)}))
 
 
-
-(def last-element-dragged (atom {}))
-
-
 (defn moveable-on-rotate-start! [event]
   "Callback handler for starting of rotation. Sets rotation degree to current element rotation."
   (let [active-element-id (html-element->element-id (-> event .-target))
