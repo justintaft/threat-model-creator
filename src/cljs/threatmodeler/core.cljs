@@ -11,7 +11,7 @@
   (-> element .-dataset .-elementId))
 
 
-(def threat-examples {:XSS1 {:description "Application displays user supplied data" :mitigation "Encode user input for the appropiate context it appears in (HTML, JavaScript, etc.)" :tags #{"xss"}}})
+(def threat-examples {:XXS1 {:description "Application displays user supplied data" :mitigation "Encode user input for the appropiate context it appears in (HTML, JavaScript, etc.)" :tags #{"xss"}}})
 
 
 (def app-state (r/atom {:ui-state {:active-diagram-element-id nil
@@ -301,17 +301,18 @@
      [:tr
       [:th "Description"]
       [:th "Mitigation"]]
-     [:tr 
-      [:td "nicee"]
-      [:td "nice2"]]]))
+     (doall
+      (for [threat-id (:threats active-element)]
+        (let [threat-info (threat-examples threat-id)]
+          [:tr 
+           [:td (-> threat-info :description)]
+           [:td (-> threat-info :mitigation)]])))]))
 
 (defn active-element-name [active-threat-id]
   (let [active-element (get-in @threat-model [:elements active-threat-id])]
     [:div#threats-for
      [:h5.section-label "Threats for:" ]
      [:h3.threat-name (:name active-element)]]))
-
-
 
 (defn simple-example [threat-model]
   [:div#main
