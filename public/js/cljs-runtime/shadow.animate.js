@@ -126,10 +126,10 @@ throw cljs.core.missing_protocol("Animation.-animate-delays",this$);
 shadow.animate.transition_string = (function shadow$animate$transition_string(duration,adef){
 var timings = shadow.animate._animate_timings(adef);
 var delays = shadow.animate._animate_delays(adef);
-return clojure.string.join.cljs$core$IFn$_invoke$arity$2(", ",cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p__34300){
-var vec__34301 = p__34300;
-var attr = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__34301,(0),null);
-var timing = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__34301,(1),null);
+return clojure.string.join.cljs$core$IFn$_invoke$arity$2(", ",cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p__34401){
+var vec__34402 = p__34401;
+var attr = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__34402,(0),null);
+var timing = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__34402,(1),null);
 return [cljs.core.name(attr)," ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(duration),"ms"," ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(timing),(function (){var delay = cljs.core.get.cljs$core$IFn$_invoke$arity$2(delays,attr);
 if(cljs.core.truth_((function (){var and__4174__auto__ = delay;
 if(cljs.core.truth_(and__4174__auto__)){
@@ -260,10 +260,10 @@ var n__4666__auto__ = self__.items.length;
 var i__33796__auto__ = (0);
 while(true){
 if((i__33796__auto__ < n__4666__auto__)){
-var map__34319_34488 = (self__.items[i__33796__auto__]);
-var map__34319_34489__$1 = (((((!((map__34319_34488 == null))))?(((((map__34319_34488.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__34319_34488.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__34319_34488):map__34319_34488);
-var el_34490 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__34319_34489__$1,new cljs.core.Keyword(null,"el","el",-1618201118));
-var from_34491 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__34319_34489__$1,new cljs.core.Keyword(null,"from","from",1815293044));
+var map__34405_34488 = (self__.items[i__33796__auto__]);
+var map__34405_34489__$1 = (((((!((map__34405_34488 == null))))?(((((map__34405_34488.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__34405_34488.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__34405_34488):map__34405_34488);
+var el_34490 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__34405_34489__$1,new cljs.core.Keyword(null,"el","el",-1618201118));
+var from_34491 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__34405_34489__$1,new cljs.core.Keyword(null,"from","from",1815293044));
 goog.style.setStyle(el_34490,from_34491);
 
 var G__34492 = (i__33796__auto__ + (1));
@@ -283,11 +283,11 @@ var n__4666__auto__ = self__.items.length;
 var i__33796__auto__ = (0);
 while(true){
 if((i__33796__auto__ < n__4666__auto__)){
-var map__34327_34493 = (self__.items[i__33796__auto__]);
-var map__34327_34494__$1 = (((((!((map__34327_34493 == null))))?(((((map__34327_34493.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__34327_34493.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__34327_34493):map__34327_34493);
-var el_34495 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__34327_34494__$1,new cljs.core.Keyword(null,"el","el",-1618201118));
-var to_34496 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__34327_34494__$1,new cljs.core.Keyword(null,"to","to",192099007));
-var transition_34497 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__34327_34494__$1,new cljs.core.Keyword(null,"transition","transition",765692007));
+var map__34407_34493 = (self__.items[i__33796__auto__]);
+var map__34407_34494__$1 = (((((!((map__34407_34493 == null))))?(((((map__34407_34493.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__34407_34493.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__34407_34493):map__34407_34493);
+var el_34495 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__34407_34494__$1,new cljs.core.Keyword(null,"el","el",-1618201118));
+var to_34496 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__34407_34494__$1,new cljs.core.Keyword(null,"to","to",192099007));
+var transition_34497 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__34407_34494__$1,new cljs.core.Keyword(null,"transition","transition",765692007));
 (to_34496["transition"] = transition_34497);
 
 goog.style.setStyle(el_34495,to_34496);
@@ -309,10 +309,10 @@ var n__4666__auto__ = self__.items.length;
 var i__33796__auto__ = (0);
 while(true){
 if((i__33796__auto__ < n__4666__auto__)){
-var map__34344_34499 = (self__.items[i__33796__auto__]);
-var map__34344_34500__$1 = (((((!((map__34344_34499 == null))))?(((((map__34344_34499.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__34344_34499.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__34344_34499):map__34344_34499);
-var el_34501 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__34344_34500__$1,new cljs.core.Keyword(null,"el","el",-1618201118));
-var toggles_34502 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__34344_34500__$1,new cljs.core.Keyword(null,"toggles","toggles",1077909479));
+var map__34409_34499 = (self__.items[i__33796__auto__]);
+var map__34409_34500__$1 = (((((!((map__34409_34499 == null))))?(((((map__34409_34499.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__34409_34499.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__34409_34499):map__34409_34499);
+var el_34501 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__34409_34500__$1,new cljs.core.Keyword(null,"el","el",-1618201118));
+var toggles_34502 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__34409_34500__$1,new cljs.core.Keyword(null,"toggles","toggles",1077909479));
 (toggles_34502["transition"] = null);
 
 goog.style.setStyle(el_34501,toggles_34502);
@@ -383,12 +383,12 @@ var this__4439__auto____$1 = this;
 return this__4439__auto____$1.cljs$core$ILookup$_lookup$arity$3(null,k__4440__auto__,null);
 }));
 
-(shadow.animate.AnimationStep.prototype.cljs$core$ILookup$_lookup$arity$3 = (function (this__4441__auto__,k34350,else__4442__auto__){
+(shadow.animate.AnimationStep.prototype.cljs$core$ILookup$_lookup$arity$3 = (function (this__4441__auto__,k34412,else__4442__auto__){
 var self__ = this;
 var this__4441__auto____$1 = this;
-var G__34358 = k34350;
-var G__34358__$1 = (((G__34358 instanceof cljs.core.Keyword))?G__34358.fqn:null);
-switch (G__34358__$1) {
+var G__34416 = k34412;
+var G__34416__$1 = (((G__34416 instanceof cljs.core.Keyword))?G__34416.fqn:null);
+switch (G__34416__$1) {
 case "el":
 return self__.el;
 
@@ -410,7 +410,7 @@ return self__.transition;
 
 break;
 default:
-return cljs.core.get.cljs$core$IFn$_invoke$arity$3(self__.__extmap,k34350,else__4442__auto__);
+return cljs.core.get.cljs$core$IFn$_invoke$arity$3(self__.__extmap,k34412,else__4442__auto__);
 
 }
 }));
@@ -418,10 +418,10 @@ return cljs.core.get.cljs$core$IFn$_invoke$arity$3(self__.__extmap,k34350,else__
 (shadow.animate.AnimationStep.prototype.cljs$core$IKVReduce$_kv_reduce$arity$3 = (function (this__4458__auto__,f__4459__auto__,init__4460__auto__){
 var self__ = this;
 var this__4458__auto____$1 = this;
-return cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (ret__4461__auto__,p__34359){
-var vec__34360 = p__34359;
-var k__4462__auto__ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__34360,(0),null);
-var v__4463__auto__ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__34360,(1),null);
+return cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (ret__4461__auto__,p__34417){
+var vec__34418 = p__34417;
+var k__4462__auto__ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__34418,(0),null);
+var v__4463__auto__ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__34418,(1),null);
 return (f__4459__auto__.cljs$core$IFn$_invoke$arity$3 ? f__4459__auto__.cljs$core$IFn$_invoke$arity$3(ret__4461__auto__,k__4462__auto__,v__4463__auto__) : f__4459__auto__.call(null,ret__4461__auto__,k__4462__auto__,v__4463__auto__));
 }),init__4460__auto__,this__4458__auto____$1);
 }));
@@ -435,10 +435,10 @@ return cljs.core.pr_sequential_writer(writer__4454__auto__,cljs.core.pr_writer,"
 return cljs.core.pr_sequential_writer(writer__4454__auto__,pr_pair__4456__auto__,"#shadow.animate.AnimationStep{",", ","}",opts__4455__auto__,cljs.core.concat.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 5, 5, cljs.core.PersistentVector.EMPTY_NODE, [(new cljs.core.PersistentVector(null,2,(5),cljs.core.PersistentVector.EMPTY_NODE,[new cljs.core.Keyword(null,"el","el",-1618201118),self__.el],null)),(new cljs.core.PersistentVector(null,2,(5),cljs.core.PersistentVector.EMPTY_NODE,[new cljs.core.Keyword(null,"from","from",1815293044),self__.from],null)),(new cljs.core.PersistentVector(null,2,(5),cljs.core.PersistentVector.EMPTY_NODE,[new cljs.core.Keyword(null,"to","to",192099007),self__.to],null)),(new cljs.core.PersistentVector(null,2,(5),cljs.core.PersistentVector.EMPTY_NODE,[new cljs.core.Keyword(null,"toggles","toggles",1077909479),self__.toggles],null)),(new cljs.core.PersistentVector(null,2,(5),cljs.core.PersistentVector.EMPTY_NODE,[new cljs.core.Keyword(null,"transition","transition",765692007),self__.transition],null))], null),self__.__extmap));
 }));
 
-(shadow.animate.AnimationStep.prototype.cljs$core$IIterable$_iterator$arity$1 = (function (G__34349){
+(shadow.animate.AnimationStep.prototype.cljs$core$IIterable$_iterator$arity$1 = (function (G__34411){
 var self__ = this;
-var G__34349__$1 = this;
-return (new cljs.core.RecordIter((0),G__34349__$1,5,new cljs.core.PersistentVector(null, 5, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"el","el",-1618201118),new cljs.core.Keyword(null,"from","from",1815293044),new cljs.core.Keyword(null,"to","to",192099007),new cljs.core.Keyword(null,"toggles","toggles",1077909479),new cljs.core.Keyword(null,"transition","transition",765692007)], null),(cljs.core.truth_(self__.__extmap)?cljs.core._iterator(self__.__extmap):cljs.core.nil_iter())));
+var G__34411__$1 = this;
+return (new cljs.core.RecordIter((0),G__34411__$1,5,new cljs.core.PersistentVector(null, 5, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"el","el",-1618201118),new cljs.core.Keyword(null,"from","from",1815293044),new cljs.core.Keyword(null,"to","to",192099007),new cljs.core.Keyword(null,"toggles","toggles",1077909479),new cljs.core.Keyword(null,"transition","transition",765692007)], null),(cljs.core.truth_(self__.__extmap)?cljs.core._iterator(self__.__extmap):cljs.core.nil_iter())));
 }));
 
 (shadow.animate.AnimationStep.prototype.cljs$core$IMeta$_meta$arity$1 = (function (this__4437__auto__){
@@ -475,10 +475,10 @@ return h__4297__auto____$1;
 }
 }));
 
-(shadow.animate.AnimationStep.prototype.cljs$core$IEquiv$_equiv$arity$2 = (function (this34351,other34352){
+(shadow.animate.AnimationStep.prototype.cljs$core$IEquiv$_equiv$arity$2 = (function (this34413,other34414){
 var self__ = this;
-var this34351__$1 = this;
-return (((!((other34352 == null)))) && ((this34351__$1.constructor === other34352.constructor)) && (cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this34351__$1.el,other34352.el)) && (cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this34351__$1.from,other34352.from)) && (cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this34351__$1.to,other34352.to)) && (cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this34351__$1.toggles,other34352.toggles)) && (cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this34351__$1.transition,other34352.transition)) && (cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this34351__$1.__extmap,other34352.__extmap)));
+var this34413__$1 = this;
+return (((!((other34414 == null)))) && ((this34413__$1.constructor === other34414.constructor)) && (cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this34413__$1.el,other34414.el)) && (cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this34413__$1.from,other34414.from)) && (cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this34413__$1.to,other34414.to)) && (cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this34413__$1.toggles,other34414.toggles)) && (cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this34413__$1.transition,other34414.transition)) && (cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(this34413__$1.__extmap,other34414.__extmap)));
 }));
 
 (shadow.animate.AnimationStep.prototype.cljs$core$IMap$_dissoc$arity$2 = (function (this__4448__auto__,k__4449__auto__){
@@ -491,27 +491,27 @@ return (new shadow.animate.AnimationStep(self__.el,self__.from,self__.to,self__.
 }
 }));
 
-(shadow.animate.AnimationStep.prototype.cljs$core$IAssociative$_assoc$arity$3 = (function (this__4446__auto__,k__4447__auto__,G__34349){
+(shadow.animate.AnimationStep.prototype.cljs$core$IAssociative$_assoc$arity$3 = (function (this__4446__auto__,k__4447__auto__,G__34411){
 var self__ = this;
 var this__4446__auto____$1 = this;
-var pred__34389 = cljs.core.keyword_identical_QMARK_;
-var expr__34390 = k__4447__auto__;
-if(cljs.core.truth_((pred__34389.cljs$core$IFn$_invoke$arity$2 ? pred__34389.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"el","el",-1618201118),expr__34390) : pred__34389.call(null,new cljs.core.Keyword(null,"el","el",-1618201118),expr__34390)))){
-return (new shadow.animate.AnimationStep(G__34349,self__.from,self__.to,self__.toggles,self__.transition,self__.__meta,self__.__extmap,null));
+var pred__34421 = cljs.core.keyword_identical_QMARK_;
+var expr__34422 = k__4447__auto__;
+if(cljs.core.truth_((pred__34421.cljs$core$IFn$_invoke$arity$2 ? pred__34421.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"el","el",-1618201118),expr__34422) : pred__34421.call(null,new cljs.core.Keyword(null,"el","el",-1618201118),expr__34422)))){
+return (new shadow.animate.AnimationStep(G__34411,self__.from,self__.to,self__.toggles,self__.transition,self__.__meta,self__.__extmap,null));
 } else {
-if(cljs.core.truth_((pred__34389.cljs$core$IFn$_invoke$arity$2 ? pred__34389.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"from","from",1815293044),expr__34390) : pred__34389.call(null,new cljs.core.Keyword(null,"from","from",1815293044),expr__34390)))){
-return (new shadow.animate.AnimationStep(self__.el,G__34349,self__.to,self__.toggles,self__.transition,self__.__meta,self__.__extmap,null));
+if(cljs.core.truth_((pred__34421.cljs$core$IFn$_invoke$arity$2 ? pred__34421.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"from","from",1815293044),expr__34422) : pred__34421.call(null,new cljs.core.Keyword(null,"from","from",1815293044),expr__34422)))){
+return (new shadow.animate.AnimationStep(self__.el,G__34411,self__.to,self__.toggles,self__.transition,self__.__meta,self__.__extmap,null));
 } else {
-if(cljs.core.truth_((pred__34389.cljs$core$IFn$_invoke$arity$2 ? pred__34389.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"to","to",192099007),expr__34390) : pred__34389.call(null,new cljs.core.Keyword(null,"to","to",192099007),expr__34390)))){
-return (new shadow.animate.AnimationStep(self__.el,self__.from,G__34349,self__.toggles,self__.transition,self__.__meta,self__.__extmap,null));
+if(cljs.core.truth_((pred__34421.cljs$core$IFn$_invoke$arity$2 ? pred__34421.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"to","to",192099007),expr__34422) : pred__34421.call(null,new cljs.core.Keyword(null,"to","to",192099007),expr__34422)))){
+return (new shadow.animate.AnimationStep(self__.el,self__.from,G__34411,self__.toggles,self__.transition,self__.__meta,self__.__extmap,null));
 } else {
-if(cljs.core.truth_((pred__34389.cljs$core$IFn$_invoke$arity$2 ? pred__34389.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"toggles","toggles",1077909479),expr__34390) : pred__34389.call(null,new cljs.core.Keyword(null,"toggles","toggles",1077909479),expr__34390)))){
-return (new shadow.animate.AnimationStep(self__.el,self__.from,self__.to,G__34349,self__.transition,self__.__meta,self__.__extmap,null));
+if(cljs.core.truth_((pred__34421.cljs$core$IFn$_invoke$arity$2 ? pred__34421.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"toggles","toggles",1077909479),expr__34422) : pred__34421.call(null,new cljs.core.Keyword(null,"toggles","toggles",1077909479),expr__34422)))){
+return (new shadow.animate.AnimationStep(self__.el,self__.from,self__.to,G__34411,self__.transition,self__.__meta,self__.__extmap,null));
 } else {
-if(cljs.core.truth_((pred__34389.cljs$core$IFn$_invoke$arity$2 ? pred__34389.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"transition","transition",765692007),expr__34390) : pred__34389.call(null,new cljs.core.Keyword(null,"transition","transition",765692007),expr__34390)))){
-return (new shadow.animate.AnimationStep(self__.el,self__.from,self__.to,self__.toggles,G__34349,self__.__meta,self__.__extmap,null));
+if(cljs.core.truth_((pred__34421.cljs$core$IFn$_invoke$arity$2 ? pred__34421.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"transition","transition",765692007),expr__34422) : pred__34421.call(null,new cljs.core.Keyword(null,"transition","transition",765692007),expr__34422)))){
+return (new shadow.animate.AnimationStep(self__.el,self__.from,self__.to,self__.toggles,G__34411,self__.__meta,self__.__extmap,null));
 } else {
-return (new shadow.animate.AnimationStep(self__.el,self__.from,self__.to,self__.toggles,self__.transition,self__.__meta,cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(self__.__extmap,k__4447__auto__,G__34349),null));
+return (new shadow.animate.AnimationStep(self__.el,self__.from,self__.to,self__.toggles,self__.transition,self__.__meta,cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(self__.__extmap,k__4447__auto__,G__34411),null));
 }
 }
 }
@@ -525,10 +525,10 @@ var this__4451__auto____$1 = this;
 return cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 5, 5, cljs.core.PersistentVector.EMPTY_NODE, [(new cljs.core.MapEntry(new cljs.core.Keyword(null,"el","el",-1618201118),self__.el,null)),(new cljs.core.MapEntry(new cljs.core.Keyword(null,"from","from",1815293044),self__.from,null)),(new cljs.core.MapEntry(new cljs.core.Keyword(null,"to","to",192099007),self__.to,null)),(new cljs.core.MapEntry(new cljs.core.Keyword(null,"toggles","toggles",1077909479),self__.toggles,null)),(new cljs.core.MapEntry(new cljs.core.Keyword(null,"transition","transition",765692007),self__.transition,null))], null),self__.__extmap));
 }));
 
-(shadow.animate.AnimationStep.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (this__4438__auto__,G__34349){
+(shadow.animate.AnimationStep.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (this__4438__auto__,G__34411){
 var self__ = this;
 var this__4438__auto____$1 = this;
-return (new shadow.animate.AnimationStep(self__.el,self__.from,self__.to,self__.toggles,self__.transition,G__34349,self__.__extmap,self__.__hash));
+return (new shadow.animate.AnimationStep(self__.el,self__.from,self__.to,self__.toggles,self__.transition,G__34411,self__.__extmap,self__.__hash));
 }));
 
 (shadow.animate.AnimationStep.prototype.cljs$core$ICollection$_conj$arity$2 = (function (this__4444__auto__,entry__4445__auto__){
@@ -565,36 +565,36 @@ return (new shadow.animate.AnimationStep(el,from,to,toggles,transition,null,null
 /**
  * Factory function for shadow.animate/AnimationStep, taking a map of keywords to field values.
  */
-shadow.animate.map__GT_AnimationStep = (function shadow$animate$map__GT_AnimationStep(G__34354){
-var extmap__4478__auto__ = (function (){var G__34394 = cljs.core.dissoc.cljs$core$IFn$_invoke$arity$variadic(G__34354,new cljs.core.Keyword(null,"el","el",-1618201118),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"from","from",1815293044),new cljs.core.Keyword(null,"to","to",192099007),new cljs.core.Keyword(null,"toggles","toggles",1077909479),new cljs.core.Keyword(null,"transition","transition",765692007)], 0));
-if(cljs.core.record_QMARK_(G__34354)){
-return cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentArrayMap.EMPTY,G__34394);
+shadow.animate.map__GT_AnimationStep = (function shadow$animate$map__GT_AnimationStep(G__34415){
+var extmap__4478__auto__ = (function (){var G__34424 = cljs.core.dissoc.cljs$core$IFn$_invoke$arity$variadic(G__34415,new cljs.core.Keyword(null,"el","el",-1618201118),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"from","from",1815293044),new cljs.core.Keyword(null,"to","to",192099007),new cljs.core.Keyword(null,"toggles","toggles",1077909479),new cljs.core.Keyword(null,"transition","transition",765692007)], 0));
+if(cljs.core.record_QMARK_(G__34415)){
+return cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentArrayMap.EMPTY,G__34424);
 } else {
-return G__34394;
+return G__34424;
 }
 })();
-return (new shadow.animate.AnimationStep(new cljs.core.Keyword(null,"el","el",-1618201118).cljs$core$IFn$_invoke$arity$1(G__34354),new cljs.core.Keyword(null,"from","from",1815293044).cljs$core$IFn$_invoke$arity$1(G__34354),new cljs.core.Keyword(null,"to","to",192099007).cljs$core$IFn$_invoke$arity$1(G__34354),new cljs.core.Keyword(null,"toggles","toggles",1077909479).cljs$core$IFn$_invoke$arity$1(G__34354),new cljs.core.Keyword(null,"transition","transition",765692007).cljs$core$IFn$_invoke$arity$1(G__34354),null,cljs.core.not_empty(extmap__4478__auto__),null));
+return (new shadow.animate.AnimationStep(new cljs.core.Keyword(null,"el","el",-1618201118).cljs$core$IFn$_invoke$arity$1(G__34415),new cljs.core.Keyword(null,"from","from",1815293044).cljs$core$IFn$_invoke$arity$1(G__34415),new cljs.core.Keyword(null,"to","to",192099007).cljs$core$IFn$_invoke$arity$1(G__34415),new cljs.core.Keyword(null,"toggles","toggles",1077909479).cljs$core$IFn$_invoke$arity$1(G__34415),new cljs.core.Keyword(null,"transition","transition",765692007).cljs$core$IFn$_invoke$arity$1(G__34415),null,cljs.core.not_empty(extmap__4478__auto__),null));
 });
 
 shadow.animate.setup = (function shadow$animate$setup(duration,elements){
-var items = cljs.core.into_array.cljs$core$IFn$_invoke$arity$1((function (){var iter__4582__auto__ = (function shadow$animate$setup_$_iter__34395(s__34396){
+var items = cljs.core.into_array.cljs$core$IFn$_invoke$arity$1((function (){var iter__4582__auto__ = (function shadow$animate$setup_$_iter__34425(s__34426){
 return (new cljs.core.LazySeq(null,(function (){
-var s__34396__$1 = s__34396;
+var s__34426__$1 = s__34426;
 while(true){
-var temp__5735__auto__ = cljs.core.seq(s__34396__$1);
+var temp__5735__auto__ = cljs.core.seq(s__34426__$1);
 if(temp__5735__auto__){
-var s__34396__$2 = temp__5735__auto__;
-if(cljs.core.chunked_seq_QMARK_(s__34396__$2)){
-var c__4580__auto__ = cljs.core.chunk_first(s__34396__$2);
+var s__34426__$2 = temp__5735__auto__;
+if(cljs.core.chunked_seq_QMARK_(s__34426__$2)){
+var c__4580__auto__ = cljs.core.chunk_first(s__34426__$2);
 var size__4581__auto__ = cljs.core.count(c__4580__auto__);
-var b__34398 = cljs.core.chunk_buffer(size__4581__auto__);
-if((function (){var i__34397 = (0);
+var b__34428 = cljs.core.chunk_buffer(size__4581__auto__);
+if((function (){var i__34427 = (0);
 while(true){
-if((i__34397 < size__4581__auto__)){
-var vec__34410 = cljs.core._nth(c__4580__auto__,i__34397);
-var el = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__34410,(0),null);
-var adef = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__34410,(1),null);
-cljs.core.chunk_append(b__34398,(function (){
+if((i__34427 < size__4581__auto__)){
+var vec__34429 = cljs.core._nth(c__4580__auto__,i__34427);
+var el = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__34429,(0),null);
+var adef = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__34429,(1),null);
+cljs.core.chunk_append(b__34428,(function (){
 if((((!((adef == null))))?((((false) || ((cljs.core.PROTOCOL_SENTINEL === adef.shadow$animate$Animation$))))?true:(((!adef.cljs$lang$protocol_mask$partition$))?cljs.core.native_satisfies_QMARK_(shadow.animate.Animation,adef):false)):cljs.core.native_satisfies_QMARK_(shadow.animate.Animation,adef))){
 } else {
 throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2("invalid animation",new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"el","el",-1618201118),el,new cljs.core.Keyword(null,"animation","animation",-1248293244),adef], null));
@@ -607,8 +607,8 @@ return (new shadow.animate.AnimationStep(shadow.dom.dom_node(el),cljs.core.clj__
 })()
 );
 
-var G__34505 = (i__34397 + (1));
-i__34397 = G__34505;
+var G__34505 = (i__34427 + (1));
+i__34427 = G__34505;
 continue;
 } else {
 return true;
@@ -616,12 +616,12 @@ return true;
 break;
 }
 })()){
-return cljs.core.chunk_cons(cljs.core.chunk(b__34398),shadow$animate$setup_$_iter__34395(cljs.core.chunk_rest(s__34396__$2)));
+return cljs.core.chunk_cons(cljs.core.chunk(b__34428),shadow$animate$setup_$_iter__34425(cljs.core.chunk_rest(s__34426__$2)));
 } else {
-return cljs.core.chunk_cons(cljs.core.chunk(b__34398),null);
+return cljs.core.chunk_cons(cljs.core.chunk(b__34428),null);
 }
 } else {
-var vec__34433 = cljs.core.first(s__34396__$2);
+var vec__34433 = cljs.core.first(s__34426__$2);
 var el = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__34433,(0),null);
 var adef = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__34433,(1),null);
 return cljs.core.cons((function (){
@@ -635,7 +635,7 @@ var to = shadow.animate._animate_to(adef);
 var toggles = shadow.animate._animate_toggles(adef);
 return (new shadow.animate.AnimationStep(shadow.dom.dom_node(el),cljs.core.clj__GT_js(from),cljs.core.clj__GT_js(to),cljs.core.clj__GT_js(toggles),shadow.animate.transition_string(duration,adef),null,null,null));
 })()
-,shadow$animate$setup_$_iter__34395(cljs.core.rest(s__34396__$2)));
+,shadow$animate$setup_$_iter__34425(cljs.core.rest(s__34426__$2)));
 }
 } else {
 return null;

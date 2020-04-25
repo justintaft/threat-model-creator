@@ -833,9 +833,9 @@ var msg = map__34804__$1;
 var type = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__34804__$1,new cljs.core.Keyword(null,"type","type",1174270348));
 shadow.cljs.devtools.client.hud.connection_error_clear_BANG_();
 
-var G__34806_34962 = type;
-var G__34806_34963__$1 = (((G__34806_34962 instanceof cljs.core.Keyword))?G__34806_34962.fqn:null);
-switch (G__34806_34963__$1) {
+var G__34806_34969 = type;
+var G__34806_34970__$1 = (((G__34806_34969 instanceof cljs.core.Keyword))?G__34806_34969.fqn:null);
+switch (G__34806_34970__$1) {
 case "asset-watch":
 shadow.cljs.devtools.client.browser.handle_asset_watch(msg);
 
@@ -1006,16 +1006,16 @@ return shadow.cljs.devtools.client.browser.devtools_msg.cljs$core$IFn$_invoke$ar
 return shadow.cljs.devtools.client.browser.devtools_msg.cljs$core$IFn$_invoke$arity$variadic("WebSocket setup failed",cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([e], 0));
 }});
 if(shadow.cljs.devtools.client.env.enabled){
-var temp__5735__auto___34965 = cljs.core.deref(shadow.cljs.devtools.client.browser.socket_ref);
-if(cljs.core.truth_(temp__5735__auto___34965)){
-var s_34966 = temp__5735__auto___34965;
+var temp__5735__auto___34980 = cljs.core.deref(shadow.cljs.devtools.client.browser.socket_ref);
+if(cljs.core.truth_(temp__5735__auto___34980)){
+var s_34981 = temp__5735__auto___34980;
 shadow.cljs.devtools.client.browser.devtools_msg("connection reset!");
 
-(s_34966.onclose = (function (e){
+(s_34981.onclose = (function (e){
 return null;
 }));
 
-s_34966.close();
+s_34981.close();
 
 cljs.core.vreset_BANG_(shadow.cljs.devtools.client.browser.socket_ref,null);
 } else {
