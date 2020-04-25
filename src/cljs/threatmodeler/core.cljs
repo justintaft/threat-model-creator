@@ -65,10 +65,15 @@
 (add-element! (create-element {:type :boundary}))
 
 
-(defn set-active-moveable-element! [id e]
-(when-not (:currently-dragged-element-id @ui-state)
-  (swap! ui-state assoc :active-moveable-id id)))
+(defn set-active-moveable-element!
+  "Sets the active element which can be moved and dragged around.
+   If an item is currently being transformed, the active element is not updated."
 
+  [id e]
+  (when-not (:currently-dragged-element-id @ui-state)
+    (swap! ui-state assoc :active-moveable-id id)))
+
+  
 
 (def moveable (r/adapt-react-class Moveable))
 
@@ -222,7 +227,10 @@
   "Callback handler for starting of rotation. Sets rotation degree to current element rotation."
   (let [active-element-id (html-element->element-id (-> event .-target))
         cur-element-rotation (get-in @app-state [:threat-model :elements active-element-id :rotate])]
-    (swap! app-state assoc-in [:ui-state :orig-rotate] cur-element-rotation)))
+    (swap! ui-state
+           merge
+           {:currently-dragged-element-id active-element-id
+            :orig-rotate cur-element-rotation})))
 
 (defn moveable-on-rotate! [event]
   (let [active-element-id (-> @app-state :ui-state :active-moveable-id)
@@ -238,7 +246,8 @@
          (fn [state]
            (let [element-id (html-element->element-id (-> event .-target))
                  rotate-amount (-> state :ui-state :rotate-amount)]
-             (assoc-in state [:threat-model :elements element-id :rotate] rotate-amount)))))
+             (-> (assoc-in state [:threat-model :elements element-id :rotate] rotate-amount)
+                 (assoc-in [:ui-state :currently-dragged-element-id] nil))))))
 
 
 (defn moveable-drag-start! [event]
