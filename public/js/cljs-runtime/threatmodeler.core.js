@@ -10,7 +10,7 @@ goog.require('reagent_keybindings.keyboard');
 threatmodeler.core.html_element__GT_element_id = (function threatmodeler$core$html_element__GT_element_id(element){
 return element.dataset.elementId;
 });
-threatmodeler.core.threat_examples = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"XSS1","XSS1",-727420951),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"description","description",-1428560544),"Application displays user supplied data",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Encode user input for the appropiate context it appears in (HTML, JavaScript, etc.)",new cljs.core.Keyword(null,"tags","tags",1771418977),new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 1, ["xss",null], null), null)], null)], null);
+threatmodeler.core.threat_examples = new cljs.core.PersistentArrayMap(null, 7, [new cljs.core.Keyword(null,"XXS1","XXS1",337206763),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Application displays user supplied data",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Encode user input for the appropiate context it appears in (HTML, JavaScript, etc.)"], null),new cljs.core.Keyword(null,"SENSITIVEDATA1","SENSITIVEDATA1",622227875),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Sensitive Personal Identifiable Information is stored.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Encrypt user data. Use a vetted cryptography library/service when possible, such as libsodium. Ensure the chosen library makes use of strong cryptargaphy (uses non-broken cryptographic alogirhtm,  generates keys using a CSRPNG, does not re-use IVs, facilities key rotations, etc.)"], null),new cljs.core.Keyword(null,"PASSWORD1","PASSWORD1",-1825695850),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Database contains user passwords.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Use a cryptogarhicaly secure hashing algorithm with a tuneable work factor, such as scrypt. Ensure"], null),new cljs.core.Keyword(null,"XXE1","XXE1",-1106615231),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"XML is processed.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Disable Document Type Definition (DTD) parsing and external entity resolving when possible."], null),new cljs.core.Keyword(null,"SERIALIZATION1","SERIALIZATION1",853864414),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"User supplied data is deserialized",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Use a secre serialization framework/library which can not be leveraged to deserialize arbitrary types (Ex, Avoid Binary Formatte in .NET). Validate user supplied data to avoid mass assignment and injection vulnerabilites."], null),new cljs.core.Keyword(null,"TLS1","TLS1",-751480446),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Sensitive data tranfered over the network.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Use Transport Layer Security to secure communications. Ensure strong cipher-suites and praramters are used."], null),new cljs.core.Keyword(null,"AUTHENTICATION1","AUTHENTICATION1",1455232400),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Session identifiers are used to identify users.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Generation Session IDs form a cryptographically ecure source. Ensure the length of session IDs are not brute forceable, such as 128 bits of entropy in length."], null)], null);
 threatmodeler.core.app_state = reagent.core.atom.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"ui-state","ui-state",646932351),new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"active-diagram-element-id","active-diagram-element-id",580407382),null,new cljs.core.Keyword(null,"element-transformation-in-progress","element-transformation-in-progress",1733961414),null,new cljs.core.Keyword(null,"last-element-dragged","last-element-dragged",47361738),null,new cljs.core.Keyword(null,"last-item-shift-clicked","last-item-shift-clicked",-1840126509),null], null),new cljs.core.Keyword(null,"threat-model","threat-model",662425298),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"elements","elements",657646735),cljs.core.PersistentArrayMap.EMPTY,new cljs.core.Keyword(null,"threats","threats",-7323746),cljs.core.PersistentVector.EMPTY], null)], null));
 threatmodeler.core.ui_state = reagent.core.cursor(threatmodeler.core.app_state,new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"ui-state","ui-state",646932351)], null));
 threatmodeler.core.threat_model = reagent.core.cursor(threatmodeler.core.app_state,new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"threat-model","threat-model",662425298)], null));
@@ -20,8 +20,8 @@ threatmodeler.core.create_element = (function (){var method_table__4672__auto__ 
 var prefer_table__4673__auto__ = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentArrayMap.EMPTY);
 var method_cache__4674__auto__ = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentArrayMap.EMPTY);
 var cached_hierarchy__4675__auto__ = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentArrayMap.EMPTY);
-var hierarchy__4676__auto__ = cljs.core.get.cljs$core$IFn$_invoke$arity$3(cljs.core.PersistentArrayMap.EMPTY,new cljs.core.Keyword(null,"hierarchy","hierarchy",-1053470341),(function (){var fexpr__28678 = cljs.core.get_global_hierarchy;
-return (fexpr__28678.cljs$core$IFn$_invoke$arity$0 ? fexpr__28678.cljs$core$IFn$_invoke$arity$0() : fexpr__28678.call(null));
+var hierarchy__4676__auto__ = cljs.core.get.cljs$core$IFn$_invoke$arity$3(cljs.core.PersistentArrayMap.EMPTY,new cljs.core.Keyword(null,"hierarchy","hierarchy",-1053470341),(function (){var fexpr__27224 = cljs.core.get_global_hierarchy;
+return (fexpr__27224.cljs$core$IFn$_invoke$arity$0 ? fexpr__27224.cljs$core$IFn$_invoke$arity$0() : fexpr__27224.call(null));
 })());
 return (new cljs.core.MultiFn(cljs.core.symbol.cljs$core$IFn$_invoke$arity$2("threatmodeler.core","create-element"),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"default","default",-1987822328),hierarchy__4676__auto__,method_table__4672__auto__,prefer_table__4673__auto__,method_cache__4674__auto__,cached_hierarchy__4675__auto__));
 })();
@@ -73,8 +73,8 @@ threatmodeler.core.delete_element = (function (){var method_table__4672__auto__ 
 var prefer_table__4673__auto__ = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentArrayMap.EMPTY);
 var method_cache__4674__auto__ = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentArrayMap.EMPTY);
 var cached_hierarchy__4675__auto__ = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentArrayMap.EMPTY);
-var hierarchy__4676__auto__ = cljs.core.get.cljs$core$IFn$_invoke$arity$3(cljs.core.PersistentArrayMap.EMPTY,new cljs.core.Keyword(null,"hierarchy","hierarchy",-1053470341),(function (){var fexpr__28679 = cljs.core.get_global_hierarchy;
-return (fexpr__28679.cljs$core$IFn$_invoke$arity$0 ? fexpr__28679.cljs$core$IFn$_invoke$arity$0() : fexpr__28679.call(null));
+var hierarchy__4676__auto__ = cljs.core.get.cljs$core$IFn$_invoke$arity$3(cljs.core.PersistentArrayMap.EMPTY,new cljs.core.Keyword(null,"hierarchy","hierarchy",-1053470341),(function (){var fexpr__27225 = cljs.core.get_global_hierarchy;
+return (fexpr__27225.cljs$core$IFn$_invoke$arity$0 ? fexpr__27225.cljs$core$IFn$_invoke$arity$0() : fexpr__27225.call(null));
 })());
 return (new cljs.core.MultiFn(cljs.core.symbol.cljs$core$IFn$_invoke$arity$2("threatmodeler.core","delete-element"),(function (app_state,element){
 return new cljs.core.Keyword(null,"type","type",1174270348).cljs$core$IFn$_invoke$arity$1(element);
@@ -87,11 +87,13 @@ return cljs.core.update_in.cljs$core$IFn$_invoke$arity$4(app_state,new cljs.core
 threatmodeler.core.delete_element.cljs$core$IMultiFn$_add_method$arity$3(null,new cljs.core.Keyword(null,"default","default",-1987822328),(function (app_state,element){
 return threatmodeler.core.delete_element_and_communications(app_state,element);
 }));
-threatmodeler.core.add_element_BANG_(threatmodeler.core.create_element.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentArrayMap(null, 5, [new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"actor","actor",-1830560481),new cljs.core.Keyword(null,"name","name",1843675177),"hackerman",new cljs.core.Keyword(null,"x","x",2099068185),(50),new cljs.core.Keyword(null,"y","y",-1757859776),(150),new cljs.core.Keyword(null,"id","id",-1388402092),"hackerman1"], null)));
-threatmodeler.core.add_element_BANG_(threatmodeler.core.create_element.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentArrayMap(null, 6, [new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"process","process",1643192938),new cljs.core.Keyword(null,"name","name",1843675177),"webapp",new cljs.core.Keyword(null,"x","x",2099068185),(400),new cljs.core.Keyword(null,"y","y",-1757859776),(125),new cljs.core.Keyword(null,"id","id",-1388402092),"webapp1",new cljs.core.Keyword(null,"threats","threats",-7323746),new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"XXS1","XXS1",337206763),null], null), null)], null)));
-threatmodeler.core.add_element_BANG_(threatmodeler.core.create_element.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentArrayMap(null, 5, [new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"datastore","datastore",-762786373),new cljs.core.Keyword(null,"name","name",1843675177),"database",new cljs.core.Keyword(null,"x","x",2099068185),(50),new cljs.core.Keyword(null,"y","y",-1757859776),(300),new cljs.core.Keyword(null,"id","id",-1388402092),"datastore1"], null)));
-threatmodeler.core.add_element_BANG_(threatmodeler.core.create_element.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"communication","communication",1734879700),new cljs.core.Keyword(null,"from","from",1815293044),"hackerman1",new cljs.core.Keyword(null,"to","to",192099007),"webapp1",new cljs.core.Keyword(null,"name","name",1843675177),"communication1"], null)));
-threatmodeler.core.add_element_BANG_(threatmodeler.core.create_element.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"communication","communication",1734879700),new cljs.core.Keyword(null,"from","from",1815293044),"hackerman1",new cljs.core.Keyword(null,"to","to",192099007),"datastore1",new cljs.core.Keyword(null,"name","name",1843675177),"communication2"], null)));
+threatmodeler.core.add_element_BANG_(threatmodeler.core.create_element.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentArrayMap(null, 6, [new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"actor","actor",-1830560481),new cljs.core.Keyword(null,"name","name",1843675177),"Web User",new cljs.core.Keyword(null,"x","x",2099068185),(50),new cljs.core.Keyword(null,"y","y",-1757859776),(150),new cljs.core.Keyword(null,"id","id",-1388402092),"Web User",new cljs.core.Keyword(null,"threats","threats",-7323746),new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"AUTHENTICATION1","AUTHENTICATION1",1455232400),null], null), null)], null)));
+threatmodeler.core.add_element_BANG_(threatmodeler.core.create_element.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentArrayMap(null, 6, [new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"process","process",1643192938),new cljs.core.Keyword(null,"name","name",1843675177),"webapp",new cljs.core.Keyword(null,"x","x",2099068185),(300),new cljs.core.Keyword(null,"y","y",-1757859776),(125),new cljs.core.Keyword(null,"id","id",-1388402092),"webapp1",new cljs.core.Keyword(null,"threats","threats",-7323746),new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"XXE1","XXE1",-1106615231),null,new cljs.core.Keyword(null,"XXS1","XXS1",337206763),null,new cljs.core.Keyword(null,"SERIALIZATION1","SERIALIZATION1",853864414),null], null), null)], null)));
+threatmodeler.core.add_element_BANG_(threatmodeler.core.create_element.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentArrayMap(null, 6, [new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"process","process",1643192938),new cljs.core.Keyword(null,"name","name",1843675177),"third party",new cljs.core.Keyword(null,"x","x",2099068185),(500),new cljs.core.Keyword(null,"y","y",-1757859776),(125),new cljs.core.Keyword(null,"id","id",-1388402092),"webapp2",new cljs.core.Keyword(null,"threats","threats",-7323746),cljs.core.PersistentHashSet.EMPTY], null)));
+threatmodeler.core.add_element_BANG_(threatmodeler.core.create_element.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentArrayMap(null, 6, [new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"datastore","datastore",-762786373),new cljs.core.Keyword(null,"name","name",1843675177),"database",new cljs.core.Keyword(null,"x","x",2099068185),(300),new cljs.core.Keyword(null,"y","y",-1757859776),(300),new cljs.core.Keyword(null,"id","id",-1388402092),"datastore1",new cljs.core.Keyword(null,"threats","threats",-7323746),new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"SENSITIVEDATA1","SENSITIVEDATA1",622227875),null,new cljs.core.Keyword(null,"PASSWORD1","PASSWORD1",-1825695850),null], null), null)], null)));
+threatmodeler.core.add_element_BANG_(threatmodeler.core.create_element.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentArrayMap(null, 5, [new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"communication","communication",1734879700),new cljs.core.Keyword(null,"from","from",1815293044),"Web User",new cljs.core.Keyword(null,"to","to",192099007),"webapp1",new cljs.core.Keyword(null,"name","name",1843675177),"communication1",new cljs.core.Keyword(null,"threats","threats",-7323746),new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"TLS1","TLS1",-751480446),null], null), null)], null)));
+threatmodeler.core.add_element_BANG_(threatmodeler.core.create_element.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentArrayMap(null, 5, [new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"communication","communication",1734879700),new cljs.core.Keyword(null,"from","from",1815293044),"webapp1",new cljs.core.Keyword(null,"to","to",192099007),"datastore1",new cljs.core.Keyword(null,"name","name",1843675177),"communication2",new cljs.core.Keyword(null,"threats","threats",-7323746),new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"TLS1","TLS1",-751480446),null], null), null)], null)));
+threatmodeler.core.add_element_BANG_(threatmodeler.core.create_element.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentArrayMap(null, 5, [new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"communication","communication",1734879700),new cljs.core.Keyword(null,"from","from",1815293044),"webapp1",new cljs.core.Keyword(null,"to","to",192099007),"webapp2",new cljs.core.Keyword(null,"name","name",1843675177),"communication3",new cljs.core.Keyword(null,"threats","threats",-7323746),new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"TLS1","TLS1",-751480446),null], null), null)], null)));
 threatmodeler.core.add_element_BANG_(threatmodeler.core.create_element.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"boundary","boundary",-2000996754),new cljs.core.Keyword(null,"name","name",1843675177),"boundary1"], null)));
 /**
  * Sets the active element which can be moved and dragged around.
@@ -122,16 +124,16 @@ return new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"x1
 }
 }
 });
-threatmodeler.core.render_line = (function threatmodeler$core$render_line(p__28680){
-var map__28681 = p__28680;
-var map__28681__$1 = (((((!((map__28681 == null))))?(((((map__28681.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__28681.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__28681):map__28681);
-var line = map__28681__$1;
-var x1 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28681__$1,new cljs.core.Keyword(null,"x1","x1",-1863922247));
-var y1 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28681__$1,new cljs.core.Keyword(null,"y1","y1",589123466));
-var x2 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28681__$1,new cljs.core.Keyword(null,"x2","x2",-1362513475));
-var y2 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28681__$1,new cljs.core.Keyword(null,"y2","y2",-718691301));
-var style = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28681__$1,new cljs.core.Keyword(null,"style","style",-496642736));
-var id = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28681__$1,new cljs.core.Keyword(null,"id","id",-1388402092));
+threatmodeler.core.render_line = (function threatmodeler$core$render_line(p__27226){
+var map__27227 = p__27226;
+var map__27227__$1 = (((((!((map__27227 == null))))?(((((map__27227.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__27227.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__27227):map__27227);
+var line = map__27227__$1;
+var x1 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__27227__$1,new cljs.core.Keyword(null,"x1","x1",-1863922247));
+var y1 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__27227__$1,new cljs.core.Keyword(null,"y1","y1",589123466));
+var x2 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__27227__$1,new cljs.core.Keyword(null,"x2","x2",-1362513475));
+var y2 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__27227__$1,new cljs.core.Keyword(null,"y2","y2",-718691301));
+var style = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__27227__$1,new cljs.core.Keyword(null,"style","style",-496642736));
+var id = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__27227__$1,new cljs.core.Keyword(null,"id","id",-1388402092));
 var lineLength = Math.sqrt((Math.pow((x2 - x1),(2)) + Math.pow((y2 - y1),(2))));
 var slope = ((y1 - y2) / (x1 - x2));
 var rotationDegree = (((((x1 >= x2)) && ((y1 < y2))))?(Math.PI - ((-1) * Math.atan(slope))):Math.atan(slope));
@@ -170,15 +172,15 @@ return cljs.core.assoc_in(state,new cljs.core.PersistentVector(null, 2, 5, cljs.
 return null;
 }
 });
-threatmodeler.core.render_threat_model_element_common = (function threatmodeler$core$render_threat_model_element_common(p__28683){
-var map__28684 = p__28683;
-var map__28684__$1 = (((((!((map__28684 == null))))?(((((map__28684.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__28684.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__28684):map__28684);
-var x = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28684__$1,new cljs.core.Keyword(null,"x","x",2099068185));
-var y = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28684__$1,new cljs.core.Keyword(null,"y","y",-1757859776));
-var type = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28684__$1,new cljs.core.Keyword(null,"type","type",1174270348));
-var name = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28684__$1,new cljs.core.Keyword(null,"name","name",1843675177));
-var id = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28684__$1,new cljs.core.Keyword(null,"id","id",-1388402092));
-var rotate = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28684__$1,new cljs.core.Keyword(null,"rotate","rotate",152705015));
+threatmodeler.core.render_threat_model_element_common = (function threatmodeler$core$render_threat_model_element_common(p__27229){
+var map__27230 = p__27229;
+var map__27230__$1 = (((((!((map__27230 == null))))?(((((map__27230.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__27230.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__27230):map__27230);
+var x = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__27230__$1,new cljs.core.Keyword(null,"x","x",2099068185));
+var y = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__27230__$1,new cljs.core.Keyword(null,"y","y",-1757859776));
+var type = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__27230__$1,new cljs.core.Keyword(null,"type","type",1174270348));
+var name = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__27230__$1,new cljs.core.Keyword(null,"name","name",1843675177));
+var id = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__27230__$1,new cljs.core.Keyword(null,"id","id",-1388402092));
+var rotate = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__27230__$1,new cljs.core.Keyword(null,"rotate","rotate",152705015));
 return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"span.diagram-threat-model-element","span.diagram-threat-model-element",-160914358),new cljs.core.PersistentArrayMap(null, 5, [new cljs.core.Keyword(null,"class","class",-2030961996),["diagram-",cljs.core.name(type)," moveable-element-",cljs.core.str.cljs$core$IFn$_invoke$arity$1(id)].join(''),new cljs.core.Keyword(null,"style","style",-496642736),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"transform","transform",1381301764),goog.string.format("translate(%dpx,%dpx) rotate(%ddeg)",x,y,(function (){var or__4185__auto__ = rotate;
 if(cljs.core.truth_(or__4185__auto__)){
 return or__4185__auto__;
@@ -231,8 +233,8 @@ threatmodeler.core.render_threat_model_element = (function (){var method_table__
 var prefer_table__4673__auto__ = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentArrayMap.EMPTY);
 var method_cache__4674__auto__ = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentArrayMap.EMPTY);
 var cached_hierarchy__4675__auto__ = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentArrayMap.EMPTY);
-var hierarchy__4676__auto__ = cljs.core.get.cljs$core$IFn$_invoke$arity$3(cljs.core.PersistentArrayMap.EMPTY,new cljs.core.Keyword(null,"hierarchy","hierarchy",-1053470341),(function (){var fexpr__28686 = cljs.core.get_global_hierarchy;
-return (fexpr__28686.cljs$core$IFn$_invoke$arity$0 ? fexpr__28686.cljs$core$IFn$_invoke$arity$0() : fexpr__28686.call(null));
+var hierarchy__4676__auto__ = cljs.core.get.cljs$core$IFn$_invoke$arity$3(cljs.core.PersistentArrayMap.EMPTY,new cljs.core.Keyword(null,"hierarchy","hierarchy",-1053470341),(function (){var fexpr__27232 = cljs.core.get_global_hierarchy;
+return (fexpr__27232.cljs$core$IFn$_invoke$arity$0 ? fexpr__27232.cljs$core$IFn$_invoke$arity$0() : fexpr__27232.call(null));
 })());
 return (new cljs.core.MultiFn(cljs.core.symbol.cljs$core$IFn$_invoke$arity$2("threatmodeler.core","render-threat-model-element"),(function (element,_){
 return new cljs.core.Keyword(null,"type","type",1174270348).cljs$core$IFn$_invoke$arity$1(element);
@@ -313,9 +315,9 @@ cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$3(threatmodeler.core.ui_state,c
 return (event.target.style.transform = goog.string.format("translate(%dpx,%dpx) rotate(%ddeg)",newX,newY,rotate));
 });
 threatmodeler.core.moveable_drag_end_BANG_ = (function threatmodeler$core$moveable_drag_end_BANG_(){
-var ui_state_derefed_28691 = cljs.core.deref(threatmodeler.core.ui_state);
-cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$4(threatmodeler.core.threat_model,cljs.core.update_in,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"elements","elements",657646735),new cljs.core.Keyword(null,"active-diagram-element-id","active-diagram-element-id",580407382).cljs$core$IFn$_invoke$arity$1(ui_state_derefed_28691)], null),(function (cur_val){
-return cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([cur_val,new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"x","x",2099068185),new cljs.core.Keyword(null,"newX","newX",-90483607).cljs$core$IFn$_invoke$arity$1(ui_state_derefed_28691),new cljs.core.Keyword(null,"y","y",-1757859776),new cljs.core.Keyword(null,"newY","newY",-1472730860).cljs$core$IFn$_invoke$arity$1(ui_state_derefed_28691)], null)], 0));
+var ui_state_derefed_27241 = cljs.core.deref(threatmodeler.core.ui_state);
+cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$4(threatmodeler.core.threat_model,cljs.core.update_in,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"elements","elements",657646735),new cljs.core.Keyword(null,"active-diagram-element-id","active-diagram-element-id",580407382).cljs$core$IFn$_invoke$arity$1(ui_state_derefed_27241)], null),(function (cur_val){
+return cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([cur_val,new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"x","x",2099068185),new cljs.core.Keyword(null,"newX","newX",-90483607).cljs$core$IFn$_invoke$arity$1(ui_state_derefed_27241),new cljs.core.Keyword(null,"y","y",-1757859776),new cljs.core.Keyword(null,"newY","newY",-1472730860).cljs$core$IFn$_invoke$arity$1(ui_state_derefed_27241)], null)], 0));
 }));
 
 return cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$4(threatmodeler.core.ui_state,cljs.core.assoc,new cljs.core.Keyword(null,"element-transformation-in-progress","element-transformation-in-progress",1733961414),null);
@@ -328,32 +330,27 @@ return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMP
 });
 threatmodeler.core.threat_table = (function threatmodeler$core$threat_table(active_threat_id){
 var active_element = cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(cljs.core.deref(threatmodeler.core.threat_model),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"elements","elements",657646735),active_threat_id], null));
-return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"table#threat-table","table#threat-table",-106845795),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"tr","tr",-1424774646),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"th","th",-545608566),"Description"], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"th","th",-545608566),"Mitigation"], null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"tr","tr",-1424774646),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"td","td",1479933353),"nicee"], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"td","td",1479933353),"nice2"], null)], null)], null);
-});
-threatmodeler.core.active_element_name = (function threatmodeler$core$active_element_name(active_threat_id){
-var active_element = cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(cljs.core.deref(threatmodeler.core.threat_model),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"elements","elements",657646735),active_threat_id], null));
-return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div#threats-for","div#threats-for",447326984),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"h5.section-label","h5.section-label",1046010943),"Threats for:"], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"h3.threat-name","h3.threat-name",357987367),new cljs.core.Keyword(null,"name","name",1843675177).cljs$core$IFn$_invoke$arity$1(active_element)], null)], null);
-});
-threatmodeler.core.simple_example = (function threatmodeler$core$simple_example(threat_model){
-return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div#main","div#main",-2068630773),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div#graph-area","div#graph-area",1292963200),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [threatmodeler.core.instructions], null),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [threatmodeler.core.toolbar], null),new cljs.core.PersistentVector(null, 6, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div#diagram","div#diagram",-550840655),cljs.core.doall.cljs$core$IFn$_invoke$arity$1((function (){var iter__4582__auto__ = (function threatmodeler$core$simple_example_$_iter__28687(s__28688){
+return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"table#threat-table","table#threat-table",-106845795),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"tr","tr",-1424774646),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"th","th",-545608566),"Description"], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"th","th",-545608566),"Mitigation"], null)], null),cljs.core.doall.cljs$core$IFn$_invoke$arity$1((function (){var iter__4582__auto__ = (function threatmodeler$core$threat_table_$_iter__27233(s__27234){
 return (new cljs.core.LazySeq(null,(function (){
-var s__28688__$1 = s__28688;
+var s__27234__$1 = s__27234;
 while(true){
-var temp__5735__auto__ = cljs.core.seq(s__28688__$1);
+var temp__5735__auto__ = cljs.core.seq(s__27234__$1);
 if(temp__5735__auto__){
-var s__28688__$2 = temp__5735__auto__;
-if(cljs.core.chunked_seq_QMARK_(s__28688__$2)){
-var c__4580__auto__ = cljs.core.chunk_first(s__28688__$2);
+var s__27234__$2 = temp__5735__auto__;
+if(cljs.core.chunked_seq_QMARK_(s__27234__$2)){
+var c__4580__auto__ = cljs.core.chunk_first(s__27234__$2);
 var size__4581__auto__ = cljs.core.count(c__4580__auto__);
-var b__28690 = cljs.core.chunk_buffer(size__4581__auto__);
-if((function (){var i__28689 = (0);
+var b__27236 = cljs.core.chunk_buffer(size__4581__auto__);
+if((function (){var i__27235 = (0);
 while(true){
-if((i__28689 < size__4581__auto__)){
-var element = cljs.core._nth(c__4580__auto__,i__28689);
-cljs.core.chunk_append(b__28690,threatmodeler.core.render_threat_model_element.cljs$core$IFn$_invoke$arity$2(element,new cljs.core.Keyword(null,"elements","elements",657646735).cljs$core$IFn$_invoke$arity$1(cljs.core.deref(threat_model))));
+if((i__27235 < size__4581__auto__)){
+var threat_id = cljs.core._nth(c__4580__auto__,i__27235);
+cljs.core.chunk_append(b__27236,(function (){var threat_info = (threatmodeler.core.threat_examples.cljs$core$IFn$_invoke$arity$1 ? threatmodeler.core.threat_examples.cljs$core$IFn$_invoke$arity$1(threat_id) : threatmodeler.core.threat_examples.call(null,threat_id));
+return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"tr","tr",-1424774646),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"td","td",1479933353),new cljs.core.Keyword(null,"description","description",-1428560544).cljs$core$IFn$_invoke$arity$1(threat_info)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"td","td",1479933353),new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626).cljs$core$IFn$_invoke$arity$1(threat_info)], null)], null);
+})());
 
-var G__28692 = (i__28689 + (1));
-i__28689 = G__28692;
+var G__27242 = (i__27235 + (1));
+i__27235 = G__27242;
 continue;
 } else {
 return true;
@@ -361,13 +358,64 @@ return true;
 break;
 }
 })()){
-return cljs.core.chunk_cons(cljs.core.chunk(b__28690),threatmodeler$core$simple_example_$_iter__28687(cljs.core.chunk_rest(s__28688__$2)));
+return cljs.core.chunk_cons(cljs.core.chunk(b__27236),threatmodeler$core$threat_table_$_iter__27233(cljs.core.chunk_rest(s__27234__$2)));
 } else {
-return cljs.core.chunk_cons(cljs.core.chunk(b__28690),null);
+return cljs.core.chunk_cons(cljs.core.chunk(b__27236),null);
 }
 } else {
-var element = cljs.core.first(s__28688__$2);
-return cljs.core.cons(threatmodeler.core.render_threat_model_element.cljs$core$IFn$_invoke$arity$2(element,new cljs.core.Keyword(null,"elements","elements",657646735).cljs$core$IFn$_invoke$arity$1(cljs.core.deref(threat_model))),threatmodeler$core$simple_example_$_iter__28687(cljs.core.rest(s__28688__$2)));
+var threat_id = cljs.core.first(s__27234__$2);
+return cljs.core.cons((function (){var threat_info = (threatmodeler.core.threat_examples.cljs$core$IFn$_invoke$arity$1 ? threatmodeler.core.threat_examples.cljs$core$IFn$_invoke$arity$1(threat_id) : threatmodeler.core.threat_examples.call(null,threat_id));
+return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"tr","tr",-1424774646),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"td","td",1479933353),new cljs.core.Keyword(null,"description","description",-1428560544).cljs$core$IFn$_invoke$arity$1(threat_info)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"td","td",1479933353),new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626).cljs$core$IFn$_invoke$arity$1(threat_info)], null)], null);
+})(),threatmodeler$core$threat_table_$_iter__27233(cljs.core.rest(s__27234__$2)));
+}
+} else {
+return null;
+}
+break;
+}
+}),null,null));
+});
+return iter__4582__auto__(new cljs.core.Keyword(null,"threats","threats",-7323746).cljs$core$IFn$_invoke$arity$1(active_element));
+})())], null);
+});
+threatmodeler.core.active_element_name = (function threatmodeler$core$active_element_name(active_threat_id){
+var active_element = cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(cljs.core.deref(threatmodeler.core.threat_model),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"elements","elements",657646735),active_threat_id], null));
+return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div#threats-for","div#threats-for",447326984),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"h5.section-label","h5.section-label",1046010943),"Threats for:"], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"h3.threat-name","h3.threat-name",357987367),new cljs.core.Keyword(null,"name","name",1843675177).cljs$core$IFn$_invoke$arity$1(active_element)], null)], null);
+});
+threatmodeler.core.simple_example = (function threatmodeler$core$simple_example(threat_model){
+return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div#main","div#main",-2068630773),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div#graph-area","div#graph-area",1292963200),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [threatmodeler.core.instructions], null),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [threatmodeler.core.toolbar], null),new cljs.core.PersistentVector(null, 6, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div#diagram","div#diagram",-550840655),cljs.core.doall.cljs$core$IFn$_invoke$arity$1((function (){var iter__4582__auto__ = (function threatmodeler$core$simple_example_$_iter__27237(s__27238){
+return (new cljs.core.LazySeq(null,(function (){
+var s__27238__$1 = s__27238;
+while(true){
+var temp__5735__auto__ = cljs.core.seq(s__27238__$1);
+if(temp__5735__auto__){
+var s__27238__$2 = temp__5735__auto__;
+if(cljs.core.chunked_seq_QMARK_(s__27238__$2)){
+var c__4580__auto__ = cljs.core.chunk_first(s__27238__$2);
+var size__4581__auto__ = cljs.core.count(c__4580__auto__);
+var b__27240 = cljs.core.chunk_buffer(size__4581__auto__);
+if((function (){var i__27239 = (0);
+while(true){
+if((i__27239 < size__4581__auto__)){
+var element = cljs.core._nth(c__4580__auto__,i__27239);
+cljs.core.chunk_append(b__27240,threatmodeler.core.render_threat_model_element.cljs$core$IFn$_invoke$arity$2(element,new cljs.core.Keyword(null,"elements","elements",657646735).cljs$core$IFn$_invoke$arity$1(cljs.core.deref(threat_model))));
+
+var G__27243 = (i__27239 + (1));
+i__27239 = G__27243;
+continue;
+} else {
+return true;
+}
+break;
+}
+})()){
+return cljs.core.chunk_cons(cljs.core.chunk(b__27240),threatmodeler$core$simple_example_$_iter__27237(cljs.core.chunk_rest(s__27238__$2)));
+} else {
+return cljs.core.chunk_cons(cljs.core.chunk(b__27240),null);
+}
+} else {
+var element = cljs.core.first(s__27238__$2);
+return cljs.core.cons(threatmodeler.core.render_threat_model_element.cljs$core$IFn$_invoke$arity$2(element,new cljs.core.Keyword(null,"elements","elements",657646735).cljs$core$IFn$_invoke$arity$1(cljs.core.deref(threat_model))),threatmodeler$core$simple_example_$_iter__27237(cljs.core.rest(s__27238__$2)));
 }
 } else {
 return null;
