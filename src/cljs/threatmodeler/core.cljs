@@ -10,8 +10,8 @@
 (defn html-element->element-id [element]
   (-> element .-dataset .-elementId))
 
-(def app-state (r/atom {:ui-state {:active-moveable-id nil
-                                   :currently-dragged-element-id nil
+(def app-state (r/atom {:ui-state {:active-diagram-element-id nil
+                                   :element-transformation-in-progress nil
                                    :last-element-dragged nil
                                    :last-item-shift-clicked nil}
                         :threat-model {:elements {} :threats []}}))
@@ -70,8 +70,8 @@
    If an item is currently being transformed, the active element is not updated."
 
   [id e]
-  (when-not (:currently-dragged-element-id @ui-state)
-    (swap! ui-state assoc :active-moveable-id id)))
+  (when-not (:element-transformation-in-progress @ui-state)
+    (swap! ui-state assoc :active-diagram-element-id id)))
 
   
 
@@ -183,13 +183,13 @@
 
 (defn handle-backspace-pressed! []
   "Handles backspace key event. Causes element to be deleted."
-  (when-let [current-element-id (get-in @app-state [:ui-state :active-moveable-id])]
+  (when-let [current-element-id (get-in @app-state [:ui-state :active-diagram-element-id])]
     (when-let [current-element (get-in @app-state [:threat-model :elements current-element-id])]
       (swap! app-state delete-element current-element))))
 
 (defn handle-enter-pressed! []
   "Handles pressing over enter key for diagram elements. Used to re-name element."
-  (when-let [current-element-id (get-in @app-state [:ui-state :active-moveable-id])]
+  (when-let [current-element-id (get-in @app-state [:ui-state :active-diagram-element-id])]
     (when-let [current-element (get-in @app-state [:threat-model :elements current-element-id])]
       (swap! app-state assoc-in [:threat-model :elements current-element-id :name] (js/prompt "Element name:" (:name current-element))))))
 
@@ -229,11 +229,12 @@
         cur-element-rotation (get-in @app-state [:threat-model :elements active-element-id :rotate])]
     (swap! ui-state
            merge
-           {:currently-dragged-element-id active-element-id
+           {:active-diagram-element-id active-element-id
+            :element-transformation-in-progress true
             :orig-rotate cur-element-rotation})))
 
 (defn moveable-on-rotate! [event]
-  (let [active-element-id (-> @app-state :ui-state :active-moveable-id)
+  (let [active-element-id (-> @app-state :ui-state :active-diagram-element-id)
         element-info (get-in @app-state [:threat-model :elements active-element-id])
         rotate-amount (+ (-> @app-state :ui-state :orig-rotate) (int (-> event .-beforeRotate)))]
     (swap! app-state assoc-in [:ui-state :rotate-amount] rotate-amount)
@@ -247,7 +248,7 @@
            (let [element-id (html-element->element-id (-> event .-target))
                  rotate-amount (-> state :ui-state :rotate-amount)]
              (-> (assoc-in state [:threat-model :elements element-id :rotate] rotate-amount)
-                 (assoc-in [:ui-state :currently-dragged-element-id] nil))))))
+                 (assoc-in [:ui-state :element-transformation-in-progress] nil))))))
 
 
 (defn moveable-drag-start! [event]
@@ -255,8 +256,8 @@
         cur-element-info (get-in @threat-model [:elements element-id])]
     (swap! ui-state
            merge
-           {:currently-dragged-element-id element-id}
-           {:rotate 0}
+           {:element-transformation-in-progress true
+            :rotate 0}
            (select-keys cur-element-info [:x :y :rotate])
            {:newX (:x cur-element-info) :newY (:y cur-element-info)})))
 
@@ -265,20 +266,20 @@
         newX (+ (:x last-element-dragged-deref) (-> event .-left))
         newY (+ (:y last-element-dragged-deref) (-> event .-top))
         rotate (or (:rotate last-element-dragged-deref) 0)
-        element-id (:currently-dragged-element-id last-element-dragged-deref)]
+        element-id (:active-diagram-element-id  last-element-dragged-deref)]
     (swap! ui-state merge {:newX newX :newY newY})
     (set! (-> event .-target .-style .-transform) (goog.string.format "translate(%dpx,%dpx) rotate(%ddeg)" newX newY rotate))))
 
 (defn moveable-drag-end! []
-  (let [dragged-values @ui-state]
+  (let [ui-state-derefed @ui-state]
     (swap! threat-model
            update-in
-           [:elements (:currently-dragged-element-id dragged-values)]
+           [:elements (:active-diagram-element-id ui-state-derefed)]
            (fn [cur-val]
              (merge cur-val
-                    {:x (:newX dragged-values)
-                     :y (:newY dragged-values)}))))
-  (swap! ui-state assoc :currently-dragged-element-id nil))
+                    {:x (:newX ui-state-derefed)
+                     :y (:newY ui-state-derefed)}))))
+  (swap! ui-state assoc :element-transformation-in-progress nil))
 
 (defn instructions []
   [:div
@@ -300,7 +301,7 @@
                                         ;derefs in child components won't trigget updates. known reagent issue.
     (doall (for [element (vals (:elements @threat-model))]
              (render-threat-model-element element (:elements @threat-model))))
-    [moveable {:target (js/document.querySelector (str ".moveable-element-" (-> @ui-state :active-moveable-id)))
+    [moveable {:target (js/document.querySelector (str ".moveable-element-" (-> @ui-state :active-diagram-element-id)))
                :draggable true
                                         ;Drag x and y in steps of 25 points
                :throttleDrag 25 
