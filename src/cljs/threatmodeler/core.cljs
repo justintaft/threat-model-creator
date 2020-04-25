@@ -14,7 +14,7 @@
 (def threat-examples
   {:XXS1 {:description "Application displays user supplied data" :mitigation "Encode user input for the appropiate context it appears in (HTML, JavaScript, etc.)"}
    :SENSITIVEDATA1 {:description "Sensitive Personal Identifiable Information is stored." :mitigation "Encrypt user data. Use a vetted cryptography library/service when possible, such as libsodium. Ensure the chosen library makes use of strong cryptargaphy (uses non-broken cryptographic alogirhtm,  generates keys using a CSRPNG, does not re-use IVs, facilities key rotations, etc.)"}
-   :PASSWORD1 {:description "Database contains user passwords."  :mitigation "Use a cryptogarhicaly secure hashing algorithm with a tuneable work factor, such as scrypt. Ensure"} 
+   :PASSWORD1 {:description "Database contains user passwords."  :mitigation "Use a cryptographically secure hashing algorithm with a tuneable work factor, such as scrypt. Ensure"} 
    :XXE1 {:description "XML is processed." :mitigation "Disable Document Type Definition (DTD) parsing and external entity resolving when possible." }
    :SERIALIZATION1 {:description "User supplied data is deserialized" :mitigation "Use a secre serialization framework/library which can not be leveraged to deserialize arbitrary types (Ex, Avoid Binary Formatte in .NET). Validate user supplied data to avoid mass assignment and injection vulnerabilites."} 
    :TLS1 {:description "Sensitive data tranfered over the network." :mitigation "Use Transport Layer Security to secure communications. Ensure strong cipher-suites and praramters are used."}
@@ -70,11 +70,11 @@
              
 
 ;Populate threat model with example data
-(add-element! (create-element {:type :actor         :name "Web User" :x 50  :y 150 :id "Web User" :threats #{:AUTHENTICATION1}}))
+(add-element! (create-element {:type :actor         :name "Web User" :x 50  :y 150 :id "webuser" :threats #{:AUTHENTICATION1}}))
 (add-element! (create-element {:type :process       :name "webapp"    :x 300 :y 125 :id "webapp1" :threats #{:XXS1 :XXE1 :SERIALIZATION1}}))
 (add-element! (create-element {:type :process       :name "third party"  :x 500 :y 125 :id "webapp2" :threats #{}}))
 (add-element! (create-element {:type :datastore     :name "database"  :x 300  :y 300 :id "datastore1" :threats #{:SENSITIVEDATA1 :PASSWORD1} }))
-(add-element! (create-element {:type :communication :from "Web User" :to "webapp1" :name "communication1" :threats #{:TLS1}}))
+(add-element! (create-element {:type :communication :from "webuser" :to "webapp1" :name "communication1" :threats #{:TLS1}}))
 (add-element! (create-element {:type :communication :from "webapp1" :to "datastore1" :name "communication2" :threats #{:TLS1}}))
 (add-element! (create-element {:type :communication :from "webapp1" :to "webapp2" :name "communication3" :threats #{:TLS1}}))
 (add-element! (create-element {:type :boundary :name "boundary1"}))
