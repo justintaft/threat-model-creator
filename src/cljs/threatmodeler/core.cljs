@@ -70,22 +70,24 @@
              
 
 ;Populate threat model with example data
-(add-element! (create-element {:type :actor         :name "hackerman" :x 50  :y 150 :id "hackerman1" :threats #{:AUTHENTICATION1}}))
-(add-element! (create-element {:type :process       :name "webapp"    :x 400 :y 125 :id "webapp1" :threats #{:XXS1 :XXE1 :SERIALIZATION1}}))
-(add-element! (create-element {:type :datastore     :name "database"  :x 50  :y 300 :id "datastore1" :threats #{:SENSITIVEDATA1 :PASSWORD1} }))
-(add-element! (create-element {:type :communication :from "hackerman1" :to "webapp1" :name "communication1" :threats #{:TLS1}}))
-(add-element! (create-element {:type :communication :from "hackerman1" :to "datastore1" :name "communication2" :threats #{:TLS1}}))
+(add-element! (create-element {:type :actor         :name "Web User" :x 50  :y 150 :id "Web User" :threats #{:AUTHENTICATION1}}))
+(add-element! (create-element {:type :process       :name "webapp"    :x 300 :y 125 :id "webapp1" :threats #{:XXS1 :XXE1 :SERIALIZATION1}}))
+(add-element! (create-element {:type :process       :name "third party"  :x 500 :y 125 :id "webapp2" :threats #{}}))
+(add-element! (create-element {:type :datastore     :name "database"  :x 300  :y 300 :id "datastore1" :threats #{:SENSITIVEDATA1 :PASSWORD1} }))
+(add-element! (create-element {:type :communication :from "Web User" :to "webapp1" :name "communication1" :threats #{:TLS1}}))
+(add-element! (create-element {:type :communication :from "webapp1" :to "datastore1" :name "communication2" :threats #{:TLS1}}))
+(add-element! (create-element {:type :communication :from "webapp1" :to "webapp2" :name "communication3" :threats #{:TLS1}}))
 (add-element! (create-element {:type :boundary :name "boundary1"}))
 
 (defn set-active-moveable-element!
-  "Sets the active element which can be moved and dragged around.
+"Sets the active element which can be moved and dragged around.
    If an item is currently being transformed, the active element is not updated."
 
-  [id e]
-  (when-not (:element-transformation-in-progress @ui-state)
-    (swap! ui-state assoc :active-diagram-element-id id)))
+[id e]
+(when-not (:element-transformation-in-progress @ui-state)
+  (swap! ui-state assoc :active-diagram-element-id id)))
 
-  
+
 
 (def moveable (r/adapt-react-class Moveable))
 
@@ -173,8 +175,8 @@
            (fn [state]
              (let [last-item-shift-clicked (-> state :ui-state :last-item-shift-clicked)]
 
-               ;When we have a item we previously shift-clicked, connect the elements together
-               ;and forger the last element clicked
+                                        ;When we have a item we previously shift-clicked, connect the elements together
+                                        ;and forger the last element clicked
                (if last-item-shift-clicked
                  (-> (add-element state {:type :communication :from last-item-shift-clicked :to element-id})
                      (assoc-in [:ui-state :last-item-shift-clicked] nil))
