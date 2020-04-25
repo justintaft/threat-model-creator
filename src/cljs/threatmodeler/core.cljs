@@ -11,7 +11,15 @@
   (-> element .-dataset .-elementId))
 
 
-(def threat-examples {:XXS1 {:description "Application displays user supplied data" :mitigation "Encode user input for the appropiate context it appears in (HTML, JavaScript, etc.)" :tags #{"xss"}}})
+(def threat-examples
+  {:XXS1 {:description "Application displays user supplied data" :mitigation "Encode user input for the appropiate context it appears in (HTML, JavaScript, etc.)"}
+   :SENSITIVEDATA1 {:description "Sensitive Personal Identifiable Information is stored." :mitigation "Encrypt user data. Use a vetted cryptography library/service when possible, such as libsodium. Ensure the chosen library makes use of strong cryptargaphy (uses non-broken cryptographic alogirhtm,  generates keys using a CSRPNG, does not re-use IVs, facilities key rotations, etc.)"}
+   :PASSWORD1 {:description "Database contains user passwords."  :mitigation "Use a cryptogarhicaly secure hashing algorithm with a tuneable work factor, such as scrypt. Ensure"} 
+   :XXE1 {:description "XML is processed." :mitigation "Disable Document Type Definition (DTD) parsing and external entity resolving when possible." }
+   :SERIALIZATION1 {:description "User supplied data is deserialized" :mitigation "Use a secre serialization framework/library which can not be leveraged to deserialize arbitrary types (Ex, Avoid Binary Formatte in .NET). Validate user supplied data to avoid mass assignment and injection vulnerabilites."} 
+   :TLS1 {:description "Sensitive data tranfered over the network." :mitigation "Use Transport Layer Security to secure communications. Ensure strong cipher-suites and praramters are used."}
+   :AUTHENTICATION1 {:description "Session identifiers are used to identify users." :mitigation "Generation Session IDs form a cryptographically ecure source. Ensure the length of session IDs are not brute forceable, such as 128 bits of entropy in length."}})
+
 
 
 (def app-state (r/atom {:ui-state {:active-diagram-element-id nil
@@ -62,11 +70,11 @@
              
 
 ;Populate threat model with example data
-(add-element! (create-element {:type :actor         :name "hackerman" :x 50  :y 150 :id "hackerman1" }))
-(add-element! (create-element {:type :process       :name "webapp"    :x 400 :y 125 :id "webapp1" :threats #{:XXS1}}))
-(add-element! (create-element {:type :datastore     :name "database"  :x 50  :y 300 :id "datastore1" }))
-(add-element! (create-element {:type :communication :from "hackerman1" :to "webapp1" :name "communication1"}))
-(add-element! (create-element {:type :communication :from "hackerman1" :to "datastore1" :name "communication2"}))
+(add-element! (create-element {:type :actor         :name "hackerman" :x 50  :y 150 :id "hackerman1" :threats #{:AUTHENTICATION1}}))
+(add-element! (create-element {:type :process       :name "webapp"    :x 400 :y 125 :id "webapp1" :threats #{:XXS1 :XXE1 :SERIALIZATION1}}))
+(add-element! (create-element {:type :datastore     :name "database"  :x 50  :y 300 :id "datastore1" :threats #{:SENSITIVEDATA1 :PASSWORD1} }))
+(add-element! (create-element {:type :communication :from "hackerman1" :to "webapp1" :name "communication1" :threats #{:TLS1}}))
+(add-element! (create-element {:type :communication :from "hackerman1" :to "datastore1" :name "communication2" :threats #{:TLS1}}))
 (add-element! (create-element {:type :boundary :name "boundary1"}))
 
 (defn set-active-moveable-element!
