@@ -1,8 +1,7 @@
 .body-container {
   font-family: 'Helvetica Neue', Verdana, Helvetica, Arial, sans-serif;
-  max-width: 640px;
+  width: 100%;
   margin: 0 auto;
-  padding-top: 72px;
   -webkit-font-smoothing: antialiased;
   font-size: 1.125em;
   color: #333;
@@ -10,12 +9,14 @@
 
 }
 
-body {
+
+
+#graph-area {
   background-size: 25px 25px;
   background-image:
     linear-gradient(to right, #efefef 1px, transparent 1px),
     linear-gradient(to bottom, #efefef 1px, transparent 1px);
-
+  height: 100%;
 }
     
 
@@ -98,4 +99,32 @@ a:hover {
     border-top: 3px dashed black;
 }
 
+#graph-area, #threat-input-area {
+    display: inline-block;
+    width: 49%;
+    float: left;
+}
+    
 
+#diagram {
+    position: relative;
+}
+
+
+#threat-input-area {
+    border-left: 3px solid green;
+    box-sizing: border-box;
+    height: 100%;
+    padding-left: 5px;
+}
+
+
+#threats-for .section-label {
+    padding: 0px;
+    margin: 0px;
+
+}
+
+#threats-for .threat-name {
+    margin-top: 0px;
+}

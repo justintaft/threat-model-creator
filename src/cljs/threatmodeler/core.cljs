@@ -10,6 +10,10 @@
 (defn html-element->element-id [element]
   (-> element .-dataset .-elementId))
 
+
+(def threat-examples {:XSS1 {:description "Application displays user supplied data" :mitigation "Encode user input for the appropiate context it appears in (HTML, JavaScript, etc.)" :tags #{"xss"}}})
+
+
 (def app-state (r/atom {:ui-state {:active-diagram-element-id nil
                                    :element-transformation-in-progress nil
                                    :last-element-dragged nil
@@ -20,7 +24,8 @@
 (def threat-model (r/cursor app-state [:threat-model]))
 
 
-;TODO add validation to ensure only valid properties are provided
+
+                                        ;TODO add validation to ensure only valid properties are provided
 (defmulti create-element :type)
 (defmethod create-element :actor          [d] (merge {:id (str (random-uuid)) :name "TODO" :width 100 :height 50 :x 100 :y 100} d))
 (defmethod create-element :process        [d] (merge {:id (str (random-uuid)) :name "TODO" :width 100 :height 100 :x 100 :y 100} d))
@@ -57,13 +62,12 @@
              
 
 ;Populate threat model with example data
-(add-element! (create-element {:type :actor         :name "hackerman" :x 50  :y 150 :id "hackerman1"}))
-(add-element! (create-element {:type :process       :name "webapp"    :x 400 :y 125 :id "webapp1"}))
-(add-element! (create-element {:type :datastore     :name "database"  :x 50  :y 300 :id "datastore1"}))
-(add-element! (create-element {:type :communication :from "hackerman1" :to "webapp1"}))
-(add-element! (create-element {:type :communication :from "hackerman1" :to "datastore1"}))
-(add-element! (create-element {:type :boundary}))
-
+(add-element! (create-element {:type :actor         :name "hackerman" :x 50  :y 150 :id "hackerman1" }))
+(add-element! (create-element {:type :process       :name "webapp"    :x 400 :y 125 :id "webapp1" :threats #{:XXS1}}))
+(add-element! (create-element {:type :datastore     :name "database"  :x 50  :y 300 :id "datastore1" }))
+(add-element! (create-element {:type :communication :from "hackerman1" :to "webapp1" :name "communication1"}))
+(add-element! (create-element {:type :communication :from "hackerman1" :to "datastore1" :name "communication2"}))
+(add-element! (create-element {:type :boundary :name "boundary1"}))
 
 (defn set-active-moveable-element!
   "Sets the active element which can be moved and dragged around.
@@ -287,32 +291,59 @@
     [:br]
     "Rename-element: Move mouse over element and press enter key"]])
 
+(defn threat-search [] 
+  [:div
+   [:input {:placeholder "What"}]])
+
+(defn threat-table [active-threat-id]
+  (let [active-element (get-in @threat-model [:elements active-threat-id])]
+    [:table#threat-table
+     [:tr
+      [:th "Description"]
+      [:th "Mitigation"]]
+     [:tr 
+      [:td "nicee"]
+      [:td "nice2"]]]))
+
+(defn active-element-name [active-threat-id]
+  (let [active-element (get-in @threat-model [:elements active-threat-id])]
+    [:div#threats-for
+     [:h5.section-label "Threats for:" ]
+     [:h3.threat-name (:name active-element)]]))
+
+
 
 (defn simple-example [threat-model]
-  [:div
-   [instructions]
-   [toolbar]
-   [:div#diagram 
+  [:div#main
+   [:div#graph-area
+    [instructions]
+    [toolbar]
+    [:div#diagram 
                                         ;Doall is required here, as for generates lazy sequence, and 
                                         ;derefs in child components won't trigget updates. known reagent issue.
-    (doall (for [element (vals (:elements @threat-model))]
-             (render-threat-model-element element (:elements @threat-model))))
-    [moveable {:target (js/document.querySelector (str ".moveable-element-" (-> @ui-state :active-diagram-element-id)))
-               :draggable true
+     (doall (for [element (vals (:elements @threat-model))]
+              (render-threat-model-element element (:elements @threat-model))))
+     [moveable {:target (js/document.querySelector (str ".moveable-element-" (-> @ui-state :active-diagram-element-id)))
+                :draggable true
                                         ;Drag x and y in steps of 25 points
-               :throttleDrag 25 
-               :throttleRotate 15 
-               :onDragStart moveable-drag-start!
-               :onDrag moveable-drag-on! 
-               :snappable true
-               :rotatable true
-               :onDragEnd moveable-drag-end!
-               :onRotateStart moveable-on-rotate-start!
-               :onRotate moveable-on-rotate!
-               :onRotateEnd moveable-rotate-end!}]
-    [kb/keyboard-listener]
-    [kb/kb-action "backspace" handle-backspace-pressed!]
-    [kb/kb-action "enter" handle-enter-pressed!]]])
+                :throttleDrag 25 
+                :throttleRotate 15 
+                :onDragStart moveable-drag-start!
+                :onDrag moveable-drag-on! 
+                :snappable true
+                :rotatable true
+                :onDragEnd moveable-drag-end!
+                :onRotateStart moveable-on-rotate-start!
+                :onRotate moveable-on-rotate!
+                :onRotateEnd moveable-rotate-end!}]
+     [kb/keyboard-listener]
+     [kb/kb-action "backspace" handle-backspace-pressed!]
+     [kb/kb-action "enter" handle-enter-pressed!]]]
+   [:div#threat-input-area
+    [active-element-name (-> @ui-state :active-diagram-element-id)]
+    [threat-search]
+    [threat-table (-> @ui-state :active-diagram-element-id)]
+    ]])
 
 (defn ^:export main! [])
 
