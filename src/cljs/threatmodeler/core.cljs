@@ -301,35 +301,49 @@
     [:br]
     "Rename-element: Move mouse over element and press enter key"]])
 
-(defn threat-search [] 
+(defn checklist-with-header [header-name values]
+  [:div.checklist-with-header
+   [:h5 header-name]
+   [:ul
+    (doall (for [value values]
+             [:li
+              [:input {:type "checkbox" :name value :id value}]
+              [:label {:for value} value ]]))]])
+
+(defn threat-search []
   [:div
-   [:input {:placeholder "What"}]])
+   [:input {:placeholder "What"}]
+   (checklist-with-header "Application Type, Language, OS" ["Web Application" "Unsafe Memory Components (C,C++,Unsafe Rust, Java JNI))" "Desktop Application" "Mobile Application" "Windows" "Linux"])
+   (checklist-with-header "Data Processing" ["File Upload" "Deserialize Data" "Parses XML" "Display User Input as HTML/Scripts" "Runs System Commands" "Machine Learning"])
+   (checklist-with-header "Authentication" ["OAuth" "JWT" "Cookies" "Username and Passwords"])
+   (checklist-with-header "Cryptography" ["Encrypts Data" "Signs Data"])
+   (checklist-with-header "Misc" ["Stores Sensitive Data" "Makes Use Of Third Party Libraries" "Docker" "Processes Network Traffic"])])
 
 (defn threat-table [active-threat-id]
-  (let [active-element (get-in @threat-model [:elements active-threat-id])]
-    [:table#threat-table
-     [:tr
-      [:th "Description"]
-      [:th "Mitigation"]]
-     (doall
-      (for [threat-id (:threats active-element)]
-        (let [threat-info (threat-examples threat-id)]
-          [:tr 
-           [:td (-> threat-info :description)]
-           [:td (-> threat-info :mitigation)]])))]))
+(let [active-element (get-in @threat-model [:elements active-threat-id])]
+  [:table#threat-table
+   [:tr
+    [:th "Description"]
+    [:th "Mitigation"]]
+   (doall
+    (for [threat-id (:threats active-element)]
+      (let [threat-info (threat-examples threat-id)]
+        [:tr 
+         [:td (-> threat-info :description)]
+         [:td (-> threat-info :mitigation)]])))]))
 
 (defn active-element-name [active-threat-id]
-  (let [active-element (get-in @threat-model [:elements active-threat-id])]
-    [:div#threats-for
-     [:h5.section-label "Threats for:" ]
-     [:h3.threat-name (:name active-element)]]))
+(let [active-element (get-in @threat-model [:elements active-threat-id])]
+  [:div#threats-for
+   [:h5.section-label "Threats for:" ]
+   [:h3.threat-name (:name active-element)]]))
 
 (defn simple-example [threat-model]
-  [:div#main
-   [:div#graph-area
-    [instructions]
-    [toolbar]
-    [:div#diagram 
+[:div#main
+ [:div#graph-area
+  [instructions]
+  [toolbar]
+  [:div#diagram 
                                         ;Doall is required here, as for generates lazy sequence, and 
                                         ;derefs in child components won't trigget updates. known reagent issue.
      (doall (for [element (vals (:elements @threat-model))]
