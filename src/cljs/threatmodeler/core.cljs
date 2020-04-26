@@ -26,17 +26,17 @@
 (defn create-lookup-from-vector-of-hashmaps [id-function hashmap]
   (into {} (map (juxt id-function identity) hashmap)))
 
-(def threat-groups (atom {:groups [] :scenarios {}}))
-(defn add-threat-group!
+(def threat-element-property-groups (atom {:groups [] :scenarios {}}))
+(defn add-threat-element-property-group!
   "Creates lookup of groups and scenarios"
   [group-name scenarios]
-  (swap! threat-groups
+  (swap! threat-element-property-groups
          (fn [x]
            (let [scenario-ids (map :id scenarios)]
              (-> (update-in x [:groups] conj [group-name scenario-ids])
                  (update-in [:scenarios] merge (create-lookup-from-vector-of-hashmaps :id scenarios)))))))
 
-(add-threat-group!
+(add-threat-element-property-group!
  "Application Type, Language, OS"
  [{:id :web-application          :name "Web Application" :threats #{:content-over-http :xss}}
   {:id :unsafe-memory-components :name "Unsafe Memory Components (C,C++,Unsafe Rust, Java JNI" :threats #{:memory-corruption}}
@@ -45,7 +45,7 @@
   {:id :windows                  :name "Windows" :threats #{:todo}}
   {:id :linux                    :name "Linux" :threats #{:todo}}])
 
-(add-threat-group!
+(add-threat-element-property-group!
  "Data Processing"
  [{:id :file-upload :name "File Upload" :threats #{:file-uploads}}
   {:id :deserialize :name "Deserialize Data" :threats #{:serialization}}
@@ -54,19 +54,19 @@
   {:id :run-system-commands :name "Run System Commands" :threats #{:todo}}
   {:id :machine-learning :name "Machine Learning" :threats #{:todo}}])
 
-(add-threat-group!
+(add-threat-element-property-group!
  "Authentication"
  [{:id :oauth :name "OAuth" :threats #{:todo}}
   {:id :jwt :name "JWT" :threats #{:todo}}
   {:id :cookies :name "Cookies" :threats #{:todo}}
   {:id :username :name "Username and Passwords" :threats #{:todo}}])
 
-(add-threat-group!
+(add-threat-element-property-group!
  "Cryptography"
  [{:id :encrypts :name "Encrypts Data" :threats #{:todo}}
   {:id :signs-data :name "Signs Data" :threats #{:todo}}])
 
-(add-threat-group!
+(add-threat-element-property-group!
  "Misc"
  [{:id :stores-sensitive-data :name "Stores Sensitive Data" :threats #{:todo}}
   {:id :makes-use-of-third-party-libraries :name "Makes Use Of Third Party Libraries" :threats #{:todo}}
@@ -363,10 +363,10 @@ If an item is currently being transformed, the active element is not updated."
 
 
                                       
-(defn render-threat-groups [threat-groups]
-  (for [[group-name scenario-ids] (:groups threat-groups)]
+(defn render-threat-element-property-groups [property-groups]
+  (for [[group-name scenario-ids] (:groups property-groups)]
     (checklist-with-header group-name (map
-                                       (fn [x] (-> (get-in threat-groups [:scenarios x])
+                                       (fn [x] (-> (get-in property-groups [:scenarios x])
                                                    :name))
                                        scenario-ids))))
 
@@ -374,7 +374,7 @@ If an item is currently being transformed, the active element is not updated."
 (defn threat-search []
   [:div
    [:input {:placeholder "What"}]
-   (render-threat-groups @threat-groups)])
+   (render-threat-element-property-groups @threat-element-property-groups)])
 
 (defn threat-table [active-threat-id]
 (let [active-element (get-in @threat-model [:elements active-threat-id])]
