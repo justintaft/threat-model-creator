@@ -12,15 +12,67 @@
 
 
 (def threat-examples
-  {:XXS1 {:description "Application displays user supplied data" :mitigation "Encode user input for the appropiate context it appears in (HTML, JavaScript, etc.)"}
-   :SENSITIVEDATA1 {:description "Sensitive Personal Identifiable Information is stored." :mitigation "Encrypt user data. Use a vetted cryptography library/service when possible, such as libsodium. Ensure the chosen library makes use of strong cryptargaphy (uses non-broken cryptographic alogirhtm,  generates keys using a CSRPNG, does not re-use IVs, facilities key rotations, etc.)"}
-   :PASSWORD1 {:description "Database contains user passwords."  :mitigation "Use a cryptographically secure hashing algorithm with a tuneable work factor, such as scrypt. Ensure"} 
-   :XXE1 {:description "XML is processed." :mitigation "Disable Document Type Definition (DTD) parsing and external entity resolving when possible." }
-   :SERIALIZATION1 {:description "User supplied data is deserialized" :mitigation "Use a secre serialization framework/library which can not be leveraged to deserialize arbitrary types (Ex, Avoid Binary Formatte in .NET). Validate user supplied data to avoid mass assignment and injection vulnerabilites."} 
-   :TLS1 {:description "Sensitive data tranfered over the network." :mitigation "Use Transport Layer Security to secure communications. Ensure strong cipher-suites and praramters are used."}
-   :AUTHENTICATION1 {:description "Session identifiers are used to identify users." :mitigation "Generation Session IDs form a cryptographically ecure source. Ensure the length of session IDs are not brute forceable, such as 128 bits of entropy in length."}})
+  {
+   :content-over-http {:description "User Connects Over HTTP" :mitigation "Configure HSTS Preloading. Return Strict-Transporty-Security header, and include sub domains. Redirect HTTP to HTTPS."}
+   :xxs {:description "Application displays user supplied data" :mitigation "Encode user input for the appropiate context it appears in (HTML, JavaScript, etc.). Configure CORS policies"}
+   :sensitivedata {:description "Sensitive Personal Identifiable Information is stored." :mitigation "Encrypt user data. Use a vetted cryptography library/service when possible, such as libsodium. Ensure the chosen library makes use of strong cryptargaphy (uses non-broken cryptographic alogirhtm,  generates keys using a CSRPNG, does not re-use IVs, facilities key rotations, etc.)"}
+   :password {:description "Database contains user passwords."  :mitigation "Use a cryptographically secure hashing algorithm with a tuneable work factor, such as scrypt. Ensure"} 
+   :xxe {:description "XML is processed." :mitigation "Disable Document Type Definition (DTD) parsing and external entity resolving when possible."}
+   :file-uploads {:description "Users can upload data." :mitigation "Restrict what type of data can be uploaded. When downloading data, limit mime-types of response. If fils are saved to disk, perform path conacilization on filesand ensure target file is under expected directory and path."}
+   :serialization {:description "User supplied data is deserialized" :mitigation "Use a secre serialization framework/library which can not be leveraged to deserialize arbitrary types (Ex, Avoid Binary Formatte in .NET). Validate user supplied data to avoid mass assignment and injection vulnerabilites."} 
+   :tls {:description "Sensitive data tranfered over the network." :mitigation "Use Transport Layer Security to secure communications. Ensure strong cipher-suites and praramters are used."}
+   :authentication {:description "Session identifiers are used to identify users." :mitigation "Generation Session IDs form a cryptographically ecure source. Ensure the length of session IDs are not brute forceable, such as 128 bits of entropy in length."}})
 
+(defn create-lookup-from-vector-of-hashmaps [id-function hashmap]
+  (into {} (map (juxt id-function identity) hashmap)))
 
+(def threat-groups (atom {:groups [] :scenarios {}}))
+(defn add-threat-group!
+  "Creates lookup of groups and scenarios"
+  [group-name scenarios]
+  (swap! threat-groups
+         (fn [x]
+           (let [scenario-ids (map :id scenarios)]
+             (-> (update-in x [:groups] conj [group-name scenario-ids])
+                 (update-in [:scenarios] merge (create-lookup-from-vector-of-hashmaps :id scenarios)))))))
+
+(add-threat-group!
+ "Application Type, Language, OS"
+ [{:id :web-application          :name "Web Application" :threats #{:content-over-http :xss}}
+  {:id :unsafe-memory-components :name "Unsafe Memory Components (C,C++,Unsafe Rust, Java JNI" :threats #{:memory-corruption}}
+  {:id :desktop-application      :name "Desktop Application" :threats #{:todo}}
+  {:id :mobile-application       :name "Mobile Application" :threats #{:todo}}
+  {:id :windows                  :name "Windows" :threats #{:todo}}
+  {:id :linux                    :name "Linux" :threats #{:todo}}])
+
+(add-threat-group!
+ "Data Processing"
+ [{:id :file-upload :name "File Upload" :threats #{:file-uploads}}
+  {:id :deserialize :name "Deserialize Data" :threats #{:serialization}}
+  {:id :parses-xml  :name "Parses XML" :threats #{:xxe}}
+  {:id :display-user-input-as-html :name "Display User Input as HTML/Scripts" :threats #{:todo}}
+  {:id :run-system-commands :name "Run System Commands" :threats #{:todo}}
+  {:id :machine-learning :name "Machine Learning" :threats #{:todo}}])
+
+(add-threat-group!
+ "Authentication"
+ [{:id :oauth :name "OAuth" :threats #{:todo}}
+  {:id :jwt :name "JWT" :threats #{:todo}}
+  {:id :cookies :name "Cookies" :threats #{:todo}}
+  {:id :username :name "Username and Passwords" :threats #{:todo}}])
+
+(add-threat-group!
+ "Cryptography"
+ [{:id :encrypts :name "Encrypts Data" :threats #{:todo}}
+  {:id :signs-data :name "Signs Data" :threats #{:todo}}])
+
+(add-threat-group!
+ "Misc"
+ [{:id :stores-sensitive-data :name "Stores Sensitive Data" :threats #{:todo}}
+  {:id :makes-use-of-third-party-libraries :name "Makes Use Of Third Party Libraries" :threats #{:todo}}
+  {:id :docker :name "Docker" :threats #{:todo}}
+  {:id :processes-network-traffic :name "Processes Network Traffic" :threats #{:todo}}
+  {:id :stores-important-data :name "Stores Important Data" :threats #{:todo}}])
 
 (def app-state (r/atom {:ui-state {:active-diagram-element-id nil
                                    :element-transformation-in-progress nil
@@ -30,7 +82,6 @@
 
 (def ui-state (r/cursor app-state [:ui-state]))
 (def threat-model (r/cursor app-state [:threat-model]))
-
 
 
                                         ;TODO add validation to ensure only valid properties are provided
@@ -54,7 +105,7 @@
     (swap! app-state add-element data)))
 
 
-(defn filter-elements-referencing-element-id [element-id element]
+  (defn filter-elements-referencing-element-id [element-id element]
   "Return elements which directly references element."
   (contains? (set (vals (select-keys element [:to :from :id]))) element-id ))
 
@@ -64,35 +115,35 @@
   (let [referencing-elements (filter (partial filter-elements-referencing-element-id (:id element)) (-> app-state :threat-model :elements (vals)))
         referencing-element-ids (map :id referencing-elements)]
     (update-in app-state [:threat-model :elements] (fn [x] (apply dissoc x app-state referencing-element-ids)))))
-(defmulti delete-element (fn [app-state element] (:type element)))
-(defmethod delete-element :communication [app-state element] (update-in app-state [:threat-model :elements] dissoc (:id element)))
-(defmethod delete-element :default [app-state element] (delete-element-and-communications app-state element))
+  (defmulti delete-element (fn [app-state element] (:type element)))
+  (defmethod delete-element :communication [app-state element] (update-in app-state [:threat-model :elements] dissoc (:id element)))
+  (defmethod delete-element :default [app-state element] (delete-element-and-communications app-state element))
              
 
-;Populate threat model with example data
-(add-element! (create-element {:type :actor         :name "Web User" :x 50  :y 150 :id "webuser" :threats #{:AUTHENTICATION1}}))
-(add-element! (create-element {:type :process       :name "webapp"    :x 300 :y 125 :id "webapp1" :threats #{:XXS1 :XXE1 :SERIALIZATION1}}))
+  ;Populate threat model with example data
+(add-element! (create-element {:type :actor         :name "Web User" :x 50  :y 150 :id "webuser" :threats #{:authentication}}))
+(add-element! (create-element {:type :process       :name "webapp"    :x 300 :y 125 :id "webapp1" :threats #{:xxs :xxe :serialization}}))
 (add-element! (create-element {:type :process       :name "third party"  :x 500 :y 125 :id "webapp2" :threats #{}}))
-(add-element! (create-element {:type :datastore     :name "database"  :x 300  :y 300 :id "datastore1" :threats #{:SENSITIVEDATA1 :PASSWORD1} }))
-(add-element! (create-element {:type :communication :from "webuser" :to "webapp1" :name "communication1" :threats #{:TLS1}}))
-(add-element! (create-element {:type :communication :from "webapp1" :to "datastore1" :name "communication2" :threats #{:TLS1}}))
-(add-element! (create-element {:type :communication :from "webapp1" :to "webapp2" :name "communication3" :threats #{:TLS1}}))
+(add-element! (create-element {:type :datastore     :name "database"  :x 300  :y 300 :id "datastore1" :threats #{:sensitivedata :password} }))
+(add-element! (create-element {:type :communication :from "webuser" :to "webapp1" :name "communication1" :threats #{:tls}}))
+(add-element! (create-element {:type :communication :from "webapp1" :to "datastore1" :name "communication2" :threats #{:tls}}))
+(add-element! (create-element {:type :communication :from "webapp1" :to "webapp2" :name "communication3" :threats #{:tls}}))
 (add-element! (create-element {:type :boundary :name "boundary1"}))
 
 (defn set-active-moveable-element!
 "Sets the active element which can be moved and dragged around.
-   If an item is currently being transformed, the active element is not updated."
+If an item is currently being transformed, the active element is not updated."
 
-[id e]
-(when-not (:element-transformation-in-progress @ui-state)
+  [id e]
+  (when-not (:element-transformation-in-progress @ui-state)
   (swap! ui-state assoc :active-diagram-element-id id)))
 
 
 
-(def moveable (r/adapt-react-class Moveable))
+  (def moveable (r/adapt-react-class Moveable))
 
-(defn calculate-line-points [element1 element2]
-"Find best line between two elements, and return points."
+  (defn calculate-line-points [element1 element2]
+  "Find best line between two elements, and return points."
 
 (cond
                                         ;left of second element
@@ -310,14 +361,20 @@
               [:input {:type "checkbox" :name value :id value}]
               [:label {:for value} value ]]))]])
 
+
+                                      
+(defn render-threat-groups [threat-groups]
+  (for [[group-name scenario-ids] (:groups threat-groups)]
+    (checklist-with-header group-name (map
+                                       (fn [x] (-> (get-in threat-groups [:scenarios x])
+                                                   :name))
+                                       scenario-ids))))
+
+
 (defn threat-search []
   [:div
    [:input {:placeholder "What"}]
-   (checklist-with-header "Application Type, Language, OS" ["Web Application" "Unsafe Memory Components (C,C++,Unsafe Rust, Java JNI))" "Desktop Application" "Mobile Application" "Windows" "Linux"])
-   (checklist-with-header "Data Processing" ["File Upload" "Deserialize Data" "Parses XML" "Display User Input as HTML/Scripts" "Runs System Commands" "Machine Learning"])
-   (checklist-with-header "Authentication" ["OAuth" "JWT" "Cookies" "Username and Passwords"])
-   (checklist-with-header "Cryptography" ["Encrypts Data" "Signs Data"])
-   (checklist-with-header "Misc" ["Stores Sensitive Data" "Makes Use Of Third Party Libraries" "Docker" "Processes Network Traffic"])])
+   (render-threat-groups @threat-groups)])
 
 (defn threat-table [active-threat-id]
 (let [active-element (get-in @threat-model [:elements active-threat-id])]
