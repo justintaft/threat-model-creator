@@ -136,4 +136,25 @@ table {
 table, th, td {
     border: 1px solid black;
 }
+
+
+.checklist-with-header h5 {
+    padding: 0px;
+    margin: 0px;
+}
+
+.checklist-with-header ul {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    margin: 0px;
+}
     
+.checklist-with-header ul li  {
+    list-style-type: none;
+}
+
+.checklist-with-header label {
+    padding-left: 10px;
+}
+
+
