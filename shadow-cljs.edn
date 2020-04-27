@@ -1,6 +1,7 @@
 {:source-paths ["src/cljs"]
  :dependencies [[reagent "0.10.0"]
-                [org.clojars.frozenlock/reagent-keybindings "1.0.2"]]
+                [org.clojars.frozenlock/reagent-keybindings "1.0.2"]
+                [toyokumo/semantic-ui-reagent "0.1.0"]]
                 
  :builds {:app {:target :browser
                 :output-dir "public/js"
