@@ -59,19 +59,19 @@ throw (new Error([cljs.core.str.cljs$core$IFn$_invoke$arity$1(msg)," Failed:  ",
 return n;
 });
 cljs.reader.parse_and_validate_timestamp = (function cljs$reader$parse_and_validate_timestamp(s){
-var vec__28024 = cljs.core.re_matches(cljs.reader.timestamp_regex,s);
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28024,(0),null);
-var years = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28024,(1),null);
-var months = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28024,(2),null);
-var days = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28024,(3),null);
-var hours = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28024,(4),null);
-var minutes = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28024,(5),null);
-var seconds = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28024,(6),null);
-var fraction = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28024,(7),null);
-var offset_sign = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28024,(8),null);
-var offset_hours = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28024,(9),null);
-var offset_minutes = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28024,(10),null);
-var v = vec__28024;
+var vec__28052 = cljs.core.re_matches(cljs.reader.timestamp_regex,s);
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28052,(0),null);
+var years = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28052,(1),null);
+var months = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28052,(2),null);
+var days = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28052,(3),null);
+var hours = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28052,(4),null);
+var minutes = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28052,(5),null);
+var seconds = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28052,(6),null);
+var fraction = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28052,(7),null);
+var offset_sign = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28052,(8),null);
+var offset_hours = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28052,(9),null);
+var offset_minutes = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28052,(10),null);
+var v = vec__28052;
 if(cljs.core.not(v)){
 throw (new Error(["Unrecognized date/time syntax: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(s)].join('')));
 } else {
@@ -140,15 +140,15 @@ return new cljs.core.PersistentVector(null, 8, 5, cljs.core.PersistentVector.EMP
 cljs.reader.parse_timestamp = (function cljs$reader$parse_timestamp(ts){
 var temp__5733__auto__ = cljs.reader.parse_and_validate_timestamp(ts);
 if(cljs.core.truth_(temp__5733__auto__)){
-var vec__28035 = temp__5733__auto__;
-var years = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28035,(0),null);
-var months = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28035,(1),null);
-var days = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28035,(2),null);
-var hours = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28035,(3),null);
-var minutes = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28035,(4),null);
-var seconds = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28035,(5),null);
-var ms = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28035,(6),null);
-var offset = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28035,(7),null);
+var vec__28055 = temp__5733__auto__;
+var years = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28055,(0),null);
+var months = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28055,(1),null);
+var days = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28055,(2),null);
+var hours = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28055,(3),null);
+var minutes = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28055,(4),null);
+var seconds = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28055,(5),null);
+var ms = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28055,(6),null);
+var offset = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28055,(7),null);
 return (new Date((Date.UTC(years,(months - (1)),days,hours,minutes,seconds,ms) - ((offset * (60)) * (1000)))));
 } else {
 throw (new Error(["Unrecognized date/time syntax: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(ts)].join('')));
