@@ -78,7 +78,7 @@
   {:id :run-system-commands :name "Run System Commands" :threats #{:command-launching}}
   {:id :db-injection :name "Database Queries" :threats #{:db-injection}}
   {:id :machine-learning :name "Machine Learning" :threats #{:machine-learning-taint-data :machine-learning-train-against-model}}
-  {:id :race-condition :name "Operations Order Sensitivity" :threats #{:race-condition}}])
+  {:id :race-condition :name "Sensitive to Ordering of Operations" :threats #{:race-condition}}])
 
 (add-threat-element-property-group!
  "Authentication"
@@ -110,7 +110,6 @@
 
 (def ui-state (r/cursor app-state [:ui-state]))
 (def threat-model (r/cursor app-state [:threat-model]))
-
 
 
 (defn toggle-value-in-set [input-set value]
@@ -189,11 +188,9 @@
   ;Populate threat model with example data
 (add-element! (create-element {:type :actor         :name "Web User" :x 50  :y 150 :id "webuser" :properties #{:username-and-passwords}}))
 (add-element! (create-element {:type :process       :name "webapp"    :x 300 :y 125 :id "webapp1" :properties #{:file-upload}}))
-(add-element! (create-element {:type :process       :name "third party"  :x 500 :y 125 :id "webapp2" :properties #{:third-party-components}}))
 (add-element! (create-element {:type :datastore     :name "database"  :x 300  :y 300 :id "datastore1" :properties #{:sensitive-data :important-data } }))
 (add-element! (create-element {:type :communication :from "webuser" :to "webapp1" :name "communication1" :threats #{:tls}}))
 (add-element! (create-element {:type :communication :from "webapp1" :to "datastore1" :name "communication2" :threats #{:tls}}))
-(add-element! (create-element {:type :communication :from "webapp1" :to "webapp2" :name "communication3" :threats #{:tls}}))
 (add-element! (create-element {:type :boundary :name "boundary1"}))
 
 (defn set-active-moveable-element!
