@@ -40,7 +40,12 @@
    :password-complexity {:description "Users can choose weak passwords." :mitigation "Define and enforce a password complexity policy."}
    :jwt {:description "User authentications with JWT token." :mitigation "Ensure algorithm \"none\" is not supported. Ensure users can't mix key material with algorithms (ie, use a public key as HMAC secret.)"}
    :deauthentication {:description "User can't sign out." :mitigation "Determine appropriate amount of time for sessions to time out. When a user clicks sign out, contact the remote service terminate the user's session. Ensure that the session id/token can't be used supplied to authentication with the remote service."} 
-   :authentication {:description "Session identifiers are used to identify users." :mitigation "Generation Session IDs form a cryptographically secure source, such as a CSRPNG. Ensure the length of session IDs are not brute-forceable, such as 128 bits of entropy in length."}})
+   :authentication {:description "Session identifiers are used to identify users." :mitigation "Generation Session IDs form a cryptographically secure source, such as a CSRPNG. Ensure the length of session IDs are not brute-forceable, such as 128 bits of entropy in length."}
+   :smb {:description "NTLM hases are leaked to attackers due to processing malicious URIs"  :mitigation "Block outbound SMB traffic, if possible. Set the policy \"Network Security: Restrict NTLM: Outgoing NTLM traffic to remote servers\" to deny all."}
+   :mobile {:description "Application preview images, such as those shown when switching applications, may disclose sensitive data." :mitigation "When the app is notified it will lose focus, overlay the application view with non-sensitive image, such as a banner."}
+   :linux-proc {:description "Application is exploited to return contents of /proc/self/mem, or other sensitive proc files." :mitigation "Mount proc with a hidpid value of 2. Ensure processes are not run as root."}
+   :desktop-application {:description "Application is exploited, allowing access to user files." :mitigation "Leverage OS APIs to sandbox the application. See https://chromium.googlesource.com/chromium/src/+/master/docs/design/sandbox.md for examples."}})
+
 
 (defn create-lookup-from-vector-of-hashmaps [id-function hashmap]
   (into {} (map (juxt id-function identity) hashmap)))
@@ -59,10 +64,10 @@
  "Application Type, Language, OS"
  [{:id :web-application          :name "Web Application" :threats #{:content-over-http :xxs}}
   {:id :unsafe-memory-components :name "Unsafe Memory Components (C,C++,Unsafe Rust, Java JNI" :threats #{:memory-corruption}}
-  {:id :desktop-application      :name "Desktop Application" :threats #{:todo}}
-  {:id :mobile-application       :name "Mobile Application" :threats #{:todo}}
-  {:id :windows                  :name "Windows" :threats #{:todo}}
-  {:id :linux                    :name "Linux" :threats #{:todo}}])
+  {:id :desktop-application      :name "Desktop Application" :threats #{:desktop-application}}
+  {:id :mobile-application       :name "Mobile Application" :threats #{:mobile}}
+  {:id :windows                  :name "Windows" :threats #{:smb}}
+  {:id :linux                    :name "Linux" :threats #{:linux-proc}}])
 
 (add-threat-element-property-group!
  "Data Processing"
