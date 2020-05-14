@@ -266,6 +266,8 @@ If an item is currently being transformed, the active element is not updated."
                                                    :transform (goog.string.format "translate(%dpx,%dpx) rotate(%frad)" x1 y1 rotationDegree)
                                                    :transform-origin "center left"
                                                    :padding (if (:draggable line) "5px" "0")}
+
+                                           :data-element-id id
                                            :class (str "moveable-element-" id)
                                            :on-mouse-over (partial set-active-moveable-element! id)}]))
 
