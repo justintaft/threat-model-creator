@@ -43,7 +43,7 @@
    :authentication {:description "Session identifiers are used to identify users." :mitigation "Generation Session IDs form a cryptographically secure source, such as a CSRPNG. Ensure the length of session IDs are not brute-forceable, such as 128 bits of entropy in length."}
    :smb {:description "NTLM hases are leaked to attackers due to processing malicious URIs"  :mitigation "Block outbound SMB traffic, if possible. Set the policy \"Network Security: Restrict NTLM: Outgoing NTLM traffic to remote servers\" to deny all."}
    :mobile {:description "Application preview images, such as those shown when switching applications, may disclose sensitive data." :mitigation "When the app is notified it will lose focus, overlay the application view with non-sensitive image, such as a banner."}
-   :linux-proc {:description "Application is exploited to return contents of /proc/self/mem, or other sensitive proc files." :mitigation "Mount proc with a hidpid value of 2. Ensure processes are not run as root."}
+   :linux-proc {:description "Application is exploited to return contents of /proc/self/mem, or other sensitive proc files." :mitigation "Mount proc with a hidepid value of 2. Ensure processes are not run as root."}
    :desktop-application {:description "Application is exploited, allowing access to user files." :mitigation "Leverage OS APIs to sandbox the application. See https://chromium.googlesource.com/chromium/src/+/master/docs/design/sandbox.md for examples."}})
 
 
