@@ -11,7 +11,7 @@ goog.require('clojure.set');
 threatmodeler.core.html_element__GT_element_id = (function threatmodeler$core$html_element__GT_element_id(element){
 return element.dataset.elementId;
 });
-threatmodeler.core.threat_examples = cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file-uploads","file-uploads",-280084287),new cljs.core.Keyword(null,"backup","backup",26347393),new cljs.core.Keyword(null,"content-over-http","content-over-http",819021729),new cljs.core.Keyword(null,"session-fixation","session-fixation",1603298),new cljs.core.Keyword(null,"session-generation","session-generation",-15776764),new cljs.core.Keyword(null,"connected-to-network","connected-to-network",1451896805),new cljs.core.Keyword(null,"third-party-components","third-party-components",516438759),new cljs.core.Keyword(null,"smb","smb",-1218460184),new cljs.core.Keyword(null,"cookies","cookies",1839416329),new cljs.core.Keyword(null,"docker","docker",743480170),new cljs.core.Keyword(null,"desktop-application","desktop-application",1959232459),new cljs.core.Keyword(null,"tls","tls",67511053),new cljs.core.Keyword(null,"deauthentication","deauthentication",-1016940433),new cljs.core.Keyword(null,"encrypt-or-sign-data","encrypt-or-sign-data",-207053393),new cljs.core.Keyword(null,"linux-proc","linux-proc",1958592912),new cljs.core.Keyword(null,"db-injection","db-injection",-658610608),new cljs.core.Keyword(null,"cleartext-password-storage","cleartext-password-storage",-1556352112),new cljs.core.Keyword(null,"jwt","jwt",1504015441),new cljs.core.Keyword(null,"xxe","xxe",-178855727),new cljs.core.Keyword(null,"weak-reset-password-flow","weak-reset-password-flow",-695859502),new cljs.core.Keyword(null,"authentication","authentication",1746273042),new cljs.core.Keyword(null,"xxs","xxs",-16722349),new cljs.core.Keyword(null,"race-condition","race-condition",-2009671496),new cljs.core.Keyword(null,"memory-corruption","memory-corruption",-769418887),new cljs.core.Keyword(null,"sensitive-data","sensitive-data",-619043526),new cljs.core.Keyword(null,"machine-learning-taint-data","machine-learning-taint-data",820593114),new cljs.core.Keyword(null,"mobile","mobile",1403078170),new cljs.core.Keyword(null,"password-complexity","password-complexity",1503775067),new cljs.core.Keyword(null,"serialization","serialization",-471429060),new cljs.core.Keyword(null,"command-launching","command-launching",1688449820),new cljs.core.Keyword(null,"machine-learning-train-against-model","machine-learning-train-against-model",-1555130721)],[new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Users can upload files.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"If files are saved to disk, perform path canonicalization on files and ensure target file is under expected directory and path. Restrict what type of data can be uploaded. If users can download files, set the appropriate mime-type presenting the data. Avoid allowing executable to be uploaded."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Data is deleted or corrupted.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Backup data. Ensure a recovery process is created and tested a-head of time before needed. Backing up data to a remote locaiton is highly recommended."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"User Connects Over HTTP",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Configure HSTS Reloading. Return Strict Transport Security header, and include sub domains. Redirect HTTP to HTTPS."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Attacker forces target user to authentication under an attacker-controlled account. Attackers may modify URLs which accept authentication id/tokens to force authenticate users. Attacker may force users submit login forms to authentication as the attacker too.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Verify authenticator with requests, such as with anti Cross-Site Request Forgery tokens."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Session IDs can be brute-forced, or recovered due to being generated weakly.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Ensure sessions are generated from a cryptographically secure random number generator, which contain a sufficient amount of entropy, such as 128 bits."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Host is connected to a network, exposing network devices to internet.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Add firewall rules to restrict inbound and output traffic."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Attacker breaks in to system due to vulnerabilities in third party components.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Keep third-party components up to date with latest security patches. Ensure trusted components are used. If untrusted components ar required, consider sandboxing the components from accessing sensitive data."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"NTLM hases are leaked to attackers due to processing malicious URIs",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Block outbound SMB traffic, if possible. Set the policy \"Network Security: Restrict NTLM: Outgoing NTLM traffic to remote servers\" to deny all."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"User authenticates with cookies.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Use cookie security flags to protect information (SameSite,HTTPOnly,Secure)"], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Root file system is mounted within docker container, allowing host to be compromised.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Limit file system exposed to docker."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Application is exploited, allowing access to user files.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Leverage OS APIs to sandbox the application. See https://chromium.googlesource.com/chromium/src/+/master/docs/design/sandbox.md for examples."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Sensitive data transferred over the network.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Use Transport Layer Security to secure communications. Ensure strong cipher-suites and parameters are used."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"User can't sign out.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Determine appropriate amount of time for sessions to time out. When a user clicks sign out, contact the remote service terminate the user's session. Ensure that the session id/token can't be used supplied to authentication with the remote service."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Weak cryptography is used, allowing communications to be forged or decrypted.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Use a vetted cryptographic library, such as libsodium, which handles cryptographic operations. Avoid creating or implementing own cryptographic routines, as a wide range of attacks against."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Application is exploited to return contents of /proc/self/mem, or other sensitive proc files.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Mount proc with a hidpid value of 2. Ensure processes are not run as root."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Queries are constructed from user data.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"User  queries. Avoid using string concatenation with database queries and user input. Note data may be possible to  be coerced into arrays or hashmaps by the web server. For NoSQL queries, this can lead to injection of inequality statements."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Database contains credentials.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Use a cryptographically secure hashing algorithm to hash passwords, such as scrypt."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"User authentications with JWT token.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Ensure algorithm \"none\" is not supported. Ensure users can't mix key material with algorithms (ie, use a public key as HMAC secret.)"], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"User supplied XML is processed, or xpaths are supplied.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Disable Document Type Definition (DTD) parsing and external entity resolving when possible. If XPaths generated from user input is required, use an XPath library which properly encodes user input."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Attacker compromise password reset flows through weak processes (SIM Hijacking/SS7 Spoofing to aquire SMS messages, insufficient amount of entropy in reset links, etc.)",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Generate password reset links which contain a large amount of entropy, such as 128 bits."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Session identifiers are used to identify users.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Generation Session IDs form a cryptographically secure source, such as a CSRPNG. Ensure the length of session IDs are not brute-forceable, such as 128 bits of entropy in length."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Application displays user supplied data",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Encode user input for the appropriate context it appears in (HTML, JavaScript, etc.). Configure Content Security Policies to mitigate processing and communicating with untrusted resources and hosts."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Attacker performs multiple operations simultaneously, causing the application to perform unwanted behavior.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"If possible, perform action synchronously to prevent unwanted side-effects. For example, database/memory transactions and locks can be used to prevent sumptuously updating of sensitive data."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Memory corruption/disclosure vulnerability exists, allowing attacker to influence application or access sensitive data.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Use static analysis, such as by leveraging compiler flags, to detect vulnerable code patterns. If possible, avoid or minimize using languages where memory safety is hard to achieve. Whenever possible, use memory-corruption mitigation's such as ASLR, DEP, and Stack Cookies. Perform fuzzing on applications to discover vulnerabilities."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Sensitive Information is stored (PII, Password Hashes etc.)",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Encrypt sensitive data. Use a vetted cryptography library/service when possible, such as libsodium. Ensure the chosen library makes use of strong cryptography (uses non-broken cryptographic algorithm,  generates keys using a CSRPNG, does not re-use IVs, facilities key rotations, etc.)"], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Attacker can influence training data.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Review and assign trust-worthiness to data to avoid malicious tainting of data."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Application preview images, such as those shown when switching applications, may disclose sensitive data.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"When the app is notified it will lose focus, overlay the application view with non-sensitive image, such as a banner."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Users can choose weak passwords.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Define and enforce a password complexity policy."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"User supplied data is deserialized",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Use a secure serialization framework/library which can not be leveraged to deserialize arbitrary types (Ex, Avoid BinaryFormatter in .NET). Validate user supplied data to avoid mass assignment vulnerabilities."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Attacker can influence applications/command arguments.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Whenever possible, don't allow the attacker to specify the actual application to run. Validate and sanitize user input. Do not use string concatenation/formatting to build command strings."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Attacker uses application to train their own models.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Add rate limiting. Returning fuzzy data may be performed."], null)]);
+threatmodeler.core.threat_examples = cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"file-uploads","file-uploads",-280084287),new cljs.core.Keyword(null,"backup","backup",26347393),new cljs.core.Keyword(null,"content-over-http","content-over-http",819021729),new cljs.core.Keyword(null,"session-fixation","session-fixation",1603298),new cljs.core.Keyword(null,"session-generation","session-generation",-15776764),new cljs.core.Keyword(null,"connected-to-network","connected-to-network",1451896805),new cljs.core.Keyword(null,"third-party-components","third-party-components",516438759),new cljs.core.Keyword(null,"smb","smb",-1218460184),new cljs.core.Keyword(null,"cookies","cookies",1839416329),new cljs.core.Keyword(null,"docker","docker",743480170),new cljs.core.Keyword(null,"desktop-application","desktop-application",1959232459),new cljs.core.Keyword(null,"tls","tls",67511053),new cljs.core.Keyword(null,"deauthentication","deauthentication",-1016940433),new cljs.core.Keyword(null,"encrypt-or-sign-data","encrypt-or-sign-data",-207053393),new cljs.core.Keyword(null,"linux-proc","linux-proc",1958592912),new cljs.core.Keyword(null,"db-injection","db-injection",-658610608),new cljs.core.Keyword(null,"cleartext-password-storage","cleartext-password-storage",-1556352112),new cljs.core.Keyword(null,"jwt","jwt",1504015441),new cljs.core.Keyword(null,"xxe","xxe",-178855727),new cljs.core.Keyword(null,"weak-reset-password-flow","weak-reset-password-flow",-695859502),new cljs.core.Keyword(null,"authentication","authentication",1746273042),new cljs.core.Keyword(null,"xxs","xxs",-16722349),new cljs.core.Keyword(null,"race-condition","race-condition",-2009671496),new cljs.core.Keyword(null,"memory-corruption","memory-corruption",-769418887),new cljs.core.Keyword(null,"sensitive-data","sensitive-data",-619043526),new cljs.core.Keyword(null,"machine-learning-taint-data","machine-learning-taint-data",820593114),new cljs.core.Keyword(null,"mobile","mobile",1403078170),new cljs.core.Keyword(null,"password-complexity","password-complexity",1503775067),new cljs.core.Keyword(null,"serialization","serialization",-471429060),new cljs.core.Keyword(null,"command-launching","command-launching",1688449820),new cljs.core.Keyword(null,"machine-learning-train-against-model","machine-learning-train-against-model",-1555130721)],[new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Users can upload files.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"If files are saved to disk, perform path canonicalization on files and ensure target file is under expected directory and path. Restrict what type of data can be uploaded. If users can download files, set the appropriate mime-type presenting the data. Avoid allowing executable to be uploaded."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Data is deleted or corrupted.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Backup data. Ensure a recovery process is created and tested a-head of time before needed. Backing up data to a remote locaiton is highly recommended."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"User Connects Over HTTP",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Configure HSTS Reloading. Return Strict Transport Security header, and include sub domains. Redirect HTTP to HTTPS."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Attacker forces target user to authentication under an attacker-controlled account. Attackers may modify URLs which accept authentication id/tokens to force authenticate users. Attacker may force users submit login forms to authentication as the attacker too.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Verify authenticator with requests, such as with anti Cross-Site Request Forgery tokens."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Session IDs can be brute-forced, or recovered due to being generated weakly.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Ensure sessions are generated from a cryptographically secure random number generator, which contain a sufficient amount of entropy, such as 128 bits."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Host is connected to a network, exposing network devices to internet.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Add firewall rules to restrict inbound and output traffic."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Attacker breaks in to system due to vulnerabilities in third party components.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Keep third-party components up to date with latest security patches. Ensure trusted components are used. If untrusted components ar required, consider sandboxing the components from accessing sensitive data."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"NTLM hases are leaked to attackers due to processing malicious URIs",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Block outbound SMB traffic, if possible. Set the policy \"Network Security: Restrict NTLM: Outgoing NTLM traffic to remote servers\" to deny all."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"User authenticates with cookies.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Use cookie security flags to protect information (SameSite,HTTPOnly,Secure)"], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Root file system is mounted within docker container, allowing host to be compromised.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Limit file system exposed to docker."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Application is exploited, allowing access to user files.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Leverage OS APIs to sandbox the application. See https://chromium.googlesource.com/chromium/src/+/master/docs/design/sandbox.md for examples."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Sensitive data transferred over the network.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Use Transport Layer Security to secure communications. Ensure strong cipher-suites and parameters are used."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"User can't sign out.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Determine appropriate amount of time for sessions to time out. When a user clicks sign out, contact the remote service terminate the user's session. Ensure that the session id/token can't be used supplied to authentication with the remote service."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Weak cryptography is used, allowing communications to be forged or decrypted.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Use a vetted cryptographic library, such as libsodium, which handles cryptographic operations. Avoid creating or implementing own cryptographic routines, as a wide range of attacks against."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Application is exploited to return contents of /proc/self/mem, or other sensitive proc files.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Mount proc with a hidepid value of 2. Ensure processes are not run as root."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Queries are constructed from user data.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"User  queries. Avoid using string concatenation with database queries and user input. Note data may be possible to  be coerced into arrays or hashmaps by the web server. For NoSQL queries, this can lead to injection of inequality statements."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Database contains credentials.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Use a cryptographically secure hashing algorithm to hash passwords, such as scrypt."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"User authentications with JWT token.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Ensure algorithm \"none\" is not supported. Ensure users can't mix key material with algorithms (ie, use a public key as HMAC secret.)"], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"User supplied XML is processed, or xpaths are supplied.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Disable Document Type Definition (DTD) parsing and external entity resolving when possible. If XPaths generated from user input is required, use an XPath library which properly encodes user input."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Attacker compromise password reset flows through weak processes (SIM Hijacking/SS7 Spoofing to aquire SMS messages, insufficient amount of entropy in reset links, etc.)",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Generate password reset links which contain a large amount of entropy, such as 128 bits."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Session identifiers are used to identify users.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Generation Session IDs form a cryptographically secure source, such as a CSRPNG. Ensure the length of session IDs are not brute-forceable, such as 128 bits of entropy in length."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Application displays user supplied data",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Encode user input for the appropriate context it appears in (HTML, JavaScript, etc.). Configure Content Security Policies to mitigate processing and communicating with untrusted resources and hosts."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Attacker performs multiple operations simultaneously, causing the application to perform unwanted behavior.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"If possible, perform action synchronously to prevent unwanted side-effects. For example, database/memory transactions and locks can be used to prevent sumptuously updating of sensitive data."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Memory corruption/disclosure vulnerability exists, allowing attacker to influence application or access sensitive data.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Use static analysis, such as by leveraging compiler flags, to detect vulnerable code patterns. If possible, avoid or minimize using languages where memory safety is hard to achieve. Whenever possible, use memory-corruption mitigation's such as ASLR, DEP, and Stack Cookies. Perform fuzzing on applications to discover vulnerabilities."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Sensitive Information is stored (PII, Password Hashes etc.)",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Encrypt sensitive data. Use a vetted cryptography library/service when possible, such as libsodium. Ensure the chosen library makes use of strong cryptography (uses non-broken cryptographic algorithm,  generates keys using a CSRPNG, does not re-use IVs, facilities key rotations, etc.)"], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Attacker can influence training data.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Review and assign trust-worthiness to data to avoid malicious tainting of data."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Application preview images, such as those shown when switching applications, may disclose sensitive data.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"When the app is notified it will lose focus, overlay the application view with non-sensitive image, such as a banner."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Users can choose weak passwords.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Define and enforce a password complexity policy."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"User supplied data is deserialized",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Use a secure serialization framework/library which can not be leveraged to deserialize arbitrary types (Ex, Avoid BinaryFormatter in .NET). Validate user supplied data to avoid mass assignment vulnerabilities."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Attacker can influence applications/command arguments.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Whenever possible, don't allow the attacker to specify the actual application to run. Validate and sanitize user input. Do not use string concatenation/formatting to build command strings."], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"description","description",-1428560544),"Attacker uses application to train their own models.",new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626),"Add rate limiting. Returning fuzzy data may be performed."], null)]);
 threatmodeler.core.create_lookup_from_vector_of_hashmaps = (function threatmodeler$core$create_lookup_from_vector_of_hashmaps(id_function,hashmap){
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentArrayMap.EMPTY,cljs.core.map.cljs$core$IFn$_invoke$arity$2(cljs.core.juxt.cljs$core$IFn$_invoke$arity$2(id_function,cljs.core.identity),hashmap));
 });
@@ -34,8 +34,8 @@ threatmodeler.core.app_state = reagent.core.atom.cljs$core$IFn$_invoke$arity$1(n
 threatmodeler.core.ui_state = reagent.core.cursor(threatmodeler.core.app_state,new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"ui-state","ui-state",646932351)], null));
 threatmodeler.core.threat_model = reagent.core.cursor(threatmodeler.core.app_state,new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"threat-model","threat-model",662425298)], null));
 threatmodeler.core.toggle_value_in_set = (function threatmodeler$core$toggle_value_in_set(input_set,value){
-var fexpr__26766 = ((cljs.core.contains_QMARK_(input_set,value))?cljs.core.disj:cljs.core.conj);
-return (fexpr__26766.cljs$core$IFn$_invoke$arity$2 ? fexpr__26766.cljs$core$IFn$_invoke$arity$2(input_set,value) : fexpr__26766.call(null,input_set,value));
+var fexpr__26680 = ((cljs.core.contains_QMARK_(input_set,value))?cljs.core.disj:cljs.core.conj);
+return (fexpr__26680.cljs$core$IFn$_invoke$arity$2 ? fexpr__26680.cljs$core$IFn$_invoke$arity$2(input_set,value) : fexpr__26680.call(null,input_set,value));
 });
 threatmodeler.core.property_id__GT_property = (function threatmodeler$core$property_id__GT_property(property_id){
 return cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(cljs.core.deref(threatmodeler.core.threat_element_property_groups),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"scenarios","scenarios",1618559369),property_id], null));
@@ -53,8 +53,8 @@ threatmodeler.core.create_base_element = (function (){var method_table__4672__au
 var prefer_table__4673__auto__ = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentArrayMap.EMPTY);
 var method_cache__4674__auto__ = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentArrayMap.EMPTY);
 var cached_hierarchy__4675__auto__ = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentArrayMap.EMPTY);
-var hierarchy__4676__auto__ = cljs.core.get.cljs$core$IFn$_invoke$arity$3(cljs.core.PersistentArrayMap.EMPTY,new cljs.core.Keyword(null,"hierarchy","hierarchy",-1053470341),(function (){var fexpr__26767 = cljs.core.get_global_hierarchy;
-return (fexpr__26767.cljs$core$IFn$_invoke$arity$0 ? fexpr__26767.cljs$core$IFn$_invoke$arity$0() : fexpr__26767.call(null));
+var hierarchy__4676__auto__ = cljs.core.get.cljs$core$IFn$_invoke$arity$3(cljs.core.PersistentArrayMap.EMPTY,new cljs.core.Keyword(null,"hierarchy","hierarchy",-1053470341),(function (){var fexpr__26681 = cljs.core.get_global_hierarchy;
+return (fexpr__26681.cljs$core$IFn$_invoke$arity$0 ? fexpr__26681.cljs$core$IFn$_invoke$arity$0() : fexpr__26681.call(null));
 })());
 return (new cljs.core.MultiFn(cljs.core.symbol.cljs$core$IFn$_invoke$arity$2("threatmodeler.core","create-base-element"),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"default","default",-1987822328),hierarchy__4676__auto__,method_table__4672__auto__,prefer_table__4673__auto__,method_cache__4674__auto__,cached_hierarchy__4675__auto__));
 })();
@@ -120,8 +120,8 @@ threatmodeler.core.delete_element = (function (){var method_table__4672__auto__ 
 var prefer_table__4673__auto__ = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentArrayMap.EMPTY);
 var method_cache__4674__auto__ = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentArrayMap.EMPTY);
 var cached_hierarchy__4675__auto__ = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentArrayMap.EMPTY);
-var hierarchy__4676__auto__ = cljs.core.get.cljs$core$IFn$_invoke$arity$3(cljs.core.PersistentArrayMap.EMPTY,new cljs.core.Keyword(null,"hierarchy","hierarchy",-1053470341),(function (){var fexpr__26768 = cljs.core.get_global_hierarchy;
-return (fexpr__26768.cljs$core$IFn$_invoke$arity$0 ? fexpr__26768.cljs$core$IFn$_invoke$arity$0() : fexpr__26768.call(null));
+var hierarchy__4676__auto__ = cljs.core.get.cljs$core$IFn$_invoke$arity$3(cljs.core.PersistentArrayMap.EMPTY,new cljs.core.Keyword(null,"hierarchy","hierarchy",-1053470341),(function (){var fexpr__26682 = cljs.core.get_global_hierarchy;
+return (fexpr__26682.cljs$core$IFn$_invoke$arity$0 ? fexpr__26682.cljs$core$IFn$_invoke$arity$0() : fexpr__26682.call(null));
 })());
 return (new cljs.core.MultiFn(cljs.core.symbol.cljs$core$IFn$_invoke$arity$2("threatmodeler.core","delete-element"),(function (app_state,element){
 return new cljs.core.Keyword(null,"type","type",1174270348).cljs$core$IFn$_invoke$arity$1(element);
@@ -169,16 +169,16 @@ return new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"x1
 }
 }
 });
-threatmodeler.core.render_line = (function threatmodeler$core$render_line(p__26769){
-var map__26770 = p__26769;
-var map__26770__$1 = (((((!((map__26770 == null))))?(((((map__26770.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__26770.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__26770):map__26770);
-var line = map__26770__$1;
-var x1 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__26770__$1,new cljs.core.Keyword(null,"x1","x1",-1863922247));
-var y1 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__26770__$1,new cljs.core.Keyword(null,"y1","y1",589123466));
-var x2 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__26770__$1,new cljs.core.Keyword(null,"x2","x2",-1362513475));
-var y2 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__26770__$1,new cljs.core.Keyword(null,"y2","y2",-718691301));
-var style = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__26770__$1,new cljs.core.Keyword(null,"style","style",-496642736));
-var id = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__26770__$1,new cljs.core.Keyword(null,"id","id",-1388402092));
+threatmodeler.core.render_line = (function threatmodeler$core$render_line(p__26683){
+var map__26684 = p__26683;
+var map__26684__$1 = (((((!((map__26684 == null))))?(((((map__26684.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__26684.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__26684):map__26684);
+var line = map__26684__$1;
+var x1 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__26684__$1,new cljs.core.Keyword(null,"x1","x1",-1863922247));
+var y1 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__26684__$1,new cljs.core.Keyword(null,"y1","y1",589123466));
+var x2 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__26684__$1,new cljs.core.Keyword(null,"x2","x2",-1362513475));
+var y2 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__26684__$1,new cljs.core.Keyword(null,"y2","y2",-718691301));
+var style = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__26684__$1,new cljs.core.Keyword(null,"style","style",-496642736));
+var id = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__26684__$1,new cljs.core.Keyword(null,"id","id",-1388402092));
 var lineLength = Math.sqrt((Math.pow((x2 - x1),(2)) + Math.pow((y2 - y1),(2))));
 var slope = ((y1 - y2) / (x1 - x2));
 var rotationDegree = (((((x1 >= x2)) && ((y1 < y2))))?(Math.PI - ((-1) * Math.atan(slope))):Math.atan(slope));
@@ -217,15 +217,15 @@ return cljs.core.assoc_in(state,new cljs.core.PersistentVector(null, 2, 5, cljs.
 return null;
 }
 });
-threatmodeler.core.render_threat_model_element_common = (function threatmodeler$core$render_threat_model_element_common(p__26772){
-var map__26773 = p__26772;
-var map__26773__$1 = (((((!((map__26773 == null))))?(((((map__26773.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__26773.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__26773):map__26773);
-var x = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__26773__$1,new cljs.core.Keyword(null,"x","x",2099068185));
-var y = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__26773__$1,new cljs.core.Keyword(null,"y","y",-1757859776));
-var type = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__26773__$1,new cljs.core.Keyword(null,"type","type",1174270348));
-var name = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__26773__$1,new cljs.core.Keyword(null,"name","name",1843675177));
-var id = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__26773__$1,new cljs.core.Keyword(null,"id","id",-1388402092));
-var rotate = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__26773__$1,new cljs.core.Keyword(null,"rotate","rotate",152705015));
+threatmodeler.core.render_threat_model_element_common = (function threatmodeler$core$render_threat_model_element_common(p__26686){
+var map__26687 = p__26686;
+var map__26687__$1 = (((((!((map__26687 == null))))?(((((map__26687.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__26687.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__26687):map__26687);
+var x = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__26687__$1,new cljs.core.Keyword(null,"x","x",2099068185));
+var y = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__26687__$1,new cljs.core.Keyword(null,"y","y",-1757859776));
+var type = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__26687__$1,new cljs.core.Keyword(null,"type","type",1174270348));
+var name = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__26687__$1,new cljs.core.Keyword(null,"name","name",1843675177));
+var id = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__26687__$1,new cljs.core.Keyword(null,"id","id",-1388402092));
+var rotate = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__26687__$1,new cljs.core.Keyword(null,"rotate","rotate",152705015));
 return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"span.diagram-threat-model-element","span.diagram-threat-model-element",-160914358),new cljs.core.PersistentArrayMap(null, 5, [new cljs.core.Keyword(null,"class","class",-2030961996),["diagram-",cljs.core.name(type)," moveable-element-",cljs.core.str.cljs$core$IFn$_invoke$arity$1(id)].join(''),new cljs.core.Keyword(null,"style","style",-496642736),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"transform","transform",1381301764),goog.string.format("translate(%dpx,%dpx) rotate(%ddeg)",x,y,(function (){var or__4185__auto__ = rotate;
 if(cljs.core.truth_(or__4185__auto__)){
 return or__4185__auto__;
@@ -278,8 +278,8 @@ threatmodeler.core.render_threat_model_element = (function (){var method_table__
 var prefer_table__4673__auto__ = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentArrayMap.EMPTY);
 var method_cache__4674__auto__ = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentArrayMap.EMPTY);
 var cached_hierarchy__4675__auto__ = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentArrayMap.EMPTY);
-var hierarchy__4676__auto__ = cljs.core.get.cljs$core$IFn$_invoke$arity$3(cljs.core.PersistentArrayMap.EMPTY,new cljs.core.Keyword(null,"hierarchy","hierarchy",-1053470341),(function (){var fexpr__26775 = cljs.core.get_global_hierarchy;
-return (fexpr__26775.cljs$core$IFn$_invoke$arity$0 ? fexpr__26775.cljs$core$IFn$_invoke$arity$0() : fexpr__26775.call(null));
+var hierarchy__4676__auto__ = cljs.core.get.cljs$core$IFn$_invoke$arity$3(cljs.core.PersistentArrayMap.EMPTY,new cljs.core.Keyword(null,"hierarchy","hierarchy",-1053470341),(function (){var fexpr__26689 = cljs.core.get_global_hierarchy;
+return (fexpr__26689.cljs$core$IFn$_invoke$arity$0 ? fexpr__26689.cljs$core$IFn$_invoke$arity$0() : fexpr__26689.call(null));
 })());
 return (new cljs.core.MultiFn(cljs.core.symbol.cljs$core$IFn$_invoke$arity$2("threatmodeler.core","render-threat-model-element"),(function (element,_){
 return new cljs.core.Keyword(null,"type","type",1174270348).cljs$core$IFn$_invoke$arity$1(element);
@@ -360,9 +360,9 @@ cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$3(threatmodeler.core.ui_state,c
 return (event.target.style.transform = goog.string.format("translate(%dpx,%dpx) rotate(%ddeg)",newX,newY,rotate));
 });
 threatmodeler.core.moveable_drag_end_BANG_ = (function threatmodeler$core$moveable_drag_end_BANG_(){
-var ui_state_derefed_26803 = cljs.core.deref(threatmodeler.core.ui_state);
-cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$4(threatmodeler.core.threat_model,cljs.core.update_in,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"elements","elements",657646735),new cljs.core.Keyword(null,"active-diagram-element-id","active-diagram-element-id",580407382).cljs$core$IFn$_invoke$arity$1(ui_state_derefed_26803)], null),(function (cur_val){
-return cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([cur_val,new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"x","x",2099068185),new cljs.core.Keyword(null,"newX","newX",-90483607).cljs$core$IFn$_invoke$arity$1(ui_state_derefed_26803),new cljs.core.Keyword(null,"y","y",-1757859776),new cljs.core.Keyword(null,"newY","newY",-1472730860).cljs$core$IFn$_invoke$arity$1(ui_state_derefed_26803)], null)], 0));
+var ui_state_derefed_26717 = cljs.core.deref(threatmodeler.core.ui_state);
+cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$4(threatmodeler.core.threat_model,cljs.core.update_in,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"elements","elements",657646735),new cljs.core.Keyword(null,"active-diagram-element-id","active-diagram-element-id",580407382).cljs$core$IFn$_invoke$arity$1(ui_state_derefed_26717)], null),(function (cur_val){
+return cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([cur_val,new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"x","x",2099068185),new cljs.core.Keyword(null,"newX","newX",-90483607).cljs$core$IFn$_invoke$arity$1(ui_state_derefed_26717),new cljs.core.Keyword(null,"y","y",-1757859776),new cljs.core.Keyword(null,"newY","newY",-1472730860).cljs$core$IFn$_invoke$arity$1(ui_state_derefed_26717)], null)], 0));
 }));
 
 return cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$4(threatmodeler.core.ui_state,cljs.core.assoc,new cljs.core.Keyword(null,"element-transformation-in-progress","element-transformation-in-progress",1733961414),null);
@@ -372,48 +372,48 @@ return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMP
 });
 threatmodeler.core.render_threat_element_property_groups = (function threatmodeler$core$render_threat_element_property_groups(element_id,property_groups){
 var active_element = cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(cljs.core.deref(threatmodeler.core.threat_model),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"elements","elements",657646735),element_id], null));
-return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.threat-element-property-groups","div.threat-element-property-groups",-1471481462),cljs.core.doall.cljs$core$IFn$_invoke$arity$1((function (){var iter__4582__auto__ = (function threatmodeler$core$render_threat_element_property_groups_$_iter__26777(s__26778){
+return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.threat-element-property-groups","div.threat-element-property-groups",-1471481462),cljs.core.doall.cljs$core$IFn$_invoke$arity$1((function (){var iter__4582__auto__ = (function threatmodeler$core$render_threat_element_property_groups_$_iter__26691(s__26692){
 return (new cljs.core.LazySeq(null,(function (){
-var s__26778__$1 = s__26778;
+var s__26692__$1 = s__26692;
 while(true){
-var temp__5735__auto__ = cljs.core.seq(s__26778__$1);
+var temp__5735__auto__ = cljs.core.seq(s__26692__$1);
 if(temp__5735__auto__){
-var s__26778__$2 = temp__5735__auto__;
-if(cljs.core.chunked_seq_QMARK_(s__26778__$2)){
-var c__4580__auto__ = cljs.core.chunk_first(s__26778__$2);
+var s__26692__$2 = temp__5735__auto__;
+if(cljs.core.chunked_seq_QMARK_(s__26692__$2)){
+var c__4580__auto__ = cljs.core.chunk_first(s__26692__$2);
 var size__4581__auto__ = cljs.core.count(c__4580__auto__);
-var b__26780 = cljs.core.chunk_buffer(size__4581__auto__);
-if((function (){var i__26779 = (0);
+var b__26694 = cljs.core.chunk_buffer(size__4581__auto__);
+if((function (){var i__26693 = (0);
 while(true){
-if((i__26779 < size__4581__auto__)){
-var vec__26781 = cljs.core._nth(c__4580__auto__,i__26779);
-var group_name = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__26781,(0),null);
-var scenario_ids = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__26781,(1),null);
-cljs.core.chunk_append(b__26780,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.checklist-with-header","div.checklist-with-header",656683266),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"h5","h5",-1829156625),group_name], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"ul","ul",-1349521403),cljs.core.doall.cljs$core$IFn$_invoke$arity$1((function (){var iter__4582__auto__ = ((function (i__26779,vec__26781,group_name,scenario_ids,c__4580__auto__,size__4581__auto__,b__26780,s__26778__$2,temp__5735__auto__,active_element){
-return (function threatmodeler$core$render_threat_element_property_groups_$_iter__26777_$_iter__26784(s__26785){
-return (new cljs.core.LazySeq(null,((function (i__26779,vec__26781,group_name,scenario_ids,c__4580__auto__,size__4581__auto__,b__26780,s__26778__$2,temp__5735__auto__,active_element){
+if((i__26693 < size__4581__auto__)){
+var vec__26695 = cljs.core._nth(c__4580__auto__,i__26693);
+var group_name = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__26695,(0),null);
+var scenario_ids = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__26695,(1),null);
+cljs.core.chunk_append(b__26694,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.checklist-with-header","div.checklist-with-header",656683266),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"h5","h5",-1829156625),group_name], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"ul","ul",-1349521403),cljs.core.doall.cljs$core$IFn$_invoke$arity$1((function (){var iter__4582__auto__ = ((function (i__26693,vec__26695,group_name,scenario_ids,c__4580__auto__,size__4581__auto__,b__26694,s__26692__$2,temp__5735__auto__,active_element){
+return (function threatmodeler$core$render_threat_element_property_groups_$_iter__26691_$_iter__26698(s__26699){
+return (new cljs.core.LazySeq(null,((function (i__26693,vec__26695,group_name,scenario_ids,c__4580__auto__,size__4581__auto__,b__26694,s__26692__$2,temp__5735__auto__,active_element){
 return (function (){
-var s__26785__$1 = s__26785;
+var s__26699__$1 = s__26699;
 while(true){
-var temp__5735__auto____$1 = cljs.core.seq(s__26785__$1);
+var temp__5735__auto____$1 = cljs.core.seq(s__26699__$1);
 if(temp__5735__auto____$1){
-var s__26785__$2 = temp__5735__auto____$1;
-if(cljs.core.chunked_seq_QMARK_(s__26785__$2)){
-var c__4580__auto____$1 = cljs.core.chunk_first(s__26785__$2);
+var s__26699__$2 = temp__5735__auto____$1;
+if(cljs.core.chunked_seq_QMARK_(s__26699__$2)){
+var c__4580__auto____$1 = cljs.core.chunk_first(s__26699__$2);
 var size__4581__auto____$1 = cljs.core.count(c__4580__auto____$1);
-var b__26787 = cljs.core.chunk_buffer(size__4581__auto____$1);
-if((function (){var i__26786 = (0);
+var b__26701 = cljs.core.chunk_buffer(size__4581__auto____$1);
+if((function (){var i__26700 = (0);
 while(true){
-if((i__26786 < size__4581__auto____$1)){
-var property = cljs.core._nth(c__4580__auto____$1,i__26786);
-cljs.core.chunk_append(b__26787,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"li","li",723558921),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"input","input",556931961),new cljs.core.PersistentArrayMap(null, 5, [new cljs.core.Keyword(null,"type","type",1174270348),"checkbox",new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"name","name",1843675177).cljs$core$IFn$_invoke$arity$1(property),new cljs.core.Keyword(null,"id","id",-1388402092),new cljs.core.Keyword(null,"id","id",-1388402092).cljs$core$IFn$_invoke$arity$1(property),new cljs.core.Keyword(null,"checked","checked",-50955819),cljs.core.contains_QMARK_(new cljs.core.Keyword(null,"properties","properties",685819552).cljs$core$IFn$_invoke$arity$1(active_element),new cljs.core.Keyword(null,"id","id",-1388402092).cljs$core$IFn$_invoke$arity$1(property)),new cljs.core.Keyword(null,"on-change","on-change",-732046149),((function (i__26786,i__26779,property,c__4580__auto____$1,size__4581__auto____$1,b__26787,s__26785__$2,temp__5735__auto____$1,vec__26781,group_name,scenario_ids,c__4580__auto__,size__4581__auto__,b__26780,s__26778__$2,temp__5735__auto__,active_element){
+if((i__26700 < size__4581__auto____$1)){
+var property = cljs.core._nth(c__4580__auto____$1,i__26700);
+cljs.core.chunk_append(b__26701,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"li","li",723558921),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"input","input",556931961),new cljs.core.PersistentArrayMap(null, 5, [new cljs.core.Keyword(null,"type","type",1174270348),"checkbox",new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"name","name",1843675177).cljs$core$IFn$_invoke$arity$1(property),new cljs.core.Keyword(null,"id","id",-1388402092),new cljs.core.Keyword(null,"id","id",-1388402092).cljs$core$IFn$_invoke$arity$1(property),new cljs.core.Keyword(null,"checked","checked",-50955819),cljs.core.contains_QMARK_(new cljs.core.Keyword(null,"properties","properties",685819552).cljs$core$IFn$_invoke$arity$1(active_element),new cljs.core.Keyword(null,"id","id",-1388402092).cljs$core$IFn$_invoke$arity$1(property)),new cljs.core.Keyword(null,"on-change","on-change",-732046149),((function (i__26700,i__26693,property,c__4580__auto____$1,size__4581__auto____$1,b__26701,s__26699__$2,temp__5735__auto____$1,vec__26695,group_name,scenario_ids,c__4580__auto__,size__4581__auto__,b__26694,s__26692__$2,temp__5735__auto__,active_element){
 return (function (){
 return threatmodeler.core.toggle_element_property_for_element_BANG_(element_id,property);
-});})(i__26786,i__26779,property,c__4580__auto____$1,size__4581__auto____$1,b__26787,s__26785__$2,temp__5735__auto____$1,vec__26781,group_name,scenario_ids,c__4580__auto__,size__4581__auto__,b__26780,s__26778__$2,temp__5735__auto__,active_element))
+});})(i__26700,i__26693,property,c__4580__auto____$1,size__4581__auto____$1,b__26701,s__26699__$2,temp__5735__auto____$1,vec__26695,group_name,scenario_ids,c__4580__auto__,size__4581__auto__,b__26694,s__26692__$2,temp__5735__auto__,active_element))
 ], null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"label","label",1718410804),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"for","for",-1323786319),new cljs.core.Keyword(null,"id","id",-1388402092).cljs$core$IFn$_invoke$arity$1(property)], null),new cljs.core.Keyword(null,"name","name",1843675177).cljs$core$IFn$_invoke$arity$1(property)], null)], null));
 
-var G__26804 = (i__26786 + (1));
-i__26786 = G__26804;
+var G__26718 = (i__26700 + (1));
+i__26700 = G__26718;
 continue;
 } else {
 return true;
@@ -421,36 +421,36 @@ return true;
 break;
 }
 })()){
-return cljs.core.chunk_cons(cljs.core.chunk(b__26787),threatmodeler$core$render_threat_element_property_groups_$_iter__26777_$_iter__26784(cljs.core.chunk_rest(s__26785__$2)));
+return cljs.core.chunk_cons(cljs.core.chunk(b__26701),threatmodeler$core$render_threat_element_property_groups_$_iter__26691_$_iter__26698(cljs.core.chunk_rest(s__26699__$2)));
 } else {
-return cljs.core.chunk_cons(cljs.core.chunk(b__26787),null);
+return cljs.core.chunk_cons(cljs.core.chunk(b__26701),null);
 }
 } else {
-var property = cljs.core.first(s__26785__$2);
-return cljs.core.cons(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"li","li",723558921),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"input","input",556931961),new cljs.core.PersistentArrayMap(null, 5, [new cljs.core.Keyword(null,"type","type",1174270348),"checkbox",new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"name","name",1843675177).cljs$core$IFn$_invoke$arity$1(property),new cljs.core.Keyword(null,"id","id",-1388402092),new cljs.core.Keyword(null,"id","id",-1388402092).cljs$core$IFn$_invoke$arity$1(property),new cljs.core.Keyword(null,"checked","checked",-50955819),cljs.core.contains_QMARK_(new cljs.core.Keyword(null,"properties","properties",685819552).cljs$core$IFn$_invoke$arity$1(active_element),new cljs.core.Keyword(null,"id","id",-1388402092).cljs$core$IFn$_invoke$arity$1(property)),new cljs.core.Keyword(null,"on-change","on-change",-732046149),((function (i__26779,property,s__26785__$2,temp__5735__auto____$1,vec__26781,group_name,scenario_ids,c__4580__auto__,size__4581__auto__,b__26780,s__26778__$2,temp__5735__auto__,active_element){
+var property = cljs.core.first(s__26699__$2);
+return cljs.core.cons(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"li","li",723558921),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"input","input",556931961),new cljs.core.PersistentArrayMap(null, 5, [new cljs.core.Keyword(null,"type","type",1174270348),"checkbox",new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"name","name",1843675177).cljs$core$IFn$_invoke$arity$1(property),new cljs.core.Keyword(null,"id","id",-1388402092),new cljs.core.Keyword(null,"id","id",-1388402092).cljs$core$IFn$_invoke$arity$1(property),new cljs.core.Keyword(null,"checked","checked",-50955819),cljs.core.contains_QMARK_(new cljs.core.Keyword(null,"properties","properties",685819552).cljs$core$IFn$_invoke$arity$1(active_element),new cljs.core.Keyword(null,"id","id",-1388402092).cljs$core$IFn$_invoke$arity$1(property)),new cljs.core.Keyword(null,"on-change","on-change",-732046149),((function (i__26693,property,s__26699__$2,temp__5735__auto____$1,vec__26695,group_name,scenario_ids,c__4580__auto__,size__4581__auto__,b__26694,s__26692__$2,temp__5735__auto__,active_element){
 return (function (){
 return threatmodeler.core.toggle_element_property_for_element_BANG_(element_id,property);
-});})(i__26779,property,s__26785__$2,temp__5735__auto____$1,vec__26781,group_name,scenario_ids,c__4580__auto__,size__4581__auto__,b__26780,s__26778__$2,temp__5735__auto__,active_element))
-], null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"label","label",1718410804),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"for","for",-1323786319),new cljs.core.Keyword(null,"id","id",-1388402092).cljs$core$IFn$_invoke$arity$1(property)], null),new cljs.core.Keyword(null,"name","name",1843675177).cljs$core$IFn$_invoke$arity$1(property)], null)], null),threatmodeler$core$render_threat_element_property_groups_$_iter__26777_$_iter__26784(cljs.core.rest(s__26785__$2)));
+});})(i__26693,property,s__26699__$2,temp__5735__auto____$1,vec__26695,group_name,scenario_ids,c__4580__auto__,size__4581__auto__,b__26694,s__26692__$2,temp__5735__auto__,active_element))
+], null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"label","label",1718410804),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"for","for",-1323786319),new cljs.core.Keyword(null,"id","id",-1388402092).cljs$core$IFn$_invoke$arity$1(property)], null),new cljs.core.Keyword(null,"name","name",1843675177).cljs$core$IFn$_invoke$arity$1(property)], null)], null),threatmodeler$core$render_threat_element_property_groups_$_iter__26691_$_iter__26698(cljs.core.rest(s__26699__$2)));
 }
 } else {
 return null;
 }
 break;
 }
-});})(i__26779,vec__26781,group_name,scenario_ids,c__4580__auto__,size__4581__auto__,b__26780,s__26778__$2,temp__5735__auto__,active_element))
+});})(i__26693,vec__26695,group_name,scenario_ids,c__4580__auto__,size__4581__auto__,b__26694,s__26692__$2,temp__5735__auto__,active_element))
 ,null,null));
-});})(i__26779,vec__26781,group_name,scenario_ids,c__4580__auto__,size__4581__auto__,b__26780,s__26778__$2,temp__5735__auto__,active_element))
+});})(i__26693,vec__26695,group_name,scenario_ids,c__4580__auto__,size__4581__auto__,b__26694,s__26692__$2,temp__5735__auto__,active_element))
 ;
-return iter__4582__auto__(cljs.core.map.cljs$core$IFn$_invoke$arity$2(((function (i__26779,iter__4582__auto__,vec__26781,group_name,scenario_ids,c__4580__auto__,size__4581__auto__,b__26780,s__26778__$2,temp__5735__auto__,active_element){
-return (function (p1__26776_SHARP_){
-return cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(property_groups,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"scenarios","scenarios",1618559369),p1__26776_SHARP_], null));
-});})(i__26779,iter__4582__auto__,vec__26781,group_name,scenario_ids,c__4580__auto__,size__4581__auto__,b__26780,s__26778__$2,temp__5735__auto__,active_element))
+return iter__4582__auto__(cljs.core.map.cljs$core$IFn$_invoke$arity$2(((function (i__26693,iter__4582__auto__,vec__26695,group_name,scenario_ids,c__4580__auto__,size__4581__auto__,b__26694,s__26692__$2,temp__5735__auto__,active_element){
+return (function (p1__26690_SHARP_){
+return cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(property_groups,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"scenarios","scenarios",1618559369),p1__26690_SHARP_], null));
+});})(i__26693,iter__4582__auto__,vec__26695,group_name,scenario_ids,c__4580__auto__,size__4581__auto__,b__26694,s__26692__$2,temp__5735__auto__,active_element))
 ,scenario_ids));
 })())], null)], null));
 
-var G__26805 = (i__26779 + (1));
-i__26779 = G__26805;
+var G__26719 = (i__26693 + (1));
+i__26693 = G__26719;
 continue;
 } else {
 return true;
@@ -458,38 +458,38 @@ return true;
 break;
 }
 })()){
-return cljs.core.chunk_cons(cljs.core.chunk(b__26780),threatmodeler$core$render_threat_element_property_groups_$_iter__26777(cljs.core.chunk_rest(s__26778__$2)));
+return cljs.core.chunk_cons(cljs.core.chunk(b__26694),threatmodeler$core$render_threat_element_property_groups_$_iter__26691(cljs.core.chunk_rest(s__26692__$2)));
 } else {
-return cljs.core.chunk_cons(cljs.core.chunk(b__26780),null);
+return cljs.core.chunk_cons(cljs.core.chunk(b__26694),null);
 }
 } else {
-var vec__26788 = cljs.core.first(s__26778__$2);
-var group_name = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__26788,(0),null);
-var scenario_ids = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__26788,(1),null);
-return cljs.core.cons(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.checklist-with-header","div.checklist-with-header",656683266),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"h5","h5",-1829156625),group_name], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"ul","ul",-1349521403),cljs.core.doall.cljs$core$IFn$_invoke$arity$1((function (){var iter__4582__auto__ = ((function (vec__26788,group_name,scenario_ids,s__26778__$2,temp__5735__auto__,active_element){
-return (function threatmodeler$core$render_threat_element_property_groups_$_iter__26777_$_iter__26791(s__26792){
+var vec__26702 = cljs.core.first(s__26692__$2);
+var group_name = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__26702,(0),null);
+var scenario_ids = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__26702,(1),null);
+return cljs.core.cons(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.checklist-with-header","div.checklist-with-header",656683266),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"h5","h5",-1829156625),group_name], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"ul","ul",-1349521403),cljs.core.doall.cljs$core$IFn$_invoke$arity$1((function (){var iter__4582__auto__ = ((function (vec__26702,group_name,scenario_ids,s__26692__$2,temp__5735__auto__,active_element){
+return (function threatmodeler$core$render_threat_element_property_groups_$_iter__26691_$_iter__26705(s__26706){
 return (new cljs.core.LazySeq(null,(function (){
-var s__26792__$1 = s__26792;
+var s__26706__$1 = s__26706;
 while(true){
-var temp__5735__auto____$1 = cljs.core.seq(s__26792__$1);
+var temp__5735__auto____$1 = cljs.core.seq(s__26706__$1);
 if(temp__5735__auto____$1){
-var s__26792__$2 = temp__5735__auto____$1;
-if(cljs.core.chunked_seq_QMARK_(s__26792__$2)){
-var c__4580__auto__ = cljs.core.chunk_first(s__26792__$2);
+var s__26706__$2 = temp__5735__auto____$1;
+if(cljs.core.chunked_seq_QMARK_(s__26706__$2)){
+var c__4580__auto__ = cljs.core.chunk_first(s__26706__$2);
 var size__4581__auto__ = cljs.core.count(c__4580__auto__);
-var b__26794 = cljs.core.chunk_buffer(size__4581__auto__);
-if((function (){var i__26793 = (0);
+var b__26708 = cljs.core.chunk_buffer(size__4581__auto__);
+if((function (){var i__26707 = (0);
 while(true){
-if((i__26793 < size__4581__auto__)){
-var property = cljs.core._nth(c__4580__auto__,i__26793);
-cljs.core.chunk_append(b__26794,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"li","li",723558921),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"input","input",556931961),new cljs.core.PersistentArrayMap(null, 5, [new cljs.core.Keyword(null,"type","type",1174270348),"checkbox",new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"name","name",1843675177).cljs$core$IFn$_invoke$arity$1(property),new cljs.core.Keyword(null,"id","id",-1388402092),new cljs.core.Keyword(null,"id","id",-1388402092).cljs$core$IFn$_invoke$arity$1(property),new cljs.core.Keyword(null,"checked","checked",-50955819),cljs.core.contains_QMARK_(new cljs.core.Keyword(null,"properties","properties",685819552).cljs$core$IFn$_invoke$arity$1(active_element),new cljs.core.Keyword(null,"id","id",-1388402092).cljs$core$IFn$_invoke$arity$1(property)),new cljs.core.Keyword(null,"on-change","on-change",-732046149),((function (i__26793,property,c__4580__auto__,size__4581__auto__,b__26794,s__26792__$2,temp__5735__auto____$1,vec__26788,group_name,scenario_ids,s__26778__$2,temp__5735__auto__,active_element){
+if((i__26707 < size__4581__auto__)){
+var property = cljs.core._nth(c__4580__auto__,i__26707);
+cljs.core.chunk_append(b__26708,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"li","li",723558921),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"input","input",556931961),new cljs.core.PersistentArrayMap(null, 5, [new cljs.core.Keyword(null,"type","type",1174270348),"checkbox",new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"name","name",1843675177).cljs$core$IFn$_invoke$arity$1(property),new cljs.core.Keyword(null,"id","id",-1388402092),new cljs.core.Keyword(null,"id","id",-1388402092).cljs$core$IFn$_invoke$arity$1(property),new cljs.core.Keyword(null,"checked","checked",-50955819),cljs.core.contains_QMARK_(new cljs.core.Keyword(null,"properties","properties",685819552).cljs$core$IFn$_invoke$arity$1(active_element),new cljs.core.Keyword(null,"id","id",-1388402092).cljs$core$IFn$_invoke$arity$1(property)),new cljs.core.Keyword(null,"on-change","on-change",-732046149),((function (i__26707,property,c__4580__auto__,size__4581__auto__,b__26708,s__26706__$2,temp__5735__auto____$1,vec__26702,group_name,scenario_ids,s__26692__$2,temp__5735__auto__,active_element){
 return (function (){
 return threatmodeler.core.toggle_element_property_for_element_BANG_(element_id,property);
-});})(i__26793,property,c__4580__auto__,size__4581__auto__,b__26794,s__26792__$2,temp__5735__auto____$1,vec__26788,group_name,scenario_ids,s__26778__$2,temp__5735__auto__,active_element))
+});})(i__26707,property,c__4580__auto__,size__4581__auto__,b__26708,s__26706__$2,temp__5735__auto____$1,vec__26702,group_name,scenario_ids,s__26692__$2,temp__5735__auto__,active_element))
 ], null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"label","label",1718410804),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"for","for",-1323786319),new cljs.core.Keyword(null,"id","id",-1388402092).cljs$core$IFn$_invoke$arity$1(property)], null),new cljs.core.Keyword(null,"name","name",1843675177).cljs$core$IFn$_invoke$arity$1(property)], null)], null));
 
-var G__26806 = (i__26793 + (1));
-i__26793 = G__26806;
+var G__26720 = (i__26707 + (1));
+i__26707 = G__26720;
 continue;
 } else {
 return true;
@@ -497,17 +497,17 @@ return true;
 break;
 }
 })()){
-return cljs.core.chunk_cons(cljs.core.chunk(b__26794),threatmodeler$core$render_threat_element_property_groups_$_iter__26777_$_iter__26791(cljs.core.chunk_rest(s__26792__$2)));
+return cljs.core.chunk_cons(cljs.core.chunk(b__26708),threatmodeler$core$render_threat_element_property_groups_$_iter__26691_$_iter__26705(cljs.core.chunk_rest(s__26706__$2)));
 } else {
-return cljs.core.chunk_cons(cljs.core.chunk(b__26794),null);
+return cljs.core.chunk_cons(cljs.core.chunk(b__26708),null);
 }
 } else {
-var property = cljs.core.first(s__26792__$2);
-return cljs.core.cons(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"li","li",723558921),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"input","input",556931961),new cljs.core.PersistentArrayMap(null, 5, [new cljs.core.Keyword(null,"type","type",1174270348),"checkbox",new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"name","name",1843675177).cljs$core$IFn$_invoke$arity$1(property),new cljs.core.Keyword(null,"id","id",-1388402092),new cljs.core.Keyword(null,"id","id",-1388402092).cljs$core$IFn$_invoke$arity$1(property),new cljs.core.Keyword(null,"checked","checked",-50955819),cljs.core.contains_QMARK_(new cljs.core.Keyword(null,"properties","properties",685819552).cljs$core$IFn$_invoke$arity$1(active_element),new cljs.core.Keyword(null,"id","id",-1388402092).cljs$core$IFn$_invoke$arity$1(property)),new cljs.core.Keyword(null,"on-change","on-change",-732046149),((function (property,s__26792__$2,temp__5735__auto____$1,vec__26788,group_name,scenario_ids,s__26778__$2,temp__5735__auto__,active_element){
+var property = cljs.core.first(s__26706__$2);
+return cljs.core.cons(new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"li","li",723558921),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"input","input",556931961),new cljs.core.PersistentArrayMap(null, 5, [new cljs.core.Keyword(null,"type","type",1174270348),"checkbox",new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"name","name",1843675177).cljs$core$IFn$_invoke$arity$1(property),new cljs.core.Keyword(null,"id","id",-1388402092),new cljs.core.Keyword(null,"id","id",-1388402092).cljs$core$IFn$_invoke$arity$1(property),new cljs.core.Keyword(null,"checked","checked",-50955819),cljs.core.contains_QMARK_(new cljs.core.Keyword(null,"properties","properties",685819552).cljs$core$IFn$_invoke$arity$1(active_element),new cljs.core.Keyword(null,"id","id",-1388402092).cljs$core$IFn$_invoke$arity$1(property)),new cljs.core.Keyword(null,"on-change","on-change",-732046149),((function (property,s__26706__$2,temp__5735__auto____$1,vec__26702,group_name,scenario_ids,s__26692__$2,temp__5735__auto__,active_element){
 return (function (){
 return threatmodeler.core.toggle_element_property_for_element_BANG_(element_id,property);
-});})(property,s__26792__$2,temp__5735__auto____$1,vec__26788,group_name,scenario_ids,s__26778__$2,temp__5735__auto__,active_element))
-], null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"label","label",1718410804),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"for","for",-1323786319),new cljs.core.Keyword(null,"id","id",-1388402092).cljs$core$IFn$_invoke$arity$1(property)], null),new cljs.core.Keyword(null,"name","name",1843675177).cljs$core$IFn$_invoke$arity$1(property)], null)], null),threatmodeler$core$render_threat_element_property_groups_$_iter__26777_$_iter__26791(cljs.core.rest(s__26792__$2)));
+});})(property,s__26706__$2,temp__5735__auto____$1,vec__26702,group_name,scenario_ids,s__26692__$2,temp__5735__auto__,active_element))
+], null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"label","label",1718410804),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"for","for",-1323786319),new cljs.core.Keyword(null,"id","id",-1388402092).cljs$core$IFn$_invoke$arity$1(property)], null),new cljs.core.Keyword(null,"name","name",1843675177).cljs$core$IFn$_invoke$arity$1(property)], null)], null),threatmodeler$core$render_threat_element_property_groups_$_iter__26691_$_iter__26705(cljs.core.rest(s__26706__$2)));
 }
 } else {
 return null;
@@ -515,14 +515,14 @@ return null;
 break;
 }
 }),null,null));
-});})(vec__26788,group_name,scenario_ids,s__26778__$2,temp__5735__auto__,active_element))
+});})(vec__26702,group_name,scenario_ids,s__26692__$2,temp__5735__auto__,active_element))
 ;
-return iter__4582__auto__(cljs.core.map.cljs$core$IFn$_invoke$arity$2(((function (iter__4582__auto__,vec__26788,group_name,scenario_ids,s__26778__$2,temp__5735__auto__,active_element){
-return (function (p1__26776_SHARP_){
-return cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(property_groups,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"scenarios","scenarios",1618559369),p1__26776_SHARP_], null));
-});})(iter__4582__auto__,vec__26788,group_name,scenario_ids,s__26778__$2,temp__5735__auto__,active_element))
+return iter__4582__auto__(cljs.core.map.cljs$core$IFn$_invoke$arity$2(((function (iter__4582__auto__,vec__26702,group_name,scenario_ids,s__26692__$2,temp__5735__auto__,active_element){
+return (function (p1__26690_SHARP_){
+return cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(property_groups,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"scenarios","scenarios",1618559369),p1__26690_SHARP_], null));
+});})(iter__4582__auto__,vec__26702,group_name,scenario_ids,s__26692__$2,temp__5735__auto__,active_element))
 ,scenario_ids));
-})())], null)], null),threatmodeler$core$render_threat_element_property_groups_$_iter__26777(cljs.core.rest(s__26778__$2)));
+})())], null)], null),threatmodeler$core$render_threat_element_property_groups_$_iter__26691(cljs.core.rest(s__26692__$2)));
 }
 } else {
 return null;
@@ -539,27 +539,27 @@ return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMP
 });
 threatmodeler.core.threat_table = (function threatmodeler$core$threat_table(active_threat_id){
 var active_element = cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(cljs.core.deref(threatmodeler.core.threat_model),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"elements","elements",657646735),active_threat_id], null));
-return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"table#threat-table","table#threat-table",-106845795),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"tr","tr",-1424774646),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"th","th",-545608566),"Description"], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"th","th",-545608566),"Mitigation"], null)], null),cljs.core.doall.cljs$core$IFn$_invoke$arity$1((function (){var iter__4582__auto__ = (function threatmodeler$core$threat_table_$_iter__26795(s__26796){
+return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"table#threat-table","table#threat-table",-106845795),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"tr","tr",-1424774646),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"th","th",-545608566),"Description"], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"th","th",-545608566),"Mitigation"], null)], null),cljs.core.doall.cljs$core$IFn$_invoke$arity$1((function (){var iter__4582__auto__ = (function threatmodeler$core$threat_table_$_iter__26709(s__26710){
 return (new cljs.core.LazySeq(null,(function (){
-var s__26796__$1 = s__26796;
+var s__26710__$1 = s__26710;
 while(true){
-var temp__5735__auto__ = cljs.core.seq(s__26796__$1);
+var temp__5735__auto__ = cljs.core.seq(s__26710__$1);
 if(temp__5735__auto__){
-var s__26796__$2 = temp__5735__auto__;
-if(cljs.core.chunked_seq_QMARK_(s__26796__$2)){
-var c__4580__auto__ = cljs.core.chunk_first(s__26796__$2);
+var s__26710__$2 = temp__5735__auto__;
+if(cljs.core.chunked_seq_QMARK_(s__26710__$2)){
+var c__4580__auto__ = cljs.core.chunk_first(s__26710__$2);
 var size__4581__auto__ = cljs.core.count(c__4580__auto__);
-var b__26798 = cljs.core.chunk_buffer(size__4581__auto__);
-if((function (){var i__26797 = (0);
+var b__26712 = cljs.core.chunk_buffer(size__4581__auto__);
+if((function (){var i__26711 = (0);
 while(true){
-if((i__26797 < size__4581__auto__)){
-var threat_id = cljs.core._nth(c__4580__auto__,i__26797);
-cljs.core.chunk_append(b__26798,(function (){var threat_info = (threatmodeler.core.threat_examples.cljs$core$IFn$_invoke$arity$1 ? threatmodeler.core.threat_examples.cljs$core$IFn$_invoke$arity$1(threat_id) : threatmodeler.core.threat_examples.call(null,threat_id));
+if((i__26711 < size__4581__auto__)){
+var threat_id = cljs.core._nth(c__4580__auto__,i__26711);
+cljs.core.chunk_append(b__26712,(function (){var threat_info = (threatmodeler.core.threat_examples.cljs$core$IFn$_invoke$arity$1 ? threatmodeler.core.threat_examples.cljs$core$IFn$_invoke$arity$1(threat_id) : threatmodeler.core.threat_examples.call(null,threat_id));
 return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"tr","tr",-1424774646),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"td","td",1479933353),new cljs.core.Keyword(null,"description","description",-1428560544).cljs$core$IFn$_invoke$arity$1(threat_info)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"td","td",1479933353),new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626).cljs$core$IFn$_invoke$arity$1(threat_info)], null)], null);
 })());
 
-var G__26807 = (i__26797 + (1));
-i__26797 = G__26807;
+var G__26721 = (i__26711 + (1));
+i__26711 = G__26721;
 continue;
 } else {
 return true;
@@ -567,15 +567,15 @@ return true;
 break;
 }
 })()){
-return cljs.core.chunk_cons(cljs.core.chunk(b__26798),threatmodeler$core$threat_table_$_iter__26795(cljs.core.chunk_rest(s__26796__$2)));
+return cljs.core.chunk_cons(cljs.core.chunk(b__26712),threatmodeler$core$threat_table_$_iter__26709(cljs.core.chunk_rest(s__26710__$2)));
 } else {
-return cljs.core.chunk_cons(cljs.core.chunk(b__26798),null);
+return cljs.core.chunk_cons(cljs.core.chunk(b__26712),null);
 }
 } else {
-var threat_id = cljs.core.first(s__26796__$2);
+var threat_id = cljs.core.first(s__26710__$2);
 return cljs.core.cons((function (){var threat_info = (threatmodeler.core.threat_examples.cljs$core$IFn$_invoke$arity$1 ? threatmodeler.core.threat_examples.cljs$core$IFn$_invoke$arity$1(threat_id) : threatmodeler.core.threat_examples.call(null,threat_id));
 return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"tr","tr",-1424774646),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"td","td",1479933353),new cljs.core.Keyword(null,"description","description",-1428560544).cljs$core$IFn$_invoke$arity$1(threat_info)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"td","td",1479933353),new cljs.core.Keyword(null,"mitigation","mitigation",-1042940626).cljs$core$IFn$_invoke$arity$1(threat_info)], null)], null);
-})(),threatmodeler$core$threat_table_$_iter__26795(cljs.core.rest(s__26796__$2)));
+})(),threatmodeler$core$threat_table_$_iter__26709(cljs.core.rest(s__26710__$2)));
 }
 } else {
 return null;
@@ -592,25 +592,25 @@ var active_element = cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(cljs.core.de
 return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div#threats-for","div#threats-for",447326984),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"h5.section-label","h5.section-label",1046010943),"Threats for:"], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"h3.threat-name","h3.threat-name",357987367),new cljs.core.Keyword(null,"name","name",1843675177).cljs$core$IFn$_invoke$arity$1(active_element)], null)], null);
 });
 threatmodeler.core.simple_example = (function threatmodeler$core$simple_example(threat_model){
-return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div#main","div#main",-2068630773),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div#graph-area","div#graph-area",1292963200),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [threatmodeler.core.instructions], null),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [threatmodeler.core.toolbar], null),new cljs.core.PersistentVector(null, 6, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div#diagram","div#diagram",-550840655),cljs.core.doall.cljs$core$IFn$_invoke$arity$1((function (){var iter__4582__auto__ = (function threatmodeler$core$simple_example_$_iter__26799(s__26800){
+return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div#main","div#main",-2068630773),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div#graph-area","div#graph-area",1292963200),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [threatmodeler.core.instructions], null),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [threatmodeler.core.toolbar], null),new cljs.core.PersistentVector(null, 6, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div#diagram","div#diagram",-550840655),cljs.core.doall.cljs$core$IFn$_invoke$arity$1((function (){var iter__4582__auto__ = (function threatmodeler$core$simple_example_$_iter__26713(s__26714){
 return (new cljs.core.LazySeq(null,(function (){
-var s__26800__$1 = s__26800;
+var s__26714__$1 = s__26714;
 while(true){
-var temp__5735__auto__ = cljs.core.seq(s__26800__$1);
+var temp__5735__auto__ = cljs.core.seq(s__26714__$1);
 if(temp__5735__auto__){
-var s__26800__$2 = temp__5735__auto__;
-if(cljs.core.chunked_seq_QMARK_(s__26800__$2)){
-var c__4580__auto__ = cljs.core.chunk_first(s__26800__$2);
+var s__26714__$2 = temp__5735__auto__;
+if(cljs.core.chunked_seq_QMARK_(s__26714__$2)){
+var c__4580__auto__ = cljs.core.chunk_first(s__26714__$2);
 var size__4581__auto__ = cljs.core.count(c__4580__auto__);
-var b__26802 = cljs.core.chunk_buffer(size__4581__auto__);
-if((function (){var i__26801 = (0);
+var b__26716 = cljs.core.chunk_buffer(size__4581__auto__);
+if((function (){var i__26715 = (0);
 while(true){
-if((i__26801 < size__4581__auto__)){
-var element = cljs.core._nth(c__4580__auto__,i__26801);
-cljs.core.chunk_append(b__26802,threatmodeler.core.render_threat_model_element.cljs$core$IFn$_invoke$arity$2(element,new cljs.core.Keyword(null,"elements","elements",657646735).cljs$core$IFn$_invoke$arity$1(cljs.core.deref(threat_model))));
+if((i__26715 < size__4581__auto__)){
+var element = cljs.core._nth(c__4580__auto__,i__26715);
+cljs.core.chunk_append(b__26716,threatmodeler.core.render_threat_model_element.cljs$core$IFn$_invoke$arity$2(element,new cljs.core.Keyword(null,"elements","elements",657646735).cljs$core$IFn$_invoke$arity$1(cljs.core.deref(threat_model))));
 
-var G__26808 = (i__26801 + (1));
-i__26801 = G__26808;
+var G__26722 = (i__26715 + (1));
+i__26715 = G__26722;
 continue;
 } else {
 return true;
@@ -618,13 +618,13 @@ return true;
 break;
 }
 })()){
-return cljs.core.chunk_cons(cljs.core.chunk(b__26802),threatmodeler$core$simple_example_$_iter__26799(cljs.core.chunk_rest(s__26800__$2)));
+return cljs.core.chunk_cons(cljs.core.chunk(b__26716),threatmodeler$core$simple_example_$_iter__26713(cljs.core.chunk_rest(s__26714__$2)));
 } else {
-return cljs.core.chunk_cons(cljs.core.chunk(b__26802),null);
+return cljs.core.chunk_cons(cljs.core.chunk(b__26716),null);
 }
 } else {
-var element = cljs.core.first(s__26800__$2);
-return cljs.core.cons(threatmodeler.core.render_threat_model_element.cljs$core$IFn$_invoke$arity$2(element,new cljs.core.Keyword(null,"elements","elements",657646735).cljs$core$IFn$_invoke$arity$1(cljs.core.deref(threat_model))),threatmodeler$core$simple_example_$_iter__26799(cljs.core.rest(s__26800__$2)));
+var element = cljs.core.first(s__26714__$2);
+return cljs.core.cons(threatmodeler.core.render_threat_model_element.cljs$core$IFn$_invoke$arity$2(element,new cljs.core.Keyword(null,"elements","elements",657646735).cljs$core$IFn$_invoke$arity$1(cljs.core.deref(threat_model))),threatmodeler$core$simple_example_$_iter__26713(cljs.core.rest(s__26714__$2)));
 }
 } else {
 return null;
